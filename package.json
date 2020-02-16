@@ -1,0 +1,63 @@
+{
+  "name": "apollo-datasource-spotify",
+  "version": "0.0.0",
+  "description": "RESTDataSource wrapper for the Spotify API",
+  "author": "Jamal Carvalho <jamal.a.carvalho@gmail.com>",
+  "homepage": "https://github.com/jamalc/apollo-datasource-spotify#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamalc/apollo-datasource-spotify.git"
+  },
+  "scripts": {
+    "build": "rm -rf dist/* && tsc",
+    "develop": "tsc -w",
+    "lint": "eslint . --ext .ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint . --ext .ts --fix",
+      "git add"
+    ],
+    "*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/jamalc/apollo-datasource-spotify/issues"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "apollo-datasource-rest": "^0.7.0",
+    "dataloader": "^2.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "graphql": "^14.6.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "bottleneck": "^2.15.3"
+  },
+  "peerDependencies": {
+    "apollo-datasource-rest": "^0.7.0",
+    "dataloader": "^2.0.0",
+    "graphql": "^14.6.0"
+  }
+}
