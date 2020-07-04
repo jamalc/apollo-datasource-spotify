@@ -38,19 +38,19 @@
     "url": "https://github.com/jamalc/apollo-datasource-spotify/issues"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.149",
-    "@typescript-eslint/eslint-plugin": "^2.19.2",
-    "@typescript-eslint/parser": "^2.19.2",
+    "@types/lodash": "^4.14.157",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "apollo-datasource-rest": "^0.7.0",
     "dataloader": "^2.0.0",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "graphql": "^14.6.0",
-    "husky": "^4.2.3",
-    "lint-staged": "^10.0.7",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "prettier": "^1.19.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.6"
   },
   "dependencies": {
     "bottleneck": "^2.15.3"
