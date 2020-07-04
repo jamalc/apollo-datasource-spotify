@@ -14,8 +14,6 @@ export interface Context {
 export class SpotifyAPI extends RESTDataSource<Context> {
   public baseURL = 'https://api.spotify.com/v1/';
 
-  private market: string;
-  private country: string;
   private limiter: Bottleneck;
 
   private albumLoader = new DataLoader(
@@ -31,10 +29,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
     { maxBatchSize: 50 }
   );
 
-  constructor({ market = 'from_token', country = 'from_token' }) {
+  constructor() {
     super();
-    this.market = market;
-    this.country = country;
 
     this.limiter = new Bottleneck({
       reservoir: 100,
@@ -187,14 +183,6 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   protected willSendRequest(request: RequestOptions): void {
-    if (this.market) {
-      request.params.set('market', this.market);
-    }
-
-    if (this.country) {
-      request.params.set('country', this.country);
-    }
-
     if (this.context.token) {
       request.headers.set('Authorization', `Bearer ${this.context.token}`);
     }
