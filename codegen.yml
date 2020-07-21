@@ -1,0 +1,24 @@
+schema:
+  - ./graphql/schema.graphql
+generates:
+  ./generated/types.ts:
+    plugins:
+      - typescript
+    config:
+      maybeValue: T
+      skipTypename: false
+      preResolveTypes: true
+      avoidOptionals: true
+      federation: true
+      flattenGeneratedTypes: true
+      scalars:
+        DateTime: Date
+        SpotifyURI: String
+        URL: String
+      namingConvention:
+        enumValues: change-case#upperCase
+        typeNames: change-case#pascalCase
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+    - eslint --fix --quiet

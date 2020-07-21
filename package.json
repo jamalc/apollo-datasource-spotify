@@ -17,7 +17,8 @@
   "scripts": {
     "build": "rm -rf dist/* && tsc",
     "develop": "tsc -w",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "graphql": "graphql-codegen"
   },
   "husky": {
     "hooks": {
@@ -38,6 +39,8 @@
     "url": "https://github.com/jamalc/apollo-datasource-spotify/issues"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.17.3",
+    "@graphql-codegen/typescript": "^1.17.3",
     "@types/lodash": "^4.14.157",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
