@@ -26,6 +26,8 @@ type Query {
   episodes: [Episode!]
   playlist(id: ID!): Playlist
   playlists: [Playlist!]
+  track(id: String): Track
+  tracks: [Track!]
   search: Search!
 }
 

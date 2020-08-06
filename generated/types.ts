@@ -1,5 +1,7 @@
 export type Maybe<T> = T;
-export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -7,10 +9,46 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  SpotifyURI: string;
   URL: string;
+  SpotifyURI: string;
   DateTime: Date;
   _FieldSet: any;
+};
+
+export type SpotifyModel = {
+  id: Scalars['ID'];
+  uri: Scalars['SpotifyURI'];
+  type: SpotifyModelType;
+  href: Scalars['URL'];
+};
+
+export type Search = Album | Artist;
+
+export type Query = {
+  __typename?: 'Query';
+  album: Maybe<Album>;
+  albums: Maybe<Array<Album>>;
+  artist: Maybe<Artist>;
+  artists: Maybe<Array<Artist>>;
+  episode: Maybe<Episode>;
+  episodes: Maybe<Array<Episode>>;
+  playlist: Maybe<Playlist>;
+  playlists: Maybe<Array<Playlist>>;
+  track: Maybe<Track>;
+  tracks: Maybe<Array<Track>>;
+  search: Search;
+};
+
+export type QueryEpisodeArgs = {
+  id: Scalars['ID'];
+};
+
+export type QueryPlaylistArgs = {
+  id: Scalars['ID'];
+};
+
+export type QueryTrackArgs = {
+  id: Maybe<Scalars['String']>;
 };
 
 export type Album = {
@@ -34,12 +72,6 @@ export type Album = {
   type: Maybe<SpotifyModelType>;
   uri: Scalars['SpotifyURI'];
 };
-
-export enum AlbumType {
-  ALBUM = 'ALBUM',
-  SINGLE = 'SINGLE',
-  COMPILATION = 'COMPILATION',
-}
 
 export type Artist = SpotifyModel & {
   __typename?: 'Artist';
@@ -68,9 +100,146 @@ export type Copyrights = {
   type: CopyrightType;
 };
 
-export enum CopyrightType {
-  C = 'C',
-  P = 'P',
+export type Episode = SpotifyModel & {
+  __typename?: 'Episode';
+  audioPreviewUrl: Maybe<Scalars['String']>;
+  description: Maybe<Scalars['String']>;
+  durationMs: Maybe<Scalars['Int']>;
+  explicit: Maybe<Scalars['Boolean']>;
+  externalUrls: Maybe<ExternalUrLs>;
+  href: Scalars['URL'];
+  id: Scalars['ID'];
+  images: Maybe<Array<Image>>;
+  isExternallyHosted: Maybe<Scalars['Boolean']>;
+  isPlayable: Maybe<Scalars['Boolean']>;
+  language: Maybe<LanguageCode>;
+  languages: Maybe<Array<LanguageCode>>;
+  name: Maybe<Scalars['String']>;
+  releaseDate: Maybe<Scalars['DateTime']>;
+  releaseDatePrecesion: Maybe<ReleaseDatePrecisionType>;
+  resumePoint: Maybe<ResumePoint>;
+  show: Maybe<Show>;
+  type: SpotifyModelType;
+  uri: Scalars['SpotifyURI'];
+};
+
+export type ExternalIDs = {
+  __typename?: 'ExternalIDs';
+  isrc: Maybe<Scalars['String']>;
+  ean: Maybe<Scalars['String']>;
+  upc: Maybe<Scalars['String']>;
+};
+
+export type ExternalUrLs = {
+  __typename?: 'ExternalURLs';
+  spotify: Scalars['String'];
+};
+
+export type Image = {
+  __typename?: 'Image';
+  url: Maybe<Scalars['String']>;
+  height: Maybe<Scalars['Int']>;
+  width: Maybe<Scalars['Int']>;
+};
+
+export type Playlist = SpotifyModel & {
+  __typename?: 'Playlist';
+  description: Maybe<Scalars['String']>;
+  externalUrls: Maybe<ExternalUrLs>;
+  href: Scalars['URL'];
+  id: Scalars['ID'];
+  images: Array<Maybe<Image>>;
+  collaborative: Scalars['Boolean'];
+  publicAccess: Scalars['Boolean'];
+  name: Scalars['String'];
+  owner: Maybe<PlaylistOwner>;
+  snapshotId: Maybe<Scalars['String']>;
+  tracks: Maybe<Array<Track>>;
+  type: SpotifyModelType;
+  uri: Scalars['SpotifyURI'];
+};
+
+export type PlaylistOwner = SpotifyModel & {
+  __typename?: 'PlaylistOwner';
+  displayName: Scalars['String'];
+  externalUrls: ExternalUrLs;
+  href: Scalars['URL'];
+  id: Scalars['ID'];
+  type: SpotifyModelType;
+  uri: Scalars['SpotifyURI'];
+};
+
+export type ResumePoint = {
+  __typename?: 'ResumePoint';
+  fullyPlayed: Maybe<Scalars['Boolean']>;
+  resumePositionMs: Maybe<Scalars['Int']>;
+};
+
+export type Show = SpotifyModel & {
+  __typename?: 'Show';
+  availableMarkets: Maybe<Array<CountryCode>>;
+  copyrights: Maybe<Copyrights>;
+  description: Maybe<Scalars['String']>;
+  episodes: Maybe<Array<Episode>>;
+  explicit: Maybe<Scalars['Boolean']>;
+  externalUrls: Maybe<ExternalUrLs>;
+  href: Scalars['URL'];
+  id: Scalars['ID'];
+  isExternallyHosted: Maybe<Scalars['Boolean']>;
+  languages: Maybe<Array<LanguageCode>>;
+  mediaType: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  publisher: Maybe<Scalars['String']>;
+  totalEpisodes: Maybe<Scalars['Int']>;
+  type: SpotifyModelType;
+  uri: Scalars['SpotifyURI'];
+};
+
+export type Track = SpotifyModel & {
+  __typename?: 'Track';
+  album: Maybe<Album>;
+  artists: Maybe<Array<Artist>>;
+  availableMarkets: Maybe<Array<CountryCode>>;
+  discNumber: Maybe<Scalars['Int']>;
+  durationMs: Maybe<Scalars['Int']>;
+  explicit: Scalars['Boolean'];
+  externalIds: Maybe<ExternalIDs>;
+  externalUrls: Maybe<ExternalUrLs>;
+  href: Scalars['URL'];
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  playable: Scalars['Boolean'];
+  popularity: Maybe<Scalars['Int']>;
+  previewUrl: Maybe<Scalars['String']>;
+  trackNumber: Maybe<Scalars['Int']>;
+  type: SpotifyModelType;
+  uri: Scalars['SpotifyURI'];
+};
+
+export type User = SpotifyModel & {
+  __typename?: 'User';
+  birthdate: Maybe<Scalars['DateTime']>;
+  country: Maybe<CountryCode>;
+  displayName: Maybe<Scalars['String']>;
+  email: Scalars['String'];
+  externalUrls: Maybe<ExternalUrLs>;
+  href: Scalars['URL'];
+  id: Scalars['ID'];
+  images: Maybe<Array<Image>>;
+  playlists: Maybe<Array<Playlist>>;
+  product: Maybe<SpotifyPoductType>;
+  type: SpotifyModelType;
+  uri: Scalars['SpotifyURI'];
+};
+
+export enum AlbumType {
+  ALBUM = 'ALBUM',
+  SINGLE = 'SINGLE',
+  COMPILATION = 'COMPILATION',
+}
+
+export enum LanguageCode {
+  EN = 'EN',
 }
 
 export enum CountryCode {
@@ -346,99 +515,10 @@ export enum CountryCode {
   ZW = 'ZW',
 }
 
-export type Episode = SpotifyModel & {
-  __typename?: 'Episode';
-  audioPreviewUrl: Maybe<Scalars['String']>;
-  description: Maybe<Scalars['String']>;
-  durationMs: Maybe<Scalars['Int']>;
-  explicit: Maybe<Scalars['Boolean']>;
-  externalUrls: Maybe<ExternalUrLs>;
-  href: Scalars['URL'];
-  id: Scalars['ID'];
-  images: Maybe<Array<Image>>;
-  isExternallyHosted: Maybe<Scalars['Boolean']>;
-  isPlayable: Maybe<Scalars['Boolean']>;
-  language: Maybe<LanguageCode>;
-  languages: Maybe<Array<LanguageCode>>;
-  name: Maybe<Scalars['String']>;
-  releaseDate: Maybe<Scalars['DateTime']>;
-  releaseDatePrecesion: Maybe<ReleaseDatePrecisionType>;
-  resumePoint: Maybe<ResumePoint>;
-  show: Maybe<Show>;
-  type: SpotifyModelType;
-  uri: Scalars['SpotifyURI'];
-};
-
-export type ExternalIDs = {
-  __typename?: 'ExternalIDs';
-  isrc: Maybe<Scalars['String']>;
-  ean: Maybe<Scalars['String']>;
-  upc: Maybe<Scalars['String']>;
-};
-
-export type ExternalUrLs = {
-  __typename?: 'ExternalURLs';
-  spotify: Scalars['String'];
-};
-
-export type Image = {
-  __typename?: 'Image';
-  url: Maybe<Scalars['String']>;
-  height: Maybe<Scalars['Int']>;
-  width: Maybe<Scalars['Int']>;
-};
-
-export enum LanguageCode {
-  EN = 'EN',
+export enum CopyrightType {
+  C = 'C',
+  P = 'P',
 }
-
-export type Playlist = SpotifyModel & {
-  __typename?: 'Playlist';
-  description: Maybe<Scalars['String']>;
-  externalUrls: Maybe<ExternalUrLs>;
-  href: Scalars['URL'];
-  id: Scalars['ID'];
-  images: Array<Maybe<Image>>;
-  collaborative: Scalars['Boolean'];
-  publicAccess: Scalars['Boolean'];
-  name: Scalars['String'];
-  owner: Maybe<PlaylistOwner>;
-  snapshotId: Maybe<Scalars['String']>;
-  tracks: Maybe<Array<Track>>;
-  type: SpotifyModelType;
-  uri: Scalars['SpotifyURI'];
-};
-
-export type PlaylistOwner = SpotifyModel & {
-  __typename?: 'PlaylistOwner';
-  displayName: Scalars['String'];
-  externalUrls: ExternalUrLs;
-  href: Scalars['URL'];
-  id: Scalars['ID'];
-  type: SpotifyModelType;
-  uri: Scalars['SpotifyURI'];
-};
-
-export type Query = {
-  __typename?: 'Query';
-  album: Maybe<Album>;
-  albums: Maybe<Array<Album>>;
-  artist: Maybe<Artist>;
-  artists: Maybe<Array<Artist>>;
-  episode: Maybe<Episode>;
-  episodes: Maybe<Array<Episode>>;
-  playlist: Maybe<Playlist>;
-  playlists: Maybe<Array<Playlist>>;
-  search: Search;
-};
-
-export type QueryEpisodeArgs = {
-  id: Scalars['ID'];
-};
-
-export type QueryPlaylistArgs = {
-  id: Scalars['ID'];
-};
 
 export enum ReleaseDatePrecisionType {
   DAY = 'DAY',
@@ -446,40 +526,13 @@ export enum ReleaseDatePrecisionType {
   YEAR = 'YEAR',
 }
 
-export type ResumePoint = {
-  __typename?: 'ResumePoint';
-  fullyPlayed: Maybe<Scalars['Boolean']>;
-  resumePositionMs: Maybe<Scalars['Int']>;
-};
-
-export type Search = Album | Artist;
-
-export type Show = SpotifyModel & {
-  __typename?: 'Show';
-  availableMarkets: Maybe<Array<CountryCode>>;
-  copyrights: Maybe<Copyrights>;
-  description: Maybe<Scalars['String']>;
-  episodes: Maybe<Array<Episode>>;
-  explicit: Maybe<Scalars['Boolean']>;
-  externalUrls: Maybe<ExternalUrLs>;
-  href: Scalars['URL'];
-  id: Scalars['ID'];
-  isExternallyHosted: Maybe<Scalars['Boolean']>;
-  languages: Maybe<Array<LanguageCode>>;
-  mediaType: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
-  publisher: Maybe<Scalars['String']>;
-  totalEpisodes: Maybe<Scalars['Int']>;
-  type: SpotifyModelType;
-  uri: Scalars['SpotifyURI'];
-};
-
-export type SpotifyModel = {
-  id: Scalars['ID'];
-  uri: Scalars['SpotifyURI'];
-  type: SpotifyModelType;
-  href: Scalars['URL'];
-};
+export enum SpotifyPoductType {
+  BASIC_DESKTOP = 'BASIC_DESKTOP',
+  DAYPASS = 'DAYPASS',
+  FREE = 'FREE',
+  OPEN = 'OPEN',
+  PREMIUM = 'PREMIUM',
+}
 
 export enum SpotifyModelType {
   ALBUM = 'ALBUM',
@@ -492,48 +545,3 @@ export enum SpotifyModelType {
   TRACK = 'TRACK',
   USER = 'USER',
 }
-
-export enum SpotifyPoductType {
-  BASIC_DESKTOP = 'BASIC_DESKTOP',
-  DAYPASS = 'DAYPASS',
-  FREE = 'FREE',
-  OPEN = 'OPEN',
-  PREMIUM = 'PREMIUM',
-}
-
-export type Track = SpotifyModel & {
-  __typename?: 'Track';
-  album: Maybe<Album>;
-  artists: Maybe<Array<Artist>>;
-  availableMarkets: Maybe<Array<CountryCode>>;
-  discNumber: Maybe<Scalars['Int']>;
-  durationMs: Maybe<Scalars['Int']>;
-  explicit: Scalars['Boolean'];
-  externalIds: Maybe<ExternalIDs>;
-  externalUrls: Maybe<ExternalUrLs>;
-  href: Scalars['URL'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  playable: Scalars['Boolean'];
-  popularity: Maybe<Scalars['Int']>;
-  previewUrl: Maybe<Scalars['String']>;
-  trackNumber: Maybe<Scalars['Int']>;
-  type: SpotifyModelType;
-  uri: Scalars['SpotifyURI'];
-};
-
-export type User = SpotifyModel & {
-  __typename?: 'User';
-  birthdate: Maybe<Scalars['DateTime']>;
-  country: Maybe<CountryCode>;
-  displayName: Maybe<Scalars['String']>;
-  email: Scalars['String'];
-  externalUrls: Maybe<ExternalUrLs>;
-  href: Scalars['URL'];
-  id: Scalars['ID'];
-  images: Maybe<Array<Image>>;
-  playlists: Maybe<Array<Playlist>>;
-  product: Maybe<SpotifyPoductType>;
-  type: SpotifyModelType;
-  uri: Scalars['SpotifyURI'];
-};

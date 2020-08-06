@@ -5,6 +5,7 @@ import Bottleneck from 'bottleneck';
 import DataLoader from 'dataloader';
 
 import * as p from './params';
+import { Album, Artist, Image, Query, Track, User } from '../generated/types';
 
 export interface Context {
   token?: string;
@@ -16,16 +17,16 @@ export class SpotifyAPI extends RESTDataSource<Context> {
 
   private limiter: Bottleneck;
 
-  private albumLoader = new DataLoader(
-    ids => this.get('albums', { ids }).then((data: any) => data.albums),
+  private albumLoader = new DataLoader<string, Album>(
+    (ids) => this.get('albums', { ids }).then((data: Query) => data.albums),
     { maxBatchSize: 20 }
   );
-  private artistLoader = new DataLoader(
-    ids => this.get('artists', { ids }).then((data: any) => data.artists),
+  private artistLoader = new DataLoader<string, Artist>(
+    (ids) => this.get('artists', { ids }).then((data: Query) => data.artists),
     { maxBatchSize: 50 }
   );
-  private trackLoader = new DataLoader(
-    ids => this.get('tracks', { ids }).then((data: any) => data.tracks),
+  private trackLoader = new DataLoader<string, Track>(
+    (ids) => this.get('tracks', { ids }).then((data: Query) => data.tracks),
     { maxBatchSize: 50 }
   );
 
@@ -46,7 +47,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
     this.delete = this.limiter.wrap(this.delete.bind(this));
   }
 
-  public album(id: string) {
+  public album(id: string): Promise<Album> {
     return this.albumLoader.load(id);
   }
 
@@ -54,11 +55,11 @@ export class SpotifyAPI extends RESTDataSource<Context> {
     return this.get(`album/${id}/tracks`, params);
   }
 
-  public albums(ids: string[]) {
+  public albums(ids: string[]): Promise<Array<Error | Album>> {
     return this.albumLoader.loadMany(ids);
   }
 
-  public artist(id: string) {
+  public artist(id: string): Promise<Artist> {
     return this.artistLoader.load(id);
   }
 
@@ -66,23 +67,23 @@ export class SpotifyAPI extends RESTDataSource<Context> {
     return this.get(`artist/${id}/albums`, params);
   }
 
-  public artistTopTracks(id: string) {
+  public artistTopTracks(id: string): Promise<Array<Track>> {
     return this.get(`artists/${id}/top-tracks`);
   }
 
-  public artistRelatedArtists(id: string) {
+  public artistRelatedArtists(id: string): Promise<Array<Artist>> {
     return this.get(`artists/${id}/related-artists`);
   }
 
-  public artists(ids: string[]) {
+  public artists(ids: string[]): Promise<Array<Artist | Error>> {
     return this.artistLoader.loadMany(ids);
   }
 
-  public track(id: string) {
+  public track(id: string): Promise<Track> {
     return this.trackLoader.load(id);
   }
 
-  public tracks(ids: string[]) {
+  public tracks(ids: string[]): Promise<Array<Track | Error>> {
     return this.trackLoader.loadMany(ids);
   }
 
@@ -142,7 +143,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
     return this.get(`playlists/${id}`, params);
   }
 
-  public playlistCoverImage(id: string) {
+  public playlistCoverImage(id: string): Promise<Image> {
     return this.get(`playlists/${id}/images`);
   }
 
@@ -170,11 +171,11 @@ export class SpotifyAPI extends RESTDataSource<Context> {
     return this.get('search', params);
   }
 
-  public me() {
+  public me(): Promise<User> {
     return this.get('me');
   }
 
-  public user(id: string) {
+  public user(id: string): Promise<User> {
     return this.get(`user/${id}`);
   }
 
