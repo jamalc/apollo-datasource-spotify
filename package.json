@@ -40,6 +40,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^1.17.7",
     "@graphql-codegen/typescript": "^1.17.7",
+    "@types/jest": "^26.0.14",
     "@types/lodash": "^4.14.159",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^3.8.0",
@@ -50,8 +51,10 @@
     "eslint-plugin-prettier": "^3.1.4",
     "graphql": "^15.3.0",
     "husky": "^4.2.5",
+    "jest": "^26.4.2",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
+    "ts-jest": "^26.3.0",
     "typescript": "^3.9.7"
   },
   "dependencies": {

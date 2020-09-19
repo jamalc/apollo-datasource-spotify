@@ -1,10 +1,15 @@
 // TODO: re-enable these rules
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-function-return-type */
-import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest';
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import {
+  RequestOptions,
+  RESTDataSource,
+  Response,
+} from 'apollo-datasource-rest';
 import Bottleneck from 'bottleneck';
 import DataLoader from 'dataloader';
 
 import * as p from './params';
+import { camelCase } from './case';
 import { Album, Artist, Image, Query, Track, User } from '../types/generated';
 
 export interface Context {
@@ -194,5 +199,11 @@ export class SpotifyAPI extends RESTDataSource<Context> {
     if (this.context.authorization) {
       request.headers.set('Authorization', this.context.authorization);
     }
+  }
+
+  protected parseBody(
+    response: Response
+  ): Promise<Record<string, unknown> | string> {
+    return super.parseBody(response).then(camelCase);
   }
 }
