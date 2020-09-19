@@ -73,6 +73,12 @@ export type Album = {
   uri: Scalars['SpotifyURI'];
 };
 
+export type SavedAlbum = {
+  __typename?: 'SavedAlbum';
+  addedAt: Scalars['DateTime'];
+  album: Album;
+};
+
 export type Artist = SpotifyModel & {
   __typename?: 'Artist';
   externalUrls: Maybe<Array<ExternalUrLs>>;
@@ -151,12 +157,21 @@ export type Playlist = SpotifyModel & {
   images: Array<Maybe<Image>>;
   collaborative: Scalars['Boolean'];
   publicAccess: Scalars['Boolean'];
+  public: Maybe<Scalars['Boolean']>;
   name: Scalars['String'];
   owner: Maybe<PlaylistOwner>;
   snapshotId: Maybe<Scalars['String']>;
   tracks: Maybe<Array<Track>>;
   type: SpotifyModelType;
   uri: Scalars['SpotifyURI'];
+};
+
+export type PlaylistTrack = {
+  __typename?: 'PlaylistTrack';
+  addedAt: Maybe<Scalars['String']>;
+  addedBy: Maybe<User>;
+  isLocal: Scalars['Boolean'];
+  track: Track;
 };
 
 export type PlaylistOwner = SpotifyModel & {
@@ -216,6 +231,12 @@ export type Track = SpotifyModel & {
   uri: Scalars['SpotifyURI'];
 };
 
+export type SavedTrack = {
+  __typename?: 'SavedTrack';
+  addedAt: Scalars['DateTime'];
+  track: Track;
+};
+
 export type User = SpotifyModel & {
   __typename?: 'User';
   birthdate: Maybe<Scalars['DateTime']>;
@@ -230,6 +251,21 @@ export type User = SpotifyModel & {
   product: Maybe<SpotifyPoductType>;
   type: SpotifyModelType;
   uri: Scalars['SpotifyURI'];
+};
+
+export type PlayHistory = {
+  __typename?: 'PlayHistory';
+  track: Track;
+  playedAt: Scalars['DateTime'];
+  context: Maybe<Context>;
+};
+
+export type Context = {
+  __typename?: 'Context';
+  type: Scalars['String'];
+  href: Scalars['String'];
+  externalUrls: ExternalUrLs;
+  uri: Scalars['String'];
 };
 
 export enum AlbumType {

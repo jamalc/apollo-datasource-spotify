@@ -52,6 +52,11 @@ type Album {
   uri: SpotifyURI!
 }
 
+type SavedAlbum {
+  addedAt: DateTime!
+  album: Album!
+}
+
 type Artist implements SpotifyModel {
   externalUrls: [ExternalURLs!]
   genres: [String!]
@@ -122,12 +127,20 @@ type Playlist implements SpotifyModel {
   images: [Image]!
   collaborative: Boolean!
   publicAccess: Boolean!
+  public: Boolean
   name: String!
   owner: PlaylistOwner
   snapshotId: String
   tracks: [Track!]
   type: SpotifyModelType!
   uri: SpotifyURI!
+}
+
+type PlaylistTrack {
+  addedAt: String
+  addedBy: User
+  isLocal: Boolean!
+  track: Track!
 }
 
 type PlaylistOwner implements SpotifyModel {
@@ -183,6 +196,11 @@ type Track implements SpotifyModel {
   uri: SpotifyURI!
 }
 
+type SavedTrack {
+  addedAt: DateTime!
+  track: Track!
+}
+
 type User implements SpotifyModel{
   birthdate: DateTime
   country: CountryCode
@@ -196,6 +214,20 @@ type User implements SpotifyModel{
   product: SpotifyPoductType
   type: SpotifyModelType!
   uri: SpotifyURI!
+}
+
+type PlayHistory {
+  track: Track!
+  playedAt: DateTime!
+  context: Context
+}
+
+type Context {
+  # artist | playlist | album
+  type: String!
+  href: String!
+  externalUrls: ExternalURLs!
+  uri: String!
 }
 
 enum AlbumType {
