@@ -19,6 +19,10 @@ export interface ArtistAlbums extends Params, Page {
   include_groups?: 'album' | 'single' | 'appears_on' | 'compilation';
 }
 
+export interface ArtistTopTracks extends Params {
+  country: string;
+}
+
 export interface Saved extends Params, Page {}
 
 export interface Top extends Params, Page {

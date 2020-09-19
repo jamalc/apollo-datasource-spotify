@@ -18,15 +18,15 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   private limiter: Bottleneck;
 
   private albumLoader = new DataLoader<string, Album>(
-    (ids) => this.get('albums', { ids }).then((data: Query) => data.albums),
+    ids => this.get('albums', { ids }).then((data: Query) => data.albums),
     { maxBatchSize: 20 }
   );
   private artistLoader = new DataLoader<string, Artist>(
-    (ids) => this.get('artists', { ids }).then((data: Query) => data.artists),
+    ids => this.get('artists', { ids }).then((data: Query) => data.artists),
     { maxBatchSize: 50 }
   );
   private trackLoader = new DataLoader<string, Track>(
-    (ids) => this.get('tracks', { ids }).then((data: Query) => data.tracks),
+    ids => this.get('tracks', { ids }).then((data: Query) => data.tracks),
     { maxBatchSize: 50 }
   );
 
@@ -67,8 +67,11 @@ export class SpotifyAPI extends RESTDataSource<Context> {
     return this.get(`artist/${id}/albums`, params);
   }
 
-  public artistTopTracks(id: string): Promise<Array<Track>> {
-    return this.get(`artists/${id}/top-tracks`);
+  public artistTopTracks(
+    id: string,
+    params: p.ArtistTopTracks
+  ): Promise<Array<Track>> {
+    return this.get(`artists/${id}/top-tracks`, params);
   }
 
   public artistRelatedArtists(id: string): Promise<Array<Artist>> {
