@@ -5,7 +5,7 @@ import Bottleneck from 'bottleneck';
 import DataLoader from 'dataloader';
 
 import * as p from './params';
-import { Album, Artist, Image, Query, Track, User } from '../generated/types';
+import { Album, Artist, Image, Query, Track, User } from '../types/generated';
 
 export interface Context {
   token?: string;

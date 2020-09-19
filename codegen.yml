@@ -1,7 +1,7 @@
 schema:
   - ./graphql/schema.graphql
 generates:
-  ./generated/types.d.ts:
+  ./types/generated.d.ts:
     plugins:
       - typescript
     config:

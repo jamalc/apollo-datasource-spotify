@@ -9,7 +9,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "generated"
+    "types"
   ],
   "repository": {
     "type": "git",
@@ -28,12 +28,10 @@
   },
   "lint-staged": {
     "*.ts": [
-      "eslint . --ext .ts --fix",
-      "git add"
+      "eslint . --ext .ts --fix"
     ],
     "*.{js,json,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "bugs": {
