@@ -230,6 +230,24 @@ type Context {
   uri: String!
 }
 
+union Item =
+    Artist
+  | Track
+  | SavedAlbum
+  | SavedTrack
+  | Playlist
+  | PlaylistTrack
+
+type PagingObject {
+  href: String
+  items: [Item]
+  limit: Int
+  next: String
+  offset: Int
+  previous: String
+  total: Int
+}
+
 enum AlbumType {
   ALBUM
   SINGLE

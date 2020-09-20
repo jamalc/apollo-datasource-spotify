@@ -268,6 +268,25 @@ export type Context = {
   uri: Scalars['String'];
 };
 
+export type Item =
+  | Artist
+  | Track
+  | SavedAlbum
+  | SavedTrack
+  | Playlist
+  | PlaylistTrack;
+
+export type PagingObject = {
+  __typename?: 'PagingObject';
+  href: Maybe<Scalars['String']>;
+  items: Maybe<Array<Maybe<Item>>>;
+  limit: Maybe<Scalars['Int']>;
+  next: Maybe<Scalars['String']>;
+  offset: Maybe<Scalars['Int']>;
+  previous: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export enum AlbumType {
   ALBUM = 'ALBUM',
   SINGLE = 'SINGLE',
