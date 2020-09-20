@@ -75,7 +75,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   public artistTopTracks(
     id: string,
     params: p.ArtistTopTracks
-  ): Promise<Array<Track>> {
+  ): Promise<{ tracks: Track[] }> {
     return this.get(`artists/${id}/top-tracks`, params);
   }
 
