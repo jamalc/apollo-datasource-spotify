@@ -1,10 +1,8 @@
+import { PagingObject } from '../types/generated';
+
 interface Params {
   limit?: number;
   offset?: number;
-}
-
-interface Data {
-  total: number;
 }
 
 interface Options<D> {
@@ -14,11 +12,11 @@ interface Options<D> {
   /* Maximum number of items to fetch */
   limit?: number;
   offset?: number;
-  request: (params: Params) => Promise<D>;
-  callback: (data: D) => Promise<void>;
+  request: (params: Params) => Promise<PagingObject & { items: D[] }>;
+  callback: (data: PagingObject & { items: D[] }) => Promise<void>;
 }
 
-export const batch = async <D extends Data>({
+export const batch = async <D>({
   size = 50,
   waitForCallback = true,
   limit = 50,
