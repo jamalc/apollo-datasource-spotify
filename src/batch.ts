@@ -1,4 +1,4 @@
-import { PagingObject } from '../types/generated';
+import { PagingObject } from './objects';
 
 interface Params {
   limit?: number;

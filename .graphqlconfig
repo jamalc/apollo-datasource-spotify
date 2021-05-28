@@ -1,4 +1,0 @@
-{
-  "name": "Spotify API",
-  "schemaPath": "./graphql/schema.graphql"
-}

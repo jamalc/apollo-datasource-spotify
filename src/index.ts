@@ -1,13 +1,3 @@
-export { SpotifyAPI, Context } from './spotify-api';
+export { SpotifyAPI, Context } from './api';
 export { batch } from './batch';
-export type {
-  Album,
-  Artist,
-  Playlist,
-  PlaylistTrack,
-  PlayHistory,
-  SavedAlbum,
-  SavedTrack,
-  Track,
-  User,
-} from '../types/generated';
+export * from './objects';
