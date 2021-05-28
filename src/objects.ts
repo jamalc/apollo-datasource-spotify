@@ -44,7 +44,8 @@ export interface AlbumObject {
   /** The precision with which release_date value is known: “year” , “month” , or “day”. */
   release_date_precision: string;
 
-  /** Included in the response when a content restriction is applied. See Restriction Object for more details. */
+  /** Included in the response when a content restriction is applied.
+See Restriction Object for more details. */
   restrictions: AlbumRestrictionObject;
 
   /** The total number of tracks in the album. */
@@ -375,7 +376,8 @@ export interface EpisodeObject {
   /** The precision with which release_date value is known: "year", "month", or "day". */
   release_date_precision: string;
 
-  /** Included in the response when a content restriction is applied. See Restriction Object for more details. */
+  /** Included in the response when a content restriction is applied.
+See Restriction Object for more details. */
   restrictions: EpisodeRestrictionObject;
 
   /** The user’s most recent position in the episode. Set if the supplied access token is a user token and has the scope user-read-playback-position. */
@@ -676,7 +678,9 @@ export interface ResumePointObject {
 }
 
 export interface SavedAlbumObject {
-  /** The date and time the album was saved Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ. If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object. */
+  /** The date and time the album was saved
+Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ.
+If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object. */
   added_at: string;
 
   /** Information about the album. */
@@ -684,7 +688,8 @@ export interface SavedAlbumObject {
 }
 
 export interface SavedEpisodeObject {
-  /** The date and time the episode was saved. Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ. */
+  /** The date and time the episode was saved.
+Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ. */
   added_at: string;
 
   /** Information about the episode. */
@@ -692,7 +697,9 @@ export interface SavedEpisodeObject {
 }
 
 export interface SavedShowObject {
-  /** The date and time the show was saved. Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ. If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object. */
+  /** The date and time the show was saved.
+Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ.
+If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object. */
   added_at: string;
 
   /** Information about the show. */
@@ -700,7 +707,9 @@ export interface SavedShowObject {
 }
 
 export interface SavedTrackObject {
-  /** The date and time the track was saved. Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ. If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object. */
+  /** The date and time the track was saved.
+Timestamps are returned in ISO 8601 format as Coordinated Universal Time (UTC) with a zero offset: YYYY-MM-DDTHH:MM:SSZ.
+If the time is imprecise (for example, the date/time of an album release), an additional field indicates the precision; see for example, release_date in an album object. */
   added_at: string;
 
   /** Information about the track. */
@@ -791,7 +800,8 @@ export interface SimplifiedAlbumObject {
   /** The precision with which release_date value is known: year , month , or day. */
   release_date_precision: string;
 
-  /** Included in the response when a content restriction is applied. See Restriction Object for more details. */
+  /** Included in the response when a content restriction is applied.
+See Restriction Object for more details. */
   restrictions: AlbumRestrictionObject;
 
   /** The total number of tracks in the album. */
@@ -873,7 +883,8 @@ export interface SimplifiedEpisodeObject {
   /** The precision with which release_date value is known: "year", "month", or "day". */
   release_date_precision: string;
 
-  /** Included in the response when a content restriction is applied. See Restriction Object for more details. */
+  /** Included in the response when a content restriction is applied.
+See Restriction Object for more details. */
   restrictions: EpisodeRestrictionObject;
 
   /** The user’s most recent position in the episode. Set if the supplied access token is a user token and has the scope ‘user-read-playback-position’. */
@@ -1014,7 +1025,8 @@ export interface SimplifiedTrackObject {
   /** A URL to a 30 second preview (MP3 format) of the track. */
   preview_url: string;
 
-  /** Included in the response when a content restriction is applied. See Restriction Object for more details. */
+  /** Included in the response when a content restriction is applied.
+See Restriction Object for more details. */
   restrictions: TrackRestrictionObject;
 
   /** The number of the track. If an album has several discs, the track number is the number on the specified disc. */
@@ -1076,7 +1088,8 @@ export interface TrackObject {
   /** A link to a 30 second preview (MP3 format) of the track. Can be null */
   preview_url: string;
 
-  /** Included in the response when a content restriction is applied. See Restriction Object for more details. */
+  /** Included in the response when a content restriction is applied.
+See Restriction Object for more details. */
   restrictions: TrackRestrictionObject;
 
   /** The number of the track. If an album has several discs, the track number is the number on the specified disc. */

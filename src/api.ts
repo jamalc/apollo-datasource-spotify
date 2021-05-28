@@ -103,7 +103,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get Spotify catalog information about an album’s tracks. Optional parameters can be used to limit the number of tracks returned.
+   * Get Spotify catalog information about an album’s tracks.
+   * Optional parameters can be used to limit the number of tracks returned.
    * @param id {string} The Spotify ID of the album.
    */
   public GetAlbumsTracks(
@@ -604,7 +605,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get Spotify catalog information for a single episode identified by its unique Spotify ID.
+   * Get Spotify catalog information for a single episode identified by its
+   * unique Spotify ID.
    * @param id {string} The Spotify ID for the episode.
    */
   public GetEpisode(
@@ -847,7 +849,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get a list of the episodes saved in the current Spotify user’s library. This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
+   * Get a list of the episodes saved in the current Spotify user’s library.
+   * This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
    */
   public GetUsersSavedEpisodes(params: {
     /**
@@ -874,7 +877,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Save one or more episodes to the current user’s library. This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
+   * Save one or more episodes to the current user’s library.
+   * This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
    */
   public SaveEpisodesUser(params: {
     /**
@@ -886,7 +890,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Remove one or more episodes from the current user’s library. This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
+   * Remove one or more episodes from the current user’s library.
+   * This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
    */
   public RemoveEpisodesUser(params: {
     /**
@@ -898,7 +903,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Check if one or more episodes is already saved in the current Spotify user’s ‘Your Episodes’ library. This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum..
+   * Check if one or more episodes is already saved in the current Spotify user’s ‘Your Episodes’ library.
+   * This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum..
    */
   public CheckUsersSavedEpisodes(params: {
     /**
@@ -1129,7 +1135,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Set the repeat mode for the user’s playback. Options are repeat-track, repeat-context, and off.
+   * Set the repeat mode for the user’s playback. Options are repeat-track,
+   * repeat-context, and off.
    */
   public SetRepeatModeOnUsersPlayback(params: {
     /**
@@ -1186,7 +1193,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get tracks from the current user’s recently played tracks. Note: Currently doesn’t support podcast episodes.
+   * Get tracks from the current user’s recently played tracks.
+   * Note: Currently doesn’t support podcast episodes.
    */
   public GetRecentlyPlayed(params: {
     /**
@@ -1230,7 +1238,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get a list of the playlists owned or followed by the current Spotify user.
+   * Get a list of the playlists owned or followed by the current Spotify
+   * user.
    */
   public GetListOfCurrentUsersPlaylists(params: {
     /**
@@ -1274,7 +1283,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Create a playlist for a Spotify user. (The playlist will be empty until you add tracks.)
+   * Create a playlist for a Spotify user. (The playlist will be empty until
+   * you add tracks.)
    * @param user_id {string} The user’s Spotify user ID.
    */
   public CreatePlaylist(user_id: string): Promise<any> {
@@ -1324,7 +1334,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Change a playlist’s name and public/private state. (The user must, of course, own the playlist.)
+   * Change a playlist’s name and public/private state. (The user must, of
+   * course, own the playlist.)
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
@@ -1408,7 +1419,13 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Either reorder or replace items in a playlist depending on the request’s parameters. To reorder items, include range_start, insert_before, range_length and snapshot_id in the request’s body. To replace items, include uris as either a query parameter or in the request’s body. Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.  Note: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters. These operations can’t be applied together in a single request.
+   * Either reorder or replace items in a playlist depending on the request’s parameters.
+   * To reorder items, include range_start, insert_before, range_length and snapshot_id in the request’s body.
+   * To replace items, include uris as either a query parameter or in the request’s body.
+   * Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.
+   *
+   * Note: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters.
+   * These operations can’t be applied together in a single request.
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
@@ -1451,7 +1468,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get Spotify Catalog information about albums, artists, playlists, tracks, shows or episodes that match a keyword string.
+   * Get Spotify Catalog information about albums, artists, playlists, tracks, shows or episodes
+   * that match a keyword string.
    */
   public Search(params: {
     /**
@@ -1531,7 +1549,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get Spotify catalog information for a single show identified by its unique Spotify ID.
+   * Get Spotify catalog information for a single show identified by its
+   * unique Spotify ID.
    * @param id {string} The Spotify ID
    * for the show.
    */
@@ -1601,7 +1620,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get Spotify catalog information for a single track identified by its unique Spotify ID.
+   * Get Spotify catalog information for a single track identified by its
+   * unique Spotify ID.
    * @param id {string} The Spotify ID
    * for the track.
    */
@@ -1633,7 +1653,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get audio feature information for a single track identified by its unique Spotify ID.
+   * Get audio feature information for a single track identified by its unique
+   * Spotify ID.
    * @param id {string} The Spotify ID for the track.
    */
   public GetAudioFeatures(id: string): Promise<any> {
@@ -1641,7 +1662,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get a detailed audio analysis for a single track identified by its unique Spotify ID.
+   * Get a detailed audio analysis for a single track identified by its unique
+   * Spotify ID.
    * @param id {string} The Spotify ID
    * for the track.
    */
@@ -1650,7 +1672,8 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get detailed profile information about the current user (including the current user’s username).
+   * Get detailed profile information about the current user (including the
+   * current user’s username).
    */
   public GetCurrentUsersProfile(): Promise<any> {
     return this.get(`me`);
