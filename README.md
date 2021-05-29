@@ -1,3 +1,7 @@
+# Apollo Data Source Spotify
+
+## Getting Started
+
 ### Install
 
 ```
@@ -20,6 +24,7 @@ const apollo = new ApolloServer({
   dataSources: () => ({
     spotify: new SpotifyAPI(),
   }),
+  ...
 });
 ```
 
@@ -53,9 +58,10 @@ const resolver = async (root, args, context) {
 };
 ```
 
-#### Throttle Requests
+### Throttling Requests
 
-If you run into issues with rate-limiting, try throttling requests with something like [bottleneck](https://www.npmjs.com/package/bottleneck).
+If you run into issues with rate-limiting, try throttling requests with something
+like [bottleneck](https://www.npmjs.com/package/bottleneck).
 
 `npm install --save bottleneck`
 
@@ -81,4 +87,14 @@ class ThrottledSpotifyAPI extends SpotifyAPI {
     this.delete = this.limiter.wrap(this.delete.bind(this));
   }
 }
+```
+
+## TypeDefs and Resolvers (experimental)
+
+If you use the generated typeDefs and resolvers in a schema you should also implement your own
+[custom scalar](https://www.apollographql.com/docs/apollo-server/schema/custom-scalars/)
+JSON type or install `graphql-type-json` and [add it to your resolver map](https://www.apollographql.com/docs/apollo-server/schema/custom-scalars/#importing-a-third-party-custom-scalar).
+
+```
+npm install --save graphql-type-json
 ```
