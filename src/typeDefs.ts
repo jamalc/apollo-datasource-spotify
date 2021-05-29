@@ -1,6 +1,4 @@
-import { gql } from 'apollo-server';
-
-export const typeDefs = gql`
+export const typeDefs = `
   type AlbumObject {
     """
     The type of the album: album, single, or compilation.
