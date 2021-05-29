@@ -2628,6 +2628,391 @@ export const typeDefs = `
 
 
 
+  type GetMultipleAlbumsResponse {
+    albums: [AlbumObject]
+  }
+
+  type GetAlbumsTracksResponse implements PagingObject {
+    href: String
+    items: [AlbumObject]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type GetMultipleArtistsResponse {
+    artists: [ArtistObject]
+  }
+
+  type GetArtistsTopTracksResponse {
+    tracks: [TrackObject]
+  }
+
+  type GetArtistsRelatedArtistsResponse {
+    artists: [ArtistObject]
+  }
+
+  type GetArtistsAlbumsResponse implements PagingObject {
+    href: String
+    items: [AlbumObject]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type GetNewReleasesResponse {
+    message: String
+    albums: {
+      href: String
+      items: [SimplifiedAlbumObject]
+      limit: Int
+      next: String
+      offset: Int
+      previous: String
+      total: Int
+    }
+  }
+
+  type GetFeaturedPlaylistsResponse {
+    message: String
+    playlists: {
+      href: String
+      items: [SimplifiedPlaylistObject]
+      limit: Int
+      next: String
+      offset: Int
+      previous: String
+      total: Int 
+    }
+  }
+
+  type GetCategoriesResponse {
+    message: String
+    categories: {
+      href: String
+      items: [CategoryObject]
+      limit: Int
+      next: String
+      offset: Int
+      previous: String
+      total: Int 
+    }
+  }
+
+  type GetCategoriesPlaylistsResponse {
+    playlists: {
+      href: String
+      items: [SimplifiedPlaylistObject]
+      limit: Int
+      next: String
+      offset: Int
+      previous: String
+      total: Int 
+    }
+  }
+
+  type GetRecommendationsResponse {
+    tracks: [TrackObject]
+  }
+
+  type GetRecommendationGenresResponse {
+    genres: [String]
+  }
+
+  type GetMultipleEpisodesResponse {
+    episodes: [EpisodeObject]
+  }
+
+  type GetFollowedResponse {
+    artists: {
+      cursors: CursorObject
+      href: String
+      items: [ArtistObject]
+      limit: Int
+      next: String
+      total: Int
+    }
+  }
+
+  type GetUsersSavedAlbumsResponse implements PagingObject {
+    href: String
+    items: [SavedAlbumObject]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type GetUsersSavedTracksResponse implements PagingObject {
+    href: String
+    items: [SavedTrackObject]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type GetUsersSavedEpisodesResponse implements PagingObject {
+    href: String
+    items: [SavedEpisodeObject]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type GetUsersSavedShowsResponse implements PagingObject {
+    href: String
+    items: [SavedShowObject]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type GetAvailableMarketsResponse {
+    markets: [String]
+  }
+
+  union TopArtistsAndTracksItem = ArtistObject | TrackObject
+
+  type GetUsersTopArtistsAndTracksResponse implements PagingObject {
+    href: String
+    items: [TopArtistsAndTracksItem]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type GetRecentlyPlayedResponse implements CursorPagingObject {
+    cursors: CursorObject
+    href: String
+    items: [PlayHistoryObject]
+    limit: Int
+    next: String
+    total: Int
+  }
+
+  type GetListOfCurrentUsersPlaylistsResponse implements PagingObject {
+    href: String
+    items: [SimplifiedPlaylistObject]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type GetListUsersPlaylistsResponse implements PagingObject {
+    href: String
+    items: [PlaylistObject]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type GetPlaylistsTracksResponse implements PagingObject {
+    href: String
+    items: [PlaylistTrackObject]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type SearchResponse {
+    artists: {
+      href: String
+      items: [ArtistObject]
+      limit: Int
+      next: String
+      offset: Int
+      previous: String
+      total: Int
+    }
+    albums: {
+      href: String
+      items: [SimplifiedAlbumObject]
+      limit: Int
+      next: String
+      offset: Int
+      previous: String
+      total: Int
+    }
+    tracks: {
+      href: String
+      items: [TrackObject]
+      limit: Int
+      next: String
+      offset: Int
+      previous: String
+      total: Int
+    }
+    shows: {
+      href: String
+      items: [SimplifiedShowObject]
+      limit: Int
+      next: String
+      offset: Int
+      previous: String
+      total: Int
+    }
+    episodes: {
+      href: String
+      items: [SimplifiedEpisodeObject]
+      limit: Int
+      next: String
+      offset: Int
+      previous: String
+      total: Int
+    }
+  }
+
+  type GetMultipleShowsResponse {
+    shows: [SimplifiedShowObject]
+  }
+
+  type GetShowsEpisodesResponse implements PagingObject {
+    href: String
+    items: [SimplifiedEpisodeObject]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type GetSeveralTracksResponse {
+    tracks: [TrackObject]
+  }
+
+  type GetSeveralAudioFeaturesResponse {
+    audio_features: [AudioFeaturesObject]
+  }
+
+      type GetAudioAnalysisResponse = JSON
+
+  type FollowPlaylistResponse {
+    _empty: String
+  }
+
+  type UnfollowPlaylistResponse {
+    _empty: String
+  }
+
+  type FollowArtistsUsersResponse {
+    _empty: String
+  }
+
+  type UnfollowArtistsUsersResponse {
+    _empty: String
+  }
+
+  type SaveAlbumsUserResponse {
+    _empty: String
+  }
+
+  type RemoveAlbumsUserResponse {
+    _empty: String
+  }
+
+  type SaveTracksUserResponse {
+    _empty: String
+  }
+
+  type RemoveTracksUserResponse {
+    _empty: String
+  }
+
+  type SaveEpisodesUserResponse {
+    _empty: String
+  }
+
+  type RemoveEpisodesUserResponse {
+    _empty: String
+  }
+
+  type SaveShowsUserResponse {
+    _empty: String
+  }
+
+  type RemoveShowsUserResponse {
+    _empty: String
+  }
+
+  type TransferUsersPlaybackResponse {
+    _empty: String
+  }
+
+  type StartUsersPlaybackResponse {
+    _empty: String
+  }
+
+  type PauseUsersPlaybackResponse {
+    _empty: String
+  }
+
+  type SkipUsersPlaybackToNextTrackResponse {
+    _empty: String
+  }
+
+  type SkipUsersPlaybackToPreviousTrackResponse {
+    _empty: String
+  }
+
+  type SeekToPositionInCurrentlyPlayingTrackResponse {
+    _empty: String
+  }
+
+  type SetRepeatModeOnUsersPlaybackResponse {
+    _empty: String
+  }
+
+  type SetVolumeForUsersPlaybackResponse {
+    _empty: String
+  }
+
+  type ToggleShuffleForUsersPlaybackResponse {
+    _empty: String
+  }
+
+  type AddToQueueResponse {
+    _empty: String
+  }
+
+  type ChangePlaylistDetailsResponse {
+    _empty: String
+  }
+
+  type AddTracksToPlaylistResponse {
+    snapshot_id: String
+  }
+
+  type ReorderOrReplacePlaylistsTracksResponse {
+    snapshot_id: String
+  }
+
+  type RemoveTracksPlaylistResponse {
+    snapshot_id: String
+  }
+
+  type UploadCustomPlaylistCoverResponse {
+    _empty: String
+  }
+
   type SpotifyQuery {
     """
     Get Spotify catalog information for multiple albums identified by their Spotify IDs.
@@ -2636,7 +3021,7 @@ export const typeDefs = `
     """
     Get Spotify catalog information for a single album.
     """
-    getAlbum(id: String, params: GetAlbumRequest): JSON # GetAlbumResponse
+    getAlbum(id: String, params: GetAlbumRequest): AlbumObject
     """
     Get Spotify catalog information about an album’s tracks.
     Optional parameters can be used to limit the number of tracks returned.
@@ -2649,7 +3034,7 @@ export const typeDefs = `
     """
     Get Spotify catalog information for a single artist identified by their unique Spotify ID.
     """
-    getArtist(id: String): JSON # GetArtistResponse
+    getArtist(id: String): ArtistObject
     """
     Get Spotify catalog information about an artist’s top tracks by country.
     """
@@ -2677,7 +3062,7 @@ export const typeDefs = `
     """
     Get a single category used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab).
     """
-    getCategory(category_id: String, params: GetCategoryRequest): JSON # GetCategoryResponse
+    getCategory(category_id: String, params: GetCategoryRequest): CategoryObject
     """
     Get a list of Spotify playlists tagged with a particular category.
     """
@@ -2698,11 +3083,11 @@ export const typeDefs = `
     Get Spotify catalog information for a single episode identified by its
     unique Spotify ID.
     """
-    getEpisode(id: String, params: GetEpisodeRequest): JSON # GetEpisodeResponse
+    getEpisode(id: String, params: GetEpisodeRequest): EpisodeObject
     """
     Check to see if one or more Spotify users are following a specified playlist.
     """
-    checkIfUserFollowsPlaylist(playlist_id: String, params: CheckIfUserFollowsPlaylistRequest): JSON # CheckIfUserFollowsPlaylistResponse
+    checkIfUserFollowsPlaylist(playlist_id: String, params: CheckIfUserFollowsPlaylistRequest): [Boolean]
     """
     Get the current user’s followed artists.
     """
@@ -2710,7 +3095,7 @@ export const typeDefs = `
     """
     Check to see if the current user is following one or more artists or other Spotify users.
     """
-    checkCurrentUserFollows(params: CheckCurrentUserFollowsRequest): JSON # CheckCurrentUserFollowsResponse
+    checkCurrentUserFollows(params: CheckCurrentUserFollowsRequest): [Boolean]
     """
     Get a list of the albums saved in the current Spotify user’s ‘Your Music’ library.
     """
@@ -2718,7 +3103,7 @@ export const typeDefs = `
     """
     Check if one or more albums is already saved in the current Spotify user’s ‘Your Music’ library.
     """
-    checkUsersSavedAlbums(params: CheckUsersSavedAlbumsRequest): JSON # CheckUsersSavedAlbumsResponse
+    checkUsersSavedAlbums(params: CheckUsersSavedAlbumsRequest): [Boolean]
     """
     Get a list of the songs saved in the current Spotify user’s ‘Your Music’ library.
     """
@@ -2726,7 +3111,7 @@ export const typeDefs = `
     """
     Check if one or more tracks is already saved in the current Spotify user’s ‘Your Music’ library.
     """
-    checkUsersSavedTracks(params: CheckUsersSavedTracksRequest): JSON # CheckUsersSavedTracksResponse
+    checkUsersSavedTracks(params: CheckUsersSavedTracksRequest): [Boolean]
     """
     Get a list of the episodes saved in the current Spotify user’s library.
     This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
@@ -2736,7 +3121,7 @@ export const typeDefs = `
     Check if one or more episodes is already saved in the current Spotify user’s ‘Your Episodes’ library.
     This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum..
     """
-    checkUsersSavedEpisodes(params: CheckUsersSavedEpisodesRequest): JSON # CheckUsersSavedEpisodesResponse
+    checkUsersSavedEpisodes(params: CheckUsersSavedEpisodesRequest): [Boolean]
     """
     Get a list of shows saved in the current Spotify user’s library. Optional parameters can be used to limit the number of shows returned.
     """
@@ -2744,7 +3129,7 @@ export const typeDefs = `
     """
     Check if one or more shows is already saved in the current Spotify user’s library.
     """
-    checkUsersSavedShows(params: CheckUsersSavedShowsRequest): JSON # CheckUsersSavedShowsResponse
+    checkUsersSavedShows(params: CheckUsersSavedShowsRequest): [Boolean]
     """
     Get the list of markets where Spotify is available.
     """
@@ -2756,15 +3141,15 @@ export const typeDefs = `
     """
     Get information about the user’s current playback state, including track or episode, progress, and active device.
     """
-    getInformationAboutTheUsersCurrentPlayback(params: GetInformationAboutTheUsersCurrentPlaybackRequest): JSON # GetInformationAboutTheUsersCurrentPlaybackResponse
+    getInformationAboutTheUsersCurrentPlayback(params: GetInformationAboutTheUsersCurrentPlaybackRequest): CurrentlyPlayingObject
     """
     Get information about a user’s available devices.
     """
-    getUsersAvailableDevices: JSON # GetUsersAvailableDevicesResponse
+    getUsersAvailableDevices: DevicesObject
     """
     Get the object currently being played on the user’s Spotify account.
     """
-    getTheUsersCurrentlyPlayingTrack(params: GetTheUsersCurrentlyPlayingTrackRequest): JSON # GetTheUsersCurrentlyPlayingTrackResponse
+    getTheUsersCurrentlyPlayingTrack(params: GetTheUsersCurrentlyPlayingTrackRequest): CurrentlyPlayingObject
     """
     Get tracks from the current user’s recently played tracks.
     Note: Currently doesn’t support podcast episodes.
@@ -2782,7 +3167,7 @@ export const typeDefs = `
     """
     Get a playlist owned by a Spotify user.
     """
-    getPlaylist(playlist_id: String, params: GetPlaylistRequest): JSON # GetPlaylistResponse
+    getPlaylist(playlist_id: String, params: GetPlaylistRequest): PlaylistObject
     """
     Get full details of the items of a playlist owned by a Spotify user.
     """
@@ -2790,7 +3175,7 @@ export const typeDefs = `
     """
     Get the current image associated with a specific playlist.
     """
-    getPlaylistCover(playlist_id: String): JSON # GetPlaylistCoverResponse
+    getPlaylistCover(playlist_id: String): [ImageObject]
     """
     Get Spotify Catalog information about albums, artists, playlists, tracks, shows or episodes
     that match a keyword string.
@@ -2804,7 +3189,7 @@ export const typeDefs = `
     Get Spotify catalog information for a single show identified by its
     unique Spotify ID.
     """
-    getShow(id: String, params: GetShowRequest): JSON # GetShowResponse
+    getShow(id: String, params: GetShowRequest): ShowObject
     """
     Get Spotify catalog information about an show’s episodes. Optional parameters can be used to limit the number of episodes returned.
     """
@@ -2817,7 +3202,7 @@ export const typeDefs = `
     Get Spotify catalog information for a single track identified by its
     unique Spotify ID.
     """
-    getTrack(id: String, params: GetTrackRequest): JSON # GetTrackResponse
+    getTrack(id: String, params: GetTrackRequest): TrackObject
     """
     Get audio features for multiple tracks based on their Spotify IDs.
     """
@@ -2826,21 +3211,21 @@ export const typeDefs = `
     Get audio feature information for a single track identified by its unique
     Spotify ID.
     """
-    getAudioFeatures(id: String): JSON # GetAudioFeaturesResponse
+    getAudioFeatures(id: String): AudioFeaturesObject
     """
     Get a detailed audio analysis for a single track identified by its unique
     Spotify ID.
     """
-    getAudioAnalysis(id: String): JSON # GetAudioAnalysisResponse
+    getAudioAnalysis(id: String): JSON
     """
     Get detailed profile information about the current user (including the
     current user’s username).
     """
-    getCurrentUsersProfile: JSON # GetCurrentUsersProfileResponse
+    getCurrentUsersProfile: PrivateUserObject
     """
     Get public profile information about a Spotify user.
     """
-    getUsersProfile(user_id: String): JSON # GetUsersProfileResponse
+    getUsersProfile(user_id: String): PublicUserObject
 
   }
 
@@ -2940,7 +3325,7 @@ export const typeDefs = `
     Create a playlist for a Spotify user. (The playlist will be empty until
     you add tracks.)
     """
-    createPlaylist(user_id: String, params: CreatePlaylistRequest): JSON # CreatePlaylistResponse
+    createPlaylist(user_id: String, params: CreatePlaylistRequest): PlaylistObject
     """
     Change a playlist’s name and public/private state. (The user must, of
     course, own the playlist.)
