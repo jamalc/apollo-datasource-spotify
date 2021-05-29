@@ -2467,7 +2467,7 @@ export const typeDefs = `
 
   input ReorderOrReplacePlaylistsTracksRequest {
     """
-
+    
     """
     uris: [String]
     """
@@ -2626,6 +2626,8 @@ export const typeDefs = `
     ids: String!
   }
 
+
+
   type SpotifyQuery {
     """
     Get Spotify catalog information for multiple albums identified by their Spotify IDs.
@@ -2679,10 +2681,7 @@ export const typeDefs = `
     """
     Get a list of Spotify playlists tagged with a particular category.
     """
-    getCategoriesPlaylists(
-      category_id: String
-      params: GetCategoriesPlaylistsRequest
-    ): JSON # GetCategoriesPlaylistsResponse
+    getCategoriesPlaylists(category_id: String, params: GetCategoriesPlaylistsRequest): JSON # GetCategoriesPlaylistsResponse
     """
     Recommendations are generated based on the available information for a given seed entity and matched against similar artists and tracks. If there is sufficient information about the provided seeds, a list of tracks will be returned together with pool size details.
     """
@@ -2703,10 +2702,7 @@ export const typeDefs = `
     """
     Check to see if one or more Spotify users are following a specified playlist.
     """
-    checkIfUserFollowsPlaylist(
-      playlist_id: String
-      params: CheckIfUserFollowsPlaylistRequest
-    ): JSON # CheckIfUserFollowsPlaylistResponse
+    checkIfUserFollowsPlaylist(playlist_id: String, params: CheckIfUserFollowsPlaylistRequest): JSON # CheckIfUserFollowsPlaylistResponse
     """
     Get the current user’s followed artists.
     """
@@ -2756,16 +2752,11 @@ export const typeDefs = `
     """
     Get the current user’s top artists or tracks based on calculated affinity.
     """
-    getUsersTopArtistsAndTracks(
-      type: String
-      params: GetUsersTopArtistsAndTracksRequest
-    ): JSON # GetUsersTopArtistsAndTracksResponse
+    getUsersTopArtistsAndTracks(type: String, params: GetUsersTopArtistsAndTracksRequest): JSON # GetUsersTopArtistsAndTracksResponse
     """
     Get information about the user’s current playback state, including track or episode, progress, and active device.
     """
-    getInformationAboutTheUsersCurrentPlayback(
-      params: GetInformationAboutTheUsersCurrentPlaybackRequest
-    ): JSON # GetInformationAboutTheUsersCurrentPlaybackResponse
+    getInformationAboutTheUsersCurrentPlayback(params: GetInformationAboutTheUsersCurrentPlaybackRequest): JSON # GetInformationAboutTheUsersCurrentPlaybackResponse
     """
     Get information about a user’s available devices.
     """
@@ -2773,9 +2764,7 @@ export const typeDefs = `
     """
     Get the object currently being played on the user’s Spotify account.
     """
-    getTheUsersCurrentlyPlayingTrack(
-      params: GetTheUsersCurrentlyPlayingTrackRequest
-    ): JSON # GetTheUsersCurrentlyPlayingTrackResponse
+    getTheUsersCurrentlyPlayingTrack(params: GetTheUsersCurrentlyPlayingTrackRequest): JSON # GetTheUsersCurrentlyPlayingTrackResponse
     """
     Get tracks from the current user’s recently played tracks.
     Note: Currently doesn’t support podcast episodes.
@@ -2785,16 +2774,11 @@ export const typeDefs = `
     Get a list of the playlists owned or followed by the current Spotify
     user.
     """
-    getListOfCurrentUsersPlaylists(
-      params: GetListOfCurrentUsersPlaylistsRequest
-    ): JSON # GetListOfCurrentUsersPlaylistsResponse
+    getListOfCurrentUsersPlaylists(params: GetListOfCurrentUsersPlaylistsRequest): JSON # GetListOfCurrentUsersPlaylistsResponse
     """
     Get a list of the playlists owned or followed by a Spotify user.
     """
-    getListUsersPlaylists(
-      user_id: String
-      params: GetListUsersPlaylistsRequest
-    ): JSON # GetListUsersPlaylistsResponse
+    getListUsersPlaylists(user_id: String, params: GetListUsersPlaylistsRequest): JSON # GetListUsersPlaylistsResponse
     """
     Get a playlist owned by a Spotify user.
     """
@@ -2802,10 +2786,7 @@ export const typeDefs = `
     """
     Get full details of the items of a playlist owned by a Spotify user.
     """
-    getPlaylistsTracks(
-      playlist_id: String
-      params: GetPlaylistsTracksRequest
-    ): JSON # GetPlaylistsTracksResponse
+    getPlaylistsTracks(playlist_id: String, params: GetPlaylistsTracksRequest): JSON # GetPlaylistsTracksResponse
     """
     Get the current image associated with a specific playlist.
     """
@@ -2860,6 +2841,7 @@ export const typeDefs = `
     Get public profile information about a Spotify user.
     """
     getUsersProfile(user_id: String): JSON # GetUsersProfileResponse
+
   }
 
   type SpotifyMutation {
@@ -2928,28 +2910,20 @@ export const typeDefs = `
     """
     Skips to next track in the user’s queue.
     """
-    skipUsersPlaybackToNextTrack(
-      params: SkipUsersPlaybackToNextTrackRequest
-    ): JSON # SkipUsersPlaybackToNextTrackResponse
+    skipUsersPlaybackToNextTrack(params: SkipUsersPlaybackToNextTrackRequest): JSON # SkipUsersPlaybackToNextTrackResponse
     """
     Skips to previous track in the user’s queue.
     """
-    skipUsersPlaybackToPreviousTrack(
-      params: SkipUsersPlaybackToPreviousTrackRequest
-    ): JSON # SkipUsersPlaybackToPreviousTrackResponse
+    skipUsersPlaybackToPreviousTrack(params: SkipUsersPlaybackToPreviousTrackRequest): JSON # SkipUsersPlaybackToPreviousTrackResponse
     """
     Seeks to the given position in the user’s currently playing track.
     """
-    seekToPositionInCurrentlyPlayingTrack(
-      params: SeekToPositionInCurrentlyPlayingTrackRequest
-    ): JSON # SeekToPositionInCurrentlyPlayingTrackResponse
+    seekToPositionInCurrentlyPlayingTrack(params: SeekToPositionInCurrentlyPlayingTrackRequest): JSON # SeekToPositionInCurrentlyPlayingTrackResponse
     """
     Set the repeat mode for the user’s playback. Options are repeat-track,
     repeat-context, and off.
     """
-    setRepeatModeOnUsersPlayback(
-      params: SetRepeatModeOnUsersPlaybackRequest
-    ): JSON # SetRepeatModeOnUsersPlaybackResponse
+    setRepeatModeOnUsersPlayback(params: SetRepeatModeOnUsersPlaybackRequest): JSON # SetRepeatModeOnUsersPlaybackResponse
     """
     Set the volume for the user’s current playback device.
     """
@@ -2957,9 +2931,7 @@ export const typeDefs = `
     """
     Toggle shuffle on or off for user’s playback.
     """
-    toggleShuffleForUsersPlayback(
-      params: ToggleShuffleForUsersPlaybackRequest
-    ): JSON # ToggleShuffleForUsersPlaybackResponse
+    toggleShuffleForUsersPlayback(params: ToggleShuffleForUsersPlaybackRequest): JSON # ToggleShuffleForUsersPlaybackResponse
     """
     Add an item to the end of the user’s current playback queue.
     """
@@ -2973,40 +2945,29 @@ export const typeDefs = `
     Change a playlist’s name and public/private state. (The user must, of
     course, own the playlist.)
     """
-    changePlaylistDetails(
-      playlist_id: String
-      params: ChangePlaylistDetailsRequest
-    ): JSON # ChangePlaylistDetailsResponse
+    changePlaylistDetails(playlist_id: String, params: ChangePlaylistDetailsRequest): JSON # ChangePlaylistDetailsResponse
     """
     Add one or more items to a user’s playlist.
     """
-    addTracksToPlaylist(
-      playlist_id: String
-      params: AddTracksToPlaylistRequest
-    ): JSON # AddTracksToPlaylistResponse
+    addTracksToPlaylist(playlist_id: String, params: AddTracksToPlaylistRequest): JSON # AddTracksToPlaylistResponse
     """
     Either reorder or replace items in a playlist depending on the request’s parameters.
     To reorder items, include range_start, insert_before, range_length and snapshot_id in the request’s body.
     To replace items, include uris as either a query parameter or in the request’s body.
     Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.
-
+    
     Note: Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters.
     These operations can’t be applied together in a single request.
     """
-    reorderOrReplacePlaylistsTracks(
-      playlist_id: String
-      params: ReorderOrReplacePlaylistsTracksRequest
-    ): JSON # ReorderOrReplacePlaylistsTracksResponse
+    reorderOrReplacePlaylistsTracks(playlist_id: String, params: ReorderOrReplacePlaylistsTracksRequest): JSON # ReorderOrReplacePlaylistsTracksResponse
     """
     Remove one or more items from a user’s playlist.
     """
-    removeTracksPlaylist(
-      playlist_id: String
-      params: RemoveTracksPlaylistRequest
-    ): JSON # RemoveTracksPlaylistResponse
+    removeTracksPlaylist(playlist_id: String, params: RemoveTracksPlaylistRequest): JSON # RemoveTracksPlaylistResponse
     """
     Replace the image used to represent a specific playlist.
     """
     uploadCustomPlaylistCover(playlist_id: String): JSON # UploadCustomPlaylistCoverResponse
+
   }
 `;
