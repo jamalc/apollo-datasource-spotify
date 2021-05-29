@@ -18,7 +18,7 @@
   "scripts": {
     "build": "rm -rf dist/* && tsc",
     "develop": "tsc -w",
-    "lint": "eslint src --ext .ts"
+    "lint": "eslint . --ext .ts"
   },
   "husky": {
     "hooks": {
@@ -48,10 +48,8 @@
     "eslint-plugin-prettier": "^3.1.4",
     "graphql": "^15.5.0",
     "husky": "^4.2.5",
-    "jest": "^26.4.2",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "ts-jest": "^26.3.0",
     "typescript": "^3.9.7"
   },
   "peerDependencies": {
