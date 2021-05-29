@@ -8,7 +8,7 @@ export interface Context {
   authorization?: string;
 }
 
-export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
+export class SpotifyAPI extends RESTDataSource<Context> {
   public baseURL = 'https://api.spotify.com/v1/';
 
   private albumLoader = new DataLoader<string, AlbumObject>(
@@ -610,8 +610,17 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
    * Add the current user as a follower of a playlist.
    * @param playlist_id {string} The Spotify ID of the playlist. Any playlist can be followed, regardless of its public/private status, as long as you know its playlist ID.
    */
-  public FollowPlaylist(playlist_id: string): Promise<any> {
-    return this.put(`playlists/${playlist_id}/followers`);
+  public FollowPlaylist(
+    playlist_id: string,
+    params: {
+      /**
+       * Defaults to true. If true the playlist will be included in user’s public playlists, if false it will remain private.
+       * To be able to follow playlists privately, the user must have granted the playlist-modify-private scope.
+       */
+      public?: boolean;
+    }
+  ): Promise<any> {
+    return this.put(`playlists/${playlist_id}/followers`, params);
   }
 
   /**
@@ -663,35 +672,54 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
   /**
    * Add the current user as a follower of one or more artists or other Spotify users.
    */
-  public FollowArtistsUsers(params: {
-    /**
-     * The ID type: either artist or user.
-     */
-    type: string;
+  public FollowArtistsUsers(
+    params:
+      | {
+          /**
+           * The ID type: either artist or user.
+           */
+          type: string;
 
-    /**
-     * A comma-separated list of the artist or the user Spotify IDs.
-     * For example: ids=74ASZWbe4lXaubB36ztrGX,08td7MxkoHQkXnWAYD8d6Q. A maximum of 50 IDs can be sent in one request.
-     */
-    ids: string;
-  }): Promise<any> {
+          /**
+           * A comma-separated list of the artist or the user Spotify IDs.
+           * For example: ids=74ASZWbe4lXaubB36ztrGX,08td7MxkoHQkXnWAYD8d6Q. A maximum of 50 IDs can be sent in one request.
+           */
+          ids: string;
+        }
+      | {
+          /**
+           * A JSON array of the artist or user Spotify IDs.
+           * For example: {ids:["74ASZWbe4lXaubB36ztrGX", "08td7MxkoHQkXnWAYD8d6Q"]}. A maximum of 50 IDs can be sent in one request. Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
+           */
+          ids: Array<string>;
+        }
+  ): Promise<any> {
     return this.put(`me/following`, params);
   }
 
   /**
    * Remove the current user as a follower of one or more artists or other Spotify users.
    */
-  public UnfollowArtistsUsers(params: {
-    /**
-     * The ID type: either artist or user.
-     */
-    type: string;
+  public UnfollowArtistsUsers(
+    params:
+      | {
+          /**
+           * The ID type: either artist or user.
+           */
+          type: string;
 
-    /**
-     * A comma-separated list of the artist or the user Spotify IDs. For example: ids=74ASZWbe4lXaubB36ztrGX,08td7MxkoHQkXnWAYD8d6Q. A maximum of 50 IDs can be sent in one request.
-     */
-    ids: string;
-  }): Promise<any> {
+          /**
+           * A comma-separated list of the artist or the user Spotify IDs. For example: ids=74ASZWbe4lXaubB36ztrGX,08td7MxkoHQkXnWAYD8d6Q. A maximum of 50 IDs can be sent in one request.
+           */
+          ids: string;
+        }
+      | {
+          /**
+           * A JSON array of the artist or user Spotify IDs. For example: {ids:["74ASZWbe4lXaubB36ztrGX", "08td7MxkoHQkXnWAYD8d6Q"]}. A maximum of 50 IDs can be sent in one request. Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
+           */
+          ids?: Array<string>;
+        }
+  ): Promise<any> {
     return this.delete(`me/following`, params);
   }
 
@@ -737,24 +765,42 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
   /**
    * Save one or more albums to the current user’s ‘Your Music’ library.
    */
-  public SaveAlbumsUser(params: {
-    /**
-     * A comma-separated list of the Spotify IDs. For example: ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M. Maximum: 50 IDs.
-     */
-    ids: string;
-  }): Promise<any> {
+  public SaveAlbumsUser(
+    params:
+      | {
+          /**
+           * A comma-separated list of the Spotify IDs. For example: ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M. Maximum: 50 IDs.
+           */
+          ids: string;
+        }
+      | {
+          /**
+           * A JSON array of the Spotify IDs. For example: ["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]A maximum of 50 items can be specified in one request. Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
+           */
+          ids?: Array<string>;
+        }
+  ): Promise<any> {
     return this.put(`me/albums`, params);
   }
 
   /**
    * Remove one or more albums from the current user’s ‘Your Music’ library.
    */
-  public RemoveAlbumsUser(params: {
-    /**
-     * A comma-separated list of the Spotify IDs. For example: ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M. Maximum: 50 IDs.
-     */
-    ids: string;
-  }): Promise<any> {
+  public RemoveAlbumsUser(
+    params:
+      | {
+          /**
+           * A comma-separated list of the Spotify IDs. For example: ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M. Maximum: 50 IDs.
+           */
+          ids: string;
+        }
+      | {
+          /**
+           * A JSON array of the Spotify IDs. For example: ["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]A maximum of 50 items can be specified in one request. Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
+           */
+          ids?: Array<string>;
+        }
+  ): Promise<any> {
     return this.delete(`me/albums`, params);
   }
 
@@ -795,24 +841,42 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
   /**
    * Save one or more tracks to the current user’s ‘Your Music’ library.
    */
-  public SaveTracksUser(params: {
-    /**
-     * A comma-separated list of the Spotify IDs. For example: ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M. Maximum: 50 IDs.
-     */
-    ids: string;
-  }): Promise<any> {
+  public SaveTracksUser(
+    params:
+      | {
+          /**
+           * A comma-separated list of the Spotify IDs. For example: ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M. Maximum: 50 IDs.
+           */
+          ids: string;
+        }
+      | {
+          /**
+           * A JSON array of the Spotify IDs. For example: ["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]A maximum of 50 items can be specified in one request. Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
+           */
+          ids?: Array<string>;
+        }
+  ): Promise<any> {
     return this.put(`me/tracks`, params);
   }
 
   /**
    * Remove one or more tracks from the current user’s ‘Your Music’ library.
    */
-  public RemoveTracksUser(params: {
-    /**
-     * A comma-separated list of the Spotify IDs. For example: ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M. Maximum: 50 IDs.
-     */
-    ids: string;
-  }): Promise<any> {
+  public RemoveTracksUser(
+    params:
+      | {
+          /**
+           * A comma-separated list of the Spotify IDs. For example: ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M. Maximum: 50 IDs.
+           */
+          ids: string;
+        }
+      | {
+          /**
+           * A JSON array of the Spotify IDs. For example: ["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]A maximum of 50 items can be specified in one request. Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
+           */
+          ids?: Array<string>;
+        }
+  ): Promise<any> {
     return this.delete(`me/tracks`, params);
   }
 
@@ -860,12 +924,21 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
    * Save one or more episodes to the current user’s library.
    * This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
    */
-  public SaveEpisodesUser(params: {
-    /**
-     * A comma-separated list of the Spotify IDs. Maximum: 50 IDs.
-     */
-    ids: string;
-  }): Promise<any> {
+  public SaveEpisodesUser(
+    params:
+      | {
+          /**
+           * A comma-separated list of the Spotify IDs. Maximum: 50 IDs.
+           */
+          ids: string;
+        }
+      | {
+          /**
+           * A JSON array of the Spotify IDs. A maximum of 50 items can be specified in one request. Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
+           */
+          ids?: Array<string>;
+        }
+  ): Promise<any> {
     return this.put(`me/episodes`, params);
   }
 
@@ -873,12 +946,21 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
    * Remove one or more episodes from the current user’s library.
    * This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
    */
-  public RemoveEpisodesUser(params: {
-    /**
-     * A comma-separated list of the Spotify IDs. Maximum: 50 IDs.
-     */
-    ids: string;
-  }): Promise<any> {
+  public RemoveEpisodesUser(
+    params:
+      | {
+          /**
+           * A comma-separated list of the Spotify IDs. Maximum: 50 IDs.
+           */
+          ids: string;
+        }
+      | {
+          /**
+           * A JSON array of the Spotify IDs. A maximum of 50 items can be specified in one request. Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
+           */
+          ids?: Array<string>;
+        }
+  ): Promise<any> {
     return this.delete(`me/episodes`, params);
   }
 
@@ -1014,8 +1096,18 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
   /**
    * Transfer playback to a new device and determine if it should start playing.
    */
-  public TransferUsersPlayback(): Promise<any> {
-    return this.put(`me/player`);
+  public TransferUsersPlayback(params: {
+    /**
+     * A JSON array containing the ID of the device on which playback should be started/transferred.For example:{device_ids:["74ASZWbe4lXaubB36ztrGX"]}Note: Although an array is accepted, only a single device_id is currently supported. Supplying more than one will return 400 Bad Request
+     */
+    device_ids: Array<string>;
+
+    /**
+     * true: ensure playback happens on new device.false or not provided: keep the current playback state.
+     */
+    play?: boolean;
+  }): Promise<any> {
+    return this.put(`me/player`, params);
   }
 
   /**
@@ -1048,12 +1140,36 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
   /**
    * Start a new context or resume current playback on the user’s active device.
    */
-  public StartUsersPlayback(params: {
-    /**
-     * The id of the device this command is targeting. If not supplied, the user’s currently active device is the target.
-     */
-    device_id?: string;
-  }): Promise<any> {
+  public StartUsersPlayback(
+    params:
+      | {
+          /**
+           * The id of the device this command is targeting. If not supplied, the user’s currently active device is the target.
+           */
+          device_id?: string;
+        }
+      | {
+          /**
+           * string
+           */
+          context_uri?: string;
+
+          /**
+           * Array of URIs
+           */
+          uris?: Array<string>;
+
+          /**
+           * object
+           */
+          offset?: any;
+
+          /**
+           * integer
+           */
+          position_ms?: number;
+        }
+  ): Promise<any> {
     return this.put(`me/player/play`, params);
   }
 
@@ -1267,8 +1383,31 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
    * you add tracks.)
    * @param user_id {string} The user’s Spotify user ID.
    */
-  public CreatePlaylist(user_id: string): Promise<any> {
-    return this.post(`users/${user_id}/playlists`);
+  public CreatePlaylist(
+    user_id: string,
+    params: {
+      /**
+       * The name for the new playlist, for example "Your Coolest Playlist" . This name does not need to be unique; a user may have several playlists with the same name.
+       */
+      name: string;
+
+      /**
+       * Defaults to true . If true the playlist will be public, if false it will be private. To be able to create private playlists, the user must have granted the playlist-modify-private scope
+       */
+      public?: boolean;
+
+      /**
+       * Defaults to false . If true the playlist will be collaborative. Note that to create a collaborative playlist you must also set public to false . To create collaborative playlists you must have granted playlist-modify-private and playlist-modify-public scopes .
+       */
+      collaborative?: boolean;
+
+      /**
+       * value for playlist description as displayed in Spotify Clients and in the Web API.
+       */
+      description?: string;
+    }
+  ): Promise<any> {
+    return this.post(`users/${user_id}/playlists`, params);
   }
 
   /**
@@ -1319,8 +1458,31 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
-  public ChangePlaylistDetails(playlist_id: string): Promise<any> {
-    return this.put(`playlists/${playlist_id}`);
+  public ChangePlaylistDetails(
+    playlist_id: string,
+    params: {
+      /**
+       * The new name for the playlist, for example "My New Playlist Title"
+       */
+      name?: string;
+
+      /**
+       * If true the playlist will be public, if false it will be private.
+       */
+      public?: boolean;
+
+      /**
+       * If true , the playlist will become collaborative and other users will be able to modify the playlist in their Spotify client. Note: You can only set collaborative to true on non-public playlists.
+       */
+      collaborative?: boolean;
+
+      /**
+       * Value for playlist description as displayed in Spotify Clients and in the Web API.
+       */
+      description?: string;
+    }
+  ): Promise<any> {
+    return this.put(`playlists/${playlist_id}`, params);
   }
 
   /**
@@ -1383,17 +1545,29 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
    */
   public AddTracksToPlaylist(
     playlist_id: string,
-    params: {
-      /**
-       * The position to insert the items, a zero-based index. For example, to insert the items in the first position: position=0; to insert the items in the third position: position=2 . If omitted, the items will be appended to the playlist. Items are added in the order they are listed in the query string or request body.
-       */
-      position?: number;
+    params:
+      | {
+          /**
+           * The position to insert the items, a zero-based index. For example, to insert the items in the first position: position=0; to insert the items in the third position: position=2 . If omitted, the items will be appended to the playlist. Items are added in the order they are listed in the query string or request body.
+           */
+          position?: number;
 
-      /**
-       * A comma-separated list of Spotify URIs to add, can be track or episode URIs. For example:uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh, spotify:track:1301WleyT98MSxVHPZCA6M, spotify:episode:512ojhOuo1ktJprKbVcKyQA maximum of 100 items can be added in one request. Note: it is likely that passing a large number of item URIs as a query parameter will exceed the maximum length of the request URI. When adding a large number of items, it is recommended to pass them in the request body, see below.
-       */
-      uris?: string;
-    }
+          /**
+           * A comma-separated list of Spotify URIs to add, can be track or episode URIs. For example:uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh, spotify:track:1301WleyT98MSxVHPZCA6M, spotify:episode:512ojhOuo1ktJprKbVcKyQA maximum of 100 items can be added in one request. Note: it is likely that passing a large number of item URIs as a query parameter will exceed the maximum length of the request URI. When adding a large number of items, it is recommended to pass them in the request body, see below.
+           */
+          uris?: string;
+        }
+      | {
+          /**
+           * A JSON array of the Spotify URIs to add. For example: {"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M", "spotify:episode:512ojhOuo1ktJprKbVcKyQ"]}A maximum of 100 items can be added in one request. Note: if the uris parameter is present in the query string, any URIs listed here in the body will be ignored.
+           */
+          uris?: Array<string>;
+
+          /**
+           * The position to insert the items, a zero-based index. For example, to insert the items in the first position: position=0 ; to insert the items in the third position: position=2. If omitted, the items will be appended to the playlist. Items are added in the order they appear in the uris array. For example: {"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M"], "position": 3}
+           */
+          position?: number;
+        }
   ): Promise<any> {
     return this.post(`playlists/${playlist_id}/tracks`, params);
   }
@@ -1411,12 +1585,39 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
    */
   public ReorderOrReplacePlaylistsTracks(
     playlist_id: string,
-    params: {
-      /**
-       * A comma-separated list of Spotify URIs to set, can be track or episode URIs. For example: uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQA maximum of 100 items can be set in one request.
-       */
-      uris?: string;
-    }
+    params:
+      | {
+          /**
+           * A comma-separated list of Spotify URIs to set, can be track or episode URIs. For example: uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQA maximum of 100 items can be set in one request.
+           */
+          uris?: string;
+        }
+      | {
+          /**
+           *
+           */
+          uris?: Array<string>;
+
+          /**
+           * The position of the first item to be reordered.
+           */
+          range_start?: number;
+
+          /**
+           * The position where the items should be inserted.To reorder the items to the end of the playlist, simply set insert_before to the position after the last item.Examples:To reorder the first item to the last position in a playlist with 10 items, set range_start to 0, and insert_before to 10.To reorder the last item in a playlist with 10 items to the start of the playlist, set range_start to 9, and insert_before to 0.
+           */
+          insert_before?: number;
+
+          /**
+           * The amount of items to be reordered. Defaults to 1 if not set.The range of items to be reordered begins from the range_start position, and includes the range_length subsequent items.Example:To move the items at index 9-10 to the start of the playlist, range_start is set to 9, and range_length is set to 2.
+           */
+          range_length?: number;
+
+          /**
+           * The playlist’s snapshot ID against which you want to make the changes.
+           */
+          snapshot_id?: string;
+        }
   ): Promise<any> {
     return this.put(`playlists/${playlist_id}/tracks`, params);
   }
@@ -1425,8 +1626,24 @@ export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
    * Remove one or more items from a user’s playlist.
    * @param playlist_id {string} The Spotify ID
    */
-  public RemoveTracksPlaylist(playlist_id: string): Promise<any> {
-    return this.delete(`playlists/${playlist_id}/tracks`);
+  public RemoveTracksPlaylist(
+    playlist_id: string,
+    params: {
+      /**
+       * An array of objects containing Spotify URIs of the tracks or episodes to remove.
+       * For example: { "tracks": [{ "uri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh" },{ "uri": "spotify:track:1301WleyT98MSxVHPZCA6M" }] }. A maximum of 100 objects can be sent at once.
+       */
+      tracks: Array<string>;
+
+      /**
+       * The playlist’s snapshot ID against which you want to make the changes.
+       * The API will validate that the specified items exist and in the specified positions and make the changes,
+       * even if more recent changes have been made to the playlist.
+       */
+      snapshot_id?: string;
+    }
+  ): Promise<any> {
+    return this.delete(`playlists/${playlist_id}/tracks`, params);
   }
 
   /**
