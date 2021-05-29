@@ -35,12 +35,12 @@ export interface GetNewReleasesResponse {
 
 export interface GetFeaturedPlaylistsResponse {
   message: string;
-  albums: o.PagingObject & { items: o.SimplifiedPlaylistObject[] };
+  playlists: o.PagingObject & { items: o.SimplifiedPlaylistObject[] };
 }
 
 export interface GetCategoriesResponse {
   message: string;
-  albums: o.PagingObject & { items: o.CategoryObject[] };
+  categories: o.PagingObject & { items: o.CategoryObject[] };
 }
 
 export type GetCategoryResponse = o.CategoryObject;
