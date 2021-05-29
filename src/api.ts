@@ -1,7 +1,8 @@
 import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest';
 import DataLoader from 'dataloader';
 
-import { ArtistObject, AlbumObject, TrackObject } from './objects';
+import * as o from './objects';
+import * as r from './responses';
 
 export interface Context {
   token?: string;
@@ -11,15 +12,15 @@ export interface Context {
 export class SpotifyAPI extends RESTDataSource<Context> {
   public baseURL = 'https://api.spotify.com/v1/';
 
-  private albumLoader = new DataLoader<string, AlbumObject>(
+  private albumLoader = new DataLoader<string, o.AlbumObject>(
     (ids) => this.get('albums', { ids }).then((data) => data.albums),
     { maxBatchSize: 20 }
   );
-  private artistLoader = new DataLoader<string, ArtistObject>(
+  private artistLoader = new DataLoader<string, o.ArtistObject>(
     (ids) => this.get('artists', { ids }).then((data) => data.artists),
     { maxBatchSize: 50 }
   );
-  private trackLoader = new DataLoader<string, TrackObject>(
+  private trackLoader = new DataLoader<string, o.TrackObject>(
     (ids) => this.get('tracks', { ids }).then((data) => data.tracks),
     { maxBatchSize: 50 }
   );
@@ -62,7 +63,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * Provide this parameter if you want to apply Track Relinking.
      */
     market?: string;
-  }): Promise<any> {
+  }): Promise<r.GetMultipleAlbumsResponse> {
     return this.get(`albums`, params);
   }
 
@@ -78,7 +79,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       market?: string;
     }
-  ): Promise<any> {
+  ): Promise<r.GetAlbumResponse> {
     return this.get(`albums/${id}`, params);
   }
 
@@ -106,7 +107,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       offset?: number;
     }
-  ): Promise<any> {
+  ): Promise<r.GetAlbumsTracksResponse> {
     return this.get(`albums/${id}/tracks`, params);
   }
 
@@ -118,7 +119,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * A comma-separated list of the Spotify IDs for the artists. Maximum: 50 IDs.
      */
     ids: string;
-  }): Promise<any> {
+  }): Promise<r.GetMultipleArtistsResponse> {
     return this.get(`artists`, params);
   }
 
@@ -126,7 +127,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get Spotify catalog information for a single artist identified by their unique Spotify ID.
    * @param id {string} The Spotify ID of the artist.
    */
-  public GetArtist(id: string): Promise<any> {
+  public GetArtist(id: string): Promise<r.GetArtistResponse> {
     return this.get(`artists/${id}`);
   }
 
@@ -142,7 +143,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       market: string;
     }
-  ): Promise<any> {
+  ): Promise<r.GetArtistsTopTracksResponse> {
     return this.get(`artists/${id}/top-tracks`, params);
   }
 
@@ -150,7 +151,9 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get Spotify catalog information about artists similar to a given artist. Similarity is based on analysis of the Spotify community’s listening history.
    * @param id {string} The Spotify ID for the artist
    */
-  public GetArtistsRelatedArtists(id: string): Promise<any> {
+  public GetArtistsRelatedArtists(
+    id: string
+  ): Promise<r.GetArtistsRelatedArtistsResponse> {
     return this.get(`artists/${id}/related-artists`);
   }
 
@@ -181,7 +184,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       offset?: number;
     }
-  ): Promise<any> {
+  ): Promise<r.GetArtistsAlbumsResponse> {
     return this.get(`artists/${id}/albums`, params);
   }
 
@@ -203,7 +206,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * The index of the first item to return. Default: 0 (the first object). Use with limit to get the next set of items.
      */
     offset?: number;
-  }): Promise<any> {
+  }): Promise<r.GetNewReleasesResponse> {
     return this.get(`browse/new-releases`, params);
   }
 
@@ -235,7 +238,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * The index of the first item to return. Default: 0 (the first object). Use with limit to get the next set of items.
      */
     offset?: number;
-  }): Promise<any> {
+  }): Promise<r.GetFeaturedPlaylistsResponse> {
     return this.get(`browse/featured-playlists`, params);
   }
 
@@ -262,7 +265,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * The index of the first item to return. Default: 0 (the first object). Use with limit to get the next set of categories.
      */
     offset?: number;
-  }): Promise<any> {
+  }): Promise<r.GetCategoriesResponse> {
     return this.get(`browse/categories`, params);
   }
 
@@ -283,7 +286,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       locale?: string;
     }
-  ): Promise<any> {
+  ): Promise<r.GetCategoryResponse> {
     return this.get(`browse/categories/${category_id}`, params);
   }
 
@@ -309,7 +312,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       offset?: number;
     }
-  ): Promise<any> {
+  ): Promise<r.GetCategoriesPlaylistsResponse> {
     return this.get(`browse/categories/${category_id}/playlists`, params);
   }
 
@@ -551,14 +554,14 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
      */
     target_valence?: number;
-  }): Promise<any> {
+  }): Promise<r.GetRecommendationsResponse> {
     return this.get(`recommendations`, params);
   }
 
   /**
    * Retrieve a list of available genres seed parameter values for recommendations.
    */
-  public GetRecommendationGenres(): Promise<any> {
+  public GetRecommendationGenres(): Promise<r.GetRecommendationGenresResponse> {
     return this.get(`recommendations/available-genre-seeds`);
   }
 
@@ -580,7 +583,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * Users can view the country that is associated with their account in the account settings.
      */
     market?: string;
-  }): Promise<any> {
+  }): Promise<r.GetMultipleEpisodesResponse> {
     return this.get(`episodes`, params);
   }
 
@@ -602,7 +605,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       market?: string;
     }
-  ): Promise<any> {
+  ): Promise<r.GetEpisodeResponse> {
     return this.get(`episodes/${id}`, params);
   }
 
@@ -619,7 +622,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       public?: boolean;
     }
-  ): Promise<any> {
+  ): Promise<r.FollowPlaylistResponse> {
     return this.put(`playlists/${playlist_id}/followers`, params);
   }
 
@@ -627,7 +630,9 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Remove the current user as a follower of a playlist.
    * @param playlist_id {string} The Spotify ID of the playlist that is to be no longer followed.
    */
-  public UnfollowPlaylist(playlist_id: string): Promise<any> {
+  public UnfollowPlaylist(
+    playlist_id: string
+  ): Promise<r.UnfollowPlaylistResponse> {
     return this.delete(`playlists/${playlist_id}/followers`);
   }
 
@@ -643,7 +648,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       ids: string;
     }
-  ): Promise<any> {
+  ): Promise<r.CheckIfUserFollowsPlaylistResponse> {
     return this.get(`playlists/${playlist_id}/followers/contains`, params);
   }
 
@@ -665,7 +670,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
      */
     limit?: number;
-  }): Promise<any> {
+  }): Promise<r.GetFollowedResponse> {
     return this.get(`me/following`, params);
   }
 
@@ -693,7 +698,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           ids: Array<string>;
         }
-  ): Promise<any> {
+  ): Promise<r.FollowArtistsUsersResponse> {
     return this.put(`me/following`, params);
   }
 
@@ -719,7 +724,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           ids?: Array<string>;
         }
-  ): Promise<any> {
+  ): Promise<r.UnfollowArtistsUsersResponse> {
     return this.delete(`me/following`, params);
   }
 
@@ -736,7 +741,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * A comma-separated list of the artist or the user Spotify IDs to check. For example: ids=74ASZWbe4lXaubB36ztrGX,08td7MxkoHQkXnWAYD8d6Q. A maximum of 50 IDs can be sent in one request.
      */
     ids: string;
-  }): Promise<any> {
+  }): Promise<r.CheckCurrentUserFollowsResponse> {
     return this.get(`me/following/contains`, params);
   }
 
@@ -758,7 +763,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * An ISO 3166-1 alpha-2 country code or the string from_token. Provide this parameter if you want to apply Track Relinking.
      */
     market?: string;
-  }): Promise<any> {
+  }): Promise<r.GetUsersSavedAlbumsResponse> {
     return this.get(`me/albums`, params);
   }
 
@@ -779,7 +784,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           ids?: Array<string>;
         }
-  ): Promise<any> {
+  ): Promise<r.SaveAlbumsUserResponse> {
     return this.put(`me/albums`, params);
   }
 
@@ -800,7 +805,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           ids?: Array<string>;
         }
-  ): Promise<any> {
+  ): Promise<r.RemoveAlbumsUserResponse> {
     return this.delete(`me/albums`, params);
   }
 
@@ -812,7 +817,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * A comma-separated list of the Spotify IDs for the albums. Maximum: 50 IDs.
      */
     ids: string;
-  }): Promise<any> {
+  }): Promise<r.CheckUsersSavedAlbumsResponse> {
     return this.get(`me/albums/contains`, params);
   }
 
@@ -834,7 +839,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * The index of the first object to return. Default: 0 (i.e., the first object). Use with limit to get the next set of objects.
      */
     offset?: number;
-  }): Promise<any> {
+  }): Promise<r.GetUsersSavedTracksResponse> {
     return this.get(`me/tracks`, params);
   }
 
@@ -855,7 +860,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           ids?: Array<string>;
         }
-  ): Promise<any> {
+  ): Promise<r.SaveTracksUserResponse> {
     return this.put(`me/tracks`, params);
   }
 
@@ -876,7 +881,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           ids?: Array<string>;
         }
-  ): Promise<any> {
+  ): Promise<r.RemoveTracksUserResponse> {
     return this.delete(`me/tracks`, params);
   }
 
@@ -888,7 +893,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * A comma-separated list of the Spotify IDs for the tracks. Maximum: 50 IDs.
      */
     ids: string;
-  }): Promise<any> {
+  }): Promise<r.CheckUsersSavedTracksResponse> {
     return this.get(`me/tracks/contains`, params);
   }
 
@@ -916,7 +921,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * The index of the first object to return. Default: 0 (i.e., the first object). Use with limit to get the next set of objects.
      */
     offset?: number;
-  }): Promise<any> {
+  }): Promise<r.GetUsersSavedEpisodesResponse> {
     return this.get(`me/episodes`, params);
   }
 
@@ -938,7 +943,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           ids?: Array<string>;
         }
-  ): Promise<any> {
+  ): Promise<r.SaveEpisodesUserResponse> {
     return this.put(`me/episodes`, params);
   }
 
@@ -960,7 +965,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           ids?: Array<string>;
         }
-  ): Promise<any> {
+  ): Promise<r.RemoveEpisodesUserResponse> {
     return this.delete(`me/episodes`, params);
   }
 
@@ -973,7 +978,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * A comma-separated list of the Spotify IDs for the episodes. Maximum: 50 IDs.
      */
     ids: string;
-  }): Promise<any> {
+  }): Promise<r.CheckUsersSavedEpisodesResponse> {
     return this.get(`me/episodes/contains`, params);
   }
 
@@ -990,7 +995,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * The index of the first show to return. Default: 0 (the first object). Use with limit to get the next set of shows.
      */
     offset?: number;
-  }): Promise<any> {
+  }): Promise<r.GetUsersSavedShowsResponse> {
     return this.get(`me/shows`, params);
   }
 
@@ -1002,7 +1007,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * A comma-separated list of the Spotify IDs. Maximum: 50 IDs.
      */
     ids: string;
-  }): Promise<any> {
+  }): Promise<r.SaveShowsUserResponse> {
     return this.put(`me/shows`, params);
   }
 
@@ -1024,7 +1029,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * Users can view the country that is associated with their account in the account settings.
      */
     market?: string;
-  }): Promise<any> {
+  }): Promise<r.RemoveShowsUserResponse> {
     return this.delete(`me/shows`, params);
   }
 
@@ -1036,14 +1041,14 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * A comma-separated list of the Spotify IDs for the shows. Maximum: 50 ids.
      */
     ids: string;
-  }): Promise<any> {
+  }): Promise<r.CheckUsersSavedShowsResponse> {
     return this.get(`me/shows/contains`, params);
   }
 
   /**
    * Get the list of markets where Spotify is available.
    */
-  public GetAvailableMarkets(): Promise<any> {
+  public GetAvailableMarkets(): Promise<r.GetAvailableMarketsResponse> {
     return this.get(`markets`);
   }
 
@@ -1069,7 +1074,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       offset?: number;
     }
-  ): Promise<any> {
+  ): Promise<r.GetUsersTopArtistsAndTracksResponse> {
     return this.get(`me/top/${type}`, params);
   }
 
@@ -1089,7 +1094,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * Note: This parameter was introduced to allow existing clients to maintain their current behaviour and might be deprecated in the future. In addition to providing this parameter, make sure that your client properly handles cases of new
      */
     additional_types?: string;
-  }): Promise<any> {
+  }): Promise<r.GetInformationAboutTheUsersCurrentPlaybackResponse> {
     return this.get(`me/player`, params);
   }
 
@@ -1106,14 +1111,16 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * true: ensure playback happens on new device.false or not provided: keep the current playback state.
      */
     play?: boolean;
-  }): Promise<any> {
+  }): Promise<r.TransferUsersPlaybackResponse> {
     return this.put(`me/player`, params);
   }
 
   /**
    * Get information about a user’s available devices.
    */
-  public GetUsersAvailableDevices(): Promise<any> {
+  public GetUsersAvailableDevices(): Promise<
+    r.GetUsersAvailableDevicesResponse
+  > {
     return this.get(`me/player/devices`);
   }
 
@@ -1133,7 +1140,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * Note: This parameter was introduced to allow existing clients to maintain their current behaviour and might be deprecated in the future. In addition to providing this parameter, make sure that your client properly handles cases of new types in the future by checking against the currently_playing_type field.
      */
     additional_types?: string;
-  }): Promise<any> {
+  }): Promise<r.GetTheUsersCurrentlyPlayingTrackResponse> {
     return this.get(`me/player/currently-playing`, params);
   }
 
@@ -1169,7 +1176,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           position_ms?: number;
         }
-  ): Promise<any> {
+  ): Promise<r.StartUsersPlaybackResponse> {
     return this.put(`me/player/play`, params);
   }
 
@@ -1181,7 +1188,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * The id of the device this command is targeting. If not supplied, the user’s currently active device is the target.
      */
     device_id?: string;
-  }): Promise<any> {
+  }): Promise<r.PauseUsersPlaybackResponse> {
     return this.put(`me/player/pause`, params);
   }
 
@@ -1193,7 +1200,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * The id of the device this command is targeting. If not supplied, the user’s currently active device is the target.
      */
     device_id?: string;
-  }): Promise<any> {
+  }): Promise<r.SkipUsersPlaybackToNextTrackResponse> {
     return this.post(`me/player/next`, params);
   }
 
@@ -1206,7 +1213,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * not supplied, the user’s currently active device is the target.
      */
     device_id?: string;
-  }): Promise<any> {
+  }): Promise<r.SkipUsersPlaybackToPreviousTrackResponse> {
     return this.post(`me/player/previous`, params);
   }
 
@@ -1226,7 +1233,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * not supplied, the user’s currently active device is the target.
      */
     device_id?: string;
-  }): Promise<any> {
+  }): Promise<r.SeekToPositionInCurrentlyPlayingTrackResponse> {
     return this.put(`me/player/seek`, params);
   }
 
@@ -1248,7 +1255,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * not supplied, the user’s currently active device is the target.
      */
     device_id?: string;
-  }): Promise<any> {
+  }): Promise<r.SetRepeatModeOnUsersPlaybackResponse> {
     return this.put(`me/player/repeat`, params);
   }
 
@@ -1265,7 +1272,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * The id of the device this command is targeting. If not supplied, the user’s currently active device is the target.
      */
     device_id?: string;
-  }): Promise<any> {
+  }): Promise<r.SetVolumeForUsersPlaybackResponse> {
     return this.put(`me/player/volume`, params);
   }
 
@@ -1284,7 +1291,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * not supplied, the user’s currently active device is the target.
      */
     device_id?: string;
-  }): Promise<any> {
+  }): Promise<r.ToggleShuffleForUsersPlaybackResponse> {
     return this.put(`me/player/shuffle`, params);
   }
 
@@ -1311,7 +1318,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * after must not be specified.
      */
     before?: number;
-  }): Promise<any> {
+  }): Promise<r.GetRecentlyPlayedResponse> {
     return this.get(`me/player/recently-played`, params);
   }
 
@@ -1329,7 +1336,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * not supplied, the user’s currently active device is the target.
      */
     device_id?: string;
-  }): Promise<any> {
+  }): Promise<r.AddToQueueResponse> {
     return this.post(`me/player/queue`, params);
   }
 
@@ -1350,7 +1357,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * next set of playlists.’
      */
     offset?: number;
-  }): Promise<any> {
+  }): Promise<r.GetListOfCurrentUsersPlaylistsResponse> {
     return this.get(`me/playlists`, params);
   }
 
@@ -1374,7 +1381,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       offset?: number;
     }
-  ): Promise<any> {
+  ): Promise<r.GetListUsersPlaylistsResponse> {
     return this.get(`users/${user_id}/playlists`, params);
   }
 
@@ -1406,7 +1413,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       description?: string;
     }
-  ): Promise<any> {
+  ): Promise<r.CreatePlaylistResponse> {
     return this.post(`users/${user_id}/playlists`, params);
   }
 
@@ -1448,7 +1455,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       additional_types?: string;
     }
-  ): Promise<any> {
+  ): Promise<r.GetPlaylistResponse> {
     return this.get(`playlists/${playlist_id}`, params);
   }
 
@@ -1481,7 +1488,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       description?: string;
     }
-  ): Promise<any> {
+  ): Promise<r.ChangePlaylistDetailsResponse> {
     return this.put(`playlists/${playlist_id}`, params);
   }
 
@@ -1534,7 +1541,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       additional_types?: string;
     }
-  ): Promise<any> {
+  ): Promise<r.GetPlaylistsTracksResponse> {
     return this.get(`playlists/${playlist_id}/tracks`, params);
   }
 
@@ -1568,7 +1575,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           position?: number;
         }
-  ): Promise<any> {
+  ): Promise<r.AddTracksToPlaylistResponse> {
     return this.post(`playlists/${playlist_id}/tracks`, params);
   }
 
@@ -1618,7 +1625,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
            */
           snapshot_id?: string;
         }
-  ): Promise<any> {
+  ): Promise<r.ReorderOrReplacePlaylistsTracksResponse> {
     return this.put(`playlists/${playlist_id}/tracks`, params);
   }
 
@@ -1642,7 +1649,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       snapshot_id?: string;
     }
-  ): Promise<any> {
+  ): Promise<r.RemoveTracksPlaylistResponse> {
     return this.delete(`playlists/${playlist_id}/tracks`, params);
   }
 
@@ -1651,7 +1658,9 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
-  public GetPlaylistCover(playlist_id: string): Promise<any> {
+  public GetPlaylistCover(
+    playlist_id: string
+  ): Promise<r.GetPlaylistCoverResponse> {
     return this.get(`playlists/${playlist_id}/images`);
   }
 
@@ -1660,7 +1669,9 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
-  public UploadCustomPlaylistCover(playlist_id: string): Promise<any> {
+  public UploadCustomPlaylistCover(
+    playlist_id: string
+  ): Promise<r.UploadCustomPlaylistCoverResponse> {
     return this.put(`playlists/${playlist_id}/images`);
   }
 
@@ -1719,7 +1730,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * hosted externally. By default external content is filtered out from responses.
      */
     include_external?: string;
-  }): Promise<any> {
+  }): Promise<r.SearchResponse> {
     return this.get(`search`, params);
   }
 
@@ -1741,7 +1752,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * Users can view the country that is associated with their account in the account settings.
      */
     market?: string;
-  }): Promise<any> {
+  }): Promise<r.GetMultipleShowsResponse> {
     return this.get(`shows`, params);
   }
 
@@ -1764,7 +1775,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       market?: string;
     }
-  ): Promise<any> {
+  ): Promise<r.GetShowResponse> {
     return this.get(`shows/${id}`, params);
   }
 
@@ -1795,7 +1806,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       offset?: number;
     }
-  ): Promise<any> {
+  ): Promise<r.GetShowsEpisodesResponse> {
     return this.get(`shows/${id}/episodes`, params);
   }
 
@@ -1812,7 +1823,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * An ISO 3166-1 alpha-2 country code or the string from_token. Provide this parameter if you want to apply Track Relinking.
      */
     market?: string;
-  }): Promise<any> {
+  }): Promise<r.GetSeveralTracksResponse> {
     return this.get(`tracks`, params);
   }
 
@@ -1832,7 +1843,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
        */
       market?: string;
     }
-  ): Promise<any> {
+  ): Promise<r.GetTrackResponse> {
     return this.get(`tracks/${id}`, params);
   }
 
@@ -1845,7 +1856,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
      * for the tracks. Maximum: 100 IDs.
      */
     ids: string;
-  }): Promise<any> {
+  }): Promise<r.GetSeveralAudioFeaturesResponse> {
     return this.get(`audio-features`, params);
   }
 
@@ -1854,7 +1865,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Spotify ID.
    * @param id {string} The Spotify ID for the track.
    */
-  public GetAudioFeatures(id: string): Promise<any> {
+  public GetAudioFeatures(id: string): Promise<r.GetAudioFeaturesResponse> {
     return this.get(`audio-features/${id}`);
   }
 
@@ -1864,7 +1875,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param id {string} The Spotify ID
    * for the track.
    */
-  public GetAudioAnalysis(id: string): Promise<any> {
+  public GetAudioAnalysis(id: string): Promise<r.GetAudioAnalysisResponse> {
     return this.get(`audio-analysis/${id}`);
   }
 
@@ -1872,7 +1883,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get detailed profile information about the current user (including the
    * current user’s username).
    */
-  public GetCurrentUsersProfile(): Promise<any> {
+  public GetCurrentUsersProfile(): Promise<r.GetCurrentUsersProfileResponse> {
     return this.get(`me`);
   }
 
@@ -1880,7 +1891,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get public profile information about a Spotify user.
    * @param user_id {string} The user’s Spotify user ID.
    */
-  public GetUsersProfile(user_id: string): Promise<any> {
+  public GetUsersProfile(user_id: string): Promise<r.GetUsersProfileResponse> {
     return this.get(`users/${user_id}`);
   }
 
