@@ -18,8 +18,7 @@
   "scripts": {
     "build": "rm -rf dist/* && tsc",
     "develop": "tsc -w",
-    "lint": "eslint src --ext .ts",
-    "graphql": "graphql-codegen"
+    "lint": "eslint src --ext .ts"
   },
   "husky": {
     "hooks": {
@@ -47,7 +46,6 @@
     "eslint": "^7.6.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "graphql": "^15.5.0",
     "husky": "^4.2.5",
     "jest": "^26.4.2",
     "lint-staged": "^10.2.11",
@@ -55,11 +53,9 @@
     "ts-jest": "^26.3.0",
     "typescript": "^3.9.7"
   },
-  "dependencies": {
-    "bottleneck": "^2.19.5"
-  },
   "peerDependencies": {
     "apollo-datasource-rest": "^0.9.3",
-    "dataloader": "^2.0.0"
+    "dataloader": "^2.0.0",
+    "graphql": "^15.5.0"
   }
 }

@@ -1,5 +1,4 @@
 import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest';
-import Bottleneck from 'bottleneck';
 import DataLoader from 'dataloader';
 
 import { ArtistObject, AlbumObject, TrackObject } from './objects';
@@ -9,10 +8,8 @@ export interface Context {
   authorization?: string;
 }
 
-export class SpotifyAPI extends RESTDataSource<Context> {
+export class SpotifyAPI<T extends Context = Context> extends RESTDataSource<T> {
   public baseURL = 'https://api.spotify.com/v1/';
-
-  private limiter: Bottleneck;
 
   private albumLoader = new DataLoader<string, AlbumObject>(
     (ids) => this.get('albums', { ids }).then((data) => data.albums),
@@ -26,23 +23,6 @@ export class SpotifyAPI extends RESTDataSource<Context> {
     (ids) => this.get('tracks', { ids }).then((data) => data.tracks),
     { maxBatchSize: 50 }
   );
-
-  constructor() {
-    super();
-
-    this.limiter = new Bottleneck({
-      reservoir: 100,
-      reservoirRefreshAmount: 100,
-      reservoirRefreshInterval: 60 * 1000,
-      maxConcurrent: 1,
-      minTime: 333,
-    });
-
-    this.get = this.limiter.wrap(this.get.bind(this));
-    this.post = this.limiter.wrap(this.post.bind(this));
-    this.put = this.limiter.wrap(this.put.bind(this));
-    this.delete = this.limiter.wrap(this.delete.bind(this));
-  }
 
   public batchAlbum(id: string) {
     return this.albumLoader.load(id);
