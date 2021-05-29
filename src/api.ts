@@ -1118,9 +1118,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get information about a user’s available devices.
    */
-  public GetUsersAvailableDevices(): Promise<
-    r.GetUsersAvailableDevicesResponse
-  > {
+  public GetUsersAvailableDevices(): Promise<r.GetUsersAvailableDevicesResponse> {
     return this.get(`me/player/devices`);
   }
 

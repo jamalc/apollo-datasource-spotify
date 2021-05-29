@@ -103,7 +103,8 @@ export interface GetUsersTopArtistsAndTracksResponse extends o.PagingObject {
   items: o.ArtistObject[] | o.TrackObject[];
 }
 
-export type GetInformationAboutTheUsersCurrentPlaybackResponse = o.CurrentlyPlayingObject;
+export type GetInformationAboutTheUsersCurrentPlaybackResponse =
+  o.CurrentlyPlayingObject;
 
 export type GetUsersAvailableDevicesResponse = o.DevicesObject;
 
