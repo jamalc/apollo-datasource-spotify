@@ -25,27 +25,27 @@ export class SpotifyAPI extends RESTDataSource<Context> {
     { maxBatchSize: 50 }
   );
 
-  public batchAlbum(id: string) {
+  public batchAlbum(id: string): Promise<o.AlbumObject | Error> {
     return this.albumLoader.load(id);
   }
 
-  public batchAlbums(ids: string[]) {
+  public batchAlbums(ids: string[]): Promise<(o.AlbumObject | Error)[]> {
     return this.albumLoader.loadMany(ids);
   }
 
-  public batchArtist(id: string) {
+  public batchArtist(id: string): Promise<o.ArtistObject | Error> {
     return this.artistLoader.load(id);
   }
 
-  public batchArtists(ids: string[]) {
+  public batchArtists(ids: string[]): Promise<(o.ArtistObject | Error)[]> {
     return this.artistLoader.loadMany(ids);
   }
 
-  public batchTrack(id: string) {
+  public batchTrack(id: string): Promise<o.TrackObject | Error> {
     return this.trackLoader.load(id);
   }
 
-  public batchTracks(ids: string[]) {
+  public batchTracks(ids: string[]): Promise<(o.TrackObject | Error)[]> {
     return this.trackLoader.loadMany(ids);
   }
 
@@ -810,7 +810,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Check if one or more albums is already saved in the current Spotify user’s ‘Your Music’ library.
+   * Check if one or more albums is already saved in the current Spotify user’s ‘Your Music’ library.
    */
   public CheckUsersSavedAlbums(params: {
     /**
@@ -1870,7 +1870,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   }
 
   /**
-   * Get a detailed audio analysis for a single track identified by its unique
+   * Get a detailed audio analysis for a single track identified by its unique
    * Spotify ID.
    * @param id {string} The Spotify ID
    * for the track.
