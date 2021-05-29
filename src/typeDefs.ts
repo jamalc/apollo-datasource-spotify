@@ -1592,20 +1592,6 @@ export const typeDefs = gql`
     ids: String!
   }
 
-  input GetMultipleArtistsRequest {
-    """
-    A comma-separated list of the Spotify IDs for the artists. Maximum: 50 IDs.
-    """
-    ids: String!
-  }
-
-  input GetArtistsTopTracksRequest {
-    """
-    An ISO 3166-1 alpha-2 country code or the string from_token. Synonym for country.
-    """
-    market: String!
-  }
-
   input GetArtistsTopTracksRequest {
     """
     An ISO 3166-1 alpha-2 country code or the string from_token. Synonym for country.
@@ -1906,197 +1892,6 @@ export const typeDefs = gql`
     target_valence: Float
   }
 
-  input GetRecommendationsRequest {
-    """
-    The target size of the list of recommended tracks. For seeds with unusually small pools or when highly restrictive filtering is applied, it may be impossible to generate the requested number of recommended tracks. Debugging information for such cases is available in the response. Default: 20. Minimum: 1. Maximum: 100.
-    """
-    limit: Int
-    """
-    An ISO 3166-1 alpha-2 country code or the string from_token. Provide this parameter if you want to apply Track Relinking. Because min_*, max_* and target_* are applied to pools before relinking, the generated results may not precisely match the filters applied. Original, non-relinked tracks are available via the linked_from attribute of the relinked track response.
-    """
-    market: String
-    """
-    A comma separated list of Spotify IDs for seed artists.  Up to 5 seed values may be provided in any combination of seed_artists, seed_tracks and seed_genres.
-    """
-    seed_artists: String!
-    """
-    A comma separated list of any genres in the set of available genre seeds.  Up to 5 seed values may be provided in any combination of seed_artists, seed_tracks and seed_genres.
-    """
-    seed_genres: String!
-    """
-    A comma separated list of Spotify IDs for a seed track.  Up to 5 seed values may be provided in any combination of seed_artists, seed_tracks and seed_genres.
-    """
-    seed_tracks: String!
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_acousticness: Float
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_acousticness: Float
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_acousticness: Float
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_danceability: Float
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_danceability: Float
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_danceability: Float
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_duration_ms: Int
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_duration_ms: Int
-    """
-    Target duration of the track (ms)
-    """
-    target_duration_ms: Int
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_energy: Float
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_energy: Float
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_energy: Float
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_instrumentalness: Float
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_instrumentalness: Float
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_instrumentalness: Float
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_key: Int
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_key: Int
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_key: Int
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_liveness: Float
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_liveness: Float
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_liveness: Float
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_loudness: Float
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_loudness: Float
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_loudness: Float
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_mode: Int
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_mode: Int
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_mode: Int
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_popularity: Int
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_popularity: Int
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_popularity: Int
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_speechiness: Float
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_speechiness: Float
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_speechiness: Float
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_tempo: Float
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_tempo: Float
-    """
-    Target tempo (BPM)
-    """
-    target_tempo: Float
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_time_signature: Int
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_time_signature: Int
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_time_signature: Int
-    """
-    For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict results to only those tracks with a tempo of greater than 140 beats per minute.
-    """
-    min_valence: Float
-    """
-    For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided. See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would filter out most tracks that are likely to be instrumental.
-    """
-    max_valence: Float
-    """
-    For each of the tunable track attributes (below) a target value may be provided. Tracks with the attribute values nearest to the target values will be preferred. For example, you might request target_energy=0.6 and target_danceability=0.8. All target values will be weighed equally in ranking results.
-    """
-    target_valence: Float
-  }
-
   input GetMultipleEpisodesRequest {
     """
     A comma-separated list of the Spotify IDs for the episodes. Maximum: 50 IDs.
@@ -2123,14 +1918,6 @@ export const typeDefs = gql`
     Users can view the country that is associated with their account in the account settings.
     """
     market: String
-  }
-
-  input FollowPlaylistRequest {
-    """
-    Defaults to true. If true the playlist will be included in user’s public playlists, if false it will remain private.
-    To be able to follow playlists privately, the user must have granted the playlist-modify-private scope.
-    """
-    public: Boolean
   }
 
   input FollowPlaylistRequest {
@@ -2351,13 +2138,6 @@ export const typeDefs = gql`
     ids: String!
   }
 
-  input CheckUsersSavedShowsRequest {
-    """
-    A comma-separated list of the Spotify IDs for the shows. Maximum: 50 ids.
-    """
-    ids: String!
-  }
-
   input GetUsersTopArtistsAndTracksRequest {
     """
     Over what time frame the affinities are computed. Valid values: long_term (calculated from several years of data and including all new data as it becomes available), medium_term (approximately last 6 months), short_term (approximately last 4 weeks). Default: medium_term
@@ -2385,17 +2165,6 @@ export const typeDefs = gql`
     Note: This parameter was introduced to allow existing clients to maintain their current behaviour and might be deprecated in the future. In addition to providing this parameter, make sure that your client properly handles cases of new
     """
     additional_types: String
-  }
-
-  input TransferUsersPlaybackRequest {
-    """
-    A JSON array containing the ID of the device on which playback should be started/transferred.For example:{device_ids:["74ASZWbe4lXaubB36ztrGX"]}Note: Although an array is accepted, only a single device_id is currently supported. Supplying more than one will return 400 Bad Request
-    """
-    device_ids: [String!]!
-    """
-    true: ensure playback happens on new device.false or not provided: keep the current playback state.
-    """
-    play: Boolean
   }
 
   input TransferUsersPlaybackRequest {
@@ -2735,34 +2504,6 @@ export const typeDefs = gql`
     snapshot_id: String
   }
 
-  input RemoveTracksPlaylistRequest {
-    """
-    An array of objects containing Spotify URIs of the tracks or episodes to remove.
-    For example: { "tracks": [{ "uri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh" },{ "uri": "spotify:track:1301WleyT98MSxVHPZCA6M" }] }. A maximum of 100 objects can be sent at once.
-    """
-    tracks: [String!]!
-    """
-    The playlist’s snapshot ID against which you want to make the changes.
-    The API will validate that the specified items exist and in the specified positions and make the changes,
-    even if more recent changes have been made to the playlist.
-    """
-    snapshot_id: String
-  }
-
-  input RemoveTracksPlaylistRequest {
-    """
-    An array of objects containing Spotify URIs of the tracks or episodes to remove.
-    For example: { "tracks": [{ "uri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh" },{ "uri": "spotify:track:1301WleyT98MSxVHPZCA6M" }] }. A maximum of 100 objects can be sent at once.
-    """
-    tracks: [String!]!
-    """
-    The playlist’s snapshot ID against which you want to make the changes.
-    The API will validate that the specified items exist and in the specified positions and make the changes,
-    even if more recent changes have been made to the playlist.
-    """
-    snapshot_id: String
-  }
-
   input SearchRequest {
     """
     Search query
@@ -2877,38 +2618,6 @@ export const typeDefs = gql`
     Relinking.
     """
     market: String
-  }
-
-  input GetSeveralAudioFeaturesRequest {
-    """
-    A comma-separated list of the Spotify IDs
-    for the tracks. Maximum: 100 IDs.
-    """
-    ids: String!
-  }
-
-  input GetSeveralAudioFeaturesRequest {
-    """
-    A comma-separated list of the Spotify IDs
-    for the tracks. Maximum: 100 IDs.
-    """
-    ids: String!
-  }
-
-  input GetSeveralAudioFeaturesRequest {
-    """
-    A comma-separated list of the Spotify IDs
-    for the tracks. Maximum: 100 IDs.
-    """
-    ids: String!
-  }
-
-  input GetSeveralAudioFeaturesRequest {
-    """
-    A comma-separated list of the Spotify IDs
-    for the tracks. Maximum: 100 IDs.
-    """
-    ids: String!
   }
 
   input GetSeveralAudioFeaturesRequest {
