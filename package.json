@@ -1,6 +1,6 @@
 {
   "name": "apollo-datasource-spotify",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "RESTDataSource wrapper for the Spotify API",
   "author": "Jamal Carvalho <jamal.a.carvalho@gmail.com>",
   "homepage": "https://github.com/jamalc/apollo-datasource-spotify#readme",
