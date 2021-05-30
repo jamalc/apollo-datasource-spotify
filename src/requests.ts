@@ -14,8 +14,6 @@ export interface GetMultipleAlbumsRequest {
   market?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetAlbumRequest {
   [key: string]: any;
   /**
@@ -23,8 +21,6 @@ export interface GetAlbumRequest {
    */
   market?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetAlbumsTracksRequest {
   [key: string]: any;
@@ -45,8 +41,6 @@ export interface GetAlbumsTracksRequest {
   offset?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetMultipleArtistsRequest {
   [key: string]: any;
   /**
@@ -55,8 +49,6 @@ export interface GetMultipleArtistsRequest {
   ids: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetArtistsTopTracksRequest {
   [key: string]: any;
   /**
@@ -64,8 +56,6 @@ export interface GetArtistsTopTracksRequest {
    */
   market: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetArtistsAlbumsRequest {
   [key: string]: any;
@@ -90,8 +80,6 @@ export interface GetArtistsAlbumsRequest {
   offset?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetNewReleasesRequest {
   [key: string]: any;
   /**
@@ -109,8 +97,6 @@ export interface GetNewReleasesRequest {
    */
   offset?: number;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetFeaturedPlaylistsRequest {
   [key: string]: any;
@@ -140,8 +126,6 @@ export interface GetFeaturedPlaylistsRequest {
   offset?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetCategoriesRequest {
   [key: string]: any;
   /**
@@ -165,8 +149,6 @@ export interface GetCategoriesRequest {
   offset?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetCategoryRequest {
   [key: string]: any;
   /**
@@ -179,8 +161,6 @@ export interface GetCategoryRequest {
    */
   locale?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetCategoriesPlaylistsRequest {
   [key: string]: any;
@@ -199,8 +179,6 @@ export interface GetCategoriesPlaylistsRequest {
    */
   offset?: number;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetRecommendationsRequest {
   [key: string]: any;
@@ -440,8 +418,6 @@ export interface GetRecommendationsRequest {
   target_valence?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetMultipleEpisodesRequest {
   [key: string]: any;
   /**
@@ -460,8 +436,6 @@ export interface GetMultipleEpisodesRequest {
   market?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetEpisodeRequest {
   [key: string]: any;
   /**
@@ -475,8 +449,6 @@ export interface GetEpisodeRequest {
   market?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface FollowPlaylistRequest {
   [key: string]: any;
   /**
@@ -486,8 +458,6 @@ export interface FollowPlaylistRequest {
   public?: boolean;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface CheckIfUserFollowsPlaylistRequest {
   [key: string]: any;
   /**
@@ -495,8 +465,6 @@ export interface CheckIfUserFollowsPlaylistRequest {
    */
   ids: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetFollowedRequest {
   [key: string]: any;
@@ -516,8 +484,6 @@ export interface GetFollowedRequest {
   limit?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface FollowArtistsUsersRequest {
   [key: string]: any;
   /**
@@ -532,8 +498,6 @@ export interface FollowArtistsUsersRequest {
   type: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface UnfollowArtistsUsersRequest {
   [key: string]: any;
   /**
@@ -547,8 +511,6 @@ export interface UnfollowArtistsUsersRequest {
   type: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface CheckCurrentUserFollowsRequest {
   [key: string]: any;
   /**
@@ -561,8 +523,6 @@ export interface CheckCurrentUserFollowsRequest {
    */
   ids: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetUsersSavedAlbumsRequest {
   [key: string]: any;
@@ -582,8 +542,6 @@ export interface GetUsersSavedAlbumsRequest {
   market?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface SaveAlbumsUserRequest {
   [key: string]: any;
   /**
@@ -591,8 +549,6 @@ export interface SaveAlbumsUserRequest {
    */
   ids: Array<string>;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface RemoveAlbumsUserRequest {
   [key: string]: any;
@@ -602,8 +558,6 @@ export interface RemoveAlbumsUserRequest {
   ids: Array<string>;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface CheckUsersSavedAlbumsRequest {
   [key: string]: any;
   /**
@@ -611,8 +565,6 @@ export interface CheckUsersSavedAlbumsRequest {
    */
   ids: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetUsersSavedTracksRequest {
   [key: string]: any;
@@ -632,8 +584,6 @@ export interface GetUsersSavedTracksRequest {
   offset?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface SaveTracksUserRequest {
   [key: string]: any;
   /**
@@ -641,8 +591,6 @@ export interface SaveTracksUserRequest {
    */
   ids: Array<string>;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface RemoveTracksUserRequest {
   [key: string]: any;
@@ -652,8 +600,6 @@ export interface RemoveTracksUserRequest {
   ids: Array<string>;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface CheckUsersSavedTracksRequest {
   [key: string]: any;
   /**
@@ -661,8 +607,6 @@ export interface CheckUsersSavedTracksRequest {
    */
   ids: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetUsersSavedEpisodesRequest {
   [key: string]: any;
@@ -687,8 +631,6 @@ export interface GetUsersSavedEpisodesRequest {
   offset?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface SaveEpisodesUserRequest {
   [key: string]: any;
   /**
@@ -696,8 +638,6 @@ export interface SaveEpisodesUserRequest {
    */
   ids: Array<string>;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface RemoveEpisodesUserRequest {
   [key: string]: any;
@@ -707,8 +647,6 @@ export interface RemoveEpisodesUserRequest {
   ids: Array<string>;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface CheckUsersSavedEpisodesRequest {
   [key: string]: any;
   /**
@@ -716,8 +654,6 @@ export interface CheckUsersSavedEpisodesRequest {
    */
   ids: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetUsersSavedShowsRequest {
   [key: string]: any;
@@ -732,8 +668,6 @@ export interface GetUsersSavedShowsRequest {
   offset?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface SaveShowsUserRequest {
   [key: string]: any;
   /**
@@ -741,8 +675,6 @@ export interface SaveShowsUserRequest {
    */
   ids: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface RemoveShowsUserRequest {
   [key: string]: any;
@@ -762,8 +694,6 @@ export interface RemoveShowsUserRequest {
   market?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface CheckUsersSavedShowsRequest {
   [key: string]: any;
   /**
@@ -771,8 +701,6 @@ export interface CheckUsersSavedShowsRequest {
    */
   ids: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetUsersTopArtistsAndTracksRequest {
   [key: string]: any;
@@ -792,8 +720,6 @@ export interface GetUsersTopArtistsAndTracksRequest {
   offset?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetInformationAboutTheUsersCurrentPlaybackRequest {
   [key: string]: any;
   /**
@@ -810,8 +736,6 @@ export interface GetInformationAboutTheUsersCurrentPlaybackRequest {
   additional_types?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface TransferUsersPlaybackRequest {
   [key: string]: any;
   /**
@@ -824,8 +748,6 @@ export interface TransferUsersPlaybackRequest {
    */
   play?: boolean;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetTheUsersCurrentlyPlayingTrackRequest {
   [key: string]: any;
@@ -842,8 +764,6 @@ export interface GetTheUsersCurrentlyPlayingTrackRequest {
    */
   additional_types?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface StartUsersPlaybackRequest {
   [key: string]: any;
@@ -873,8 +793,6 @@ export interface StartUsersPlaybackRequest {
   device_id?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface PauseUsersPlaybackRequest {
   [key: string]: any;
   /**
@@ -882,8 +800,6 @@ export interface PauseUsersPlaybackRequest {
    */
   device_id?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface SkipUsersPlaybackToNextTrackRequest {
   [key: string]: any;
@@ -893,8 +809,6 @@ export interface SkipUsersPlaybackToNextTrackRequest {
   device_id?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface SkipUsersPlaybackToPreviousTrackRequest {
   [key: string]: any;
   /**
@@ -903,8 +817,6 @@ export interface SkipUsersPlaybackToPreviousTrackRequest {
    */
   device_id?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface SeekToPositionInCurrentlyPlayingTrackRequest {
   [key: string]: any;
@@ -921,8 +833,6 @@ export interface SeekToPositionInCurrentlyPlayingTrackRequest {
    */
   device_id?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface SetRepeatModeOnUsersPlaybackRequest {
   [key: string]: any;
@@ -941,8 +851,6 @@ export interface SetRepeatModeOnUsersPlaybackRequest {
   device_id?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface SetVolumeForUsersPlaybackRequest {
   [key: string]: any;
   /**
@@ -955,8 +863,6 @@ export interface SetVolumeForUsersPlaybackRequest {
    */
   device_id?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface ToggleShuffleForUsersPlaybackRequest {
   [key: string]: any;
@@ -972,8 +878,6 @@ export interface ToggleShuffleForUsersPlaybackRequest {
    */
   device_id?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetRecentlyPlayedRequest {
   [key: string]: any;
@@ -997,8 +901,6 @@ export interface GetRecentlyPlayedRequest {
   before?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface AddToQueueRequest {
   [key: string]: any;
   /**
@@ -1012,8 +914,6 @@ export interface AddToQueueRequest {
    */
   device_id?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetListOfCurrentUsersPlaylistsRequest {
   [key: string]: any;
@@ -1031,8 +931,6 @@ export interface GetListOfCurrentUsersPlaylistsRequest {
   offset?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetListUsersPlaylistsRequest {
   [key: string]: any;
   /**
@@ -1048,8 +946,6 @@ export interface GetListUsersPlaylistsRequest {
    */
   offset?: number;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface CreatePlaylistRequest {
   [key: string]: any;
@@ -1073,8 +969,6 @@ export interface CreatePlaylistRequest {
    */
   description?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetPlaylistRequest {
   [key: string]: any;
@@ -1109,8 +1003,6 @@ export interface GetPlaylistRequest {
   additional_types?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface ChangePlaylistDetailsRequest {
   [key: string]: any;
   /**
@@ -1133,8 +1025,6 @@ export interface ChangePlaylistDetailsRequest {
    */
   description?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetPlaylistsTracksRequest {
   [key: string]: any;
@@ -1180,8 +1070,6 @@ export interface GetPlaylistsTracksRequest {
   additional_types?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface AddTracksToPlaylistRequest {
   [key: string]: any;
   /**
@@ -1194,8 +1082,6 @@ export interface AddTracksToPlaylistRequest {
    */
   position?: number;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface ReorderOrReplacePlaylistsTracksRequest {
   [key: string]: any;
@@ -1225,8 +1111,6 @@ export interface ReorderOrReplacePlaylistsTracksRequest {
   snapshot_id?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface RemoveTracksPlaylistRequest {
   [key: string]: any;
   /**
@@ -1242,8 +1126,6 @@ export interface RemoveTracksPlaylistRequest {
    */
   snapshot_id?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface SearchRequest {
   [key: string]: any;
@@ -1299,8 +1181,6 @@ export interface SearchRequest {
   include_external?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetMultipleShowsRequest {
   [key: string]: any;
   /**
@@ -1319,8 +1199,6 @@ export interface GetMultipleShowsRequest {
   market?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetShowRequest {
   [key: string]: any;
   /**
@@ -1333,8 +1211,6 @@ export interface GetShowRequest {
    */
   market?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetShowsEpisodesRequest {
   [key: string]: any;
@@ -1359,8 +1235,6 @@ export interface GetShowsEpisodesRequest {
   offset?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetSeveralTracksRequest {
   [key: string]: any;
   /**
@@ -1374,8 +1248,6 @@ export interface GetSeveralTracksRequest {
   market?: string;
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface GetTrackRequest {
   [key: string]: any;
   /**
@@ -1385,8 +1257,6 @@ export interface GetTrackRequest {
    */
   market?: string;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface GetSeveralAudioFeaturesRequest {
   [key: string]: any;

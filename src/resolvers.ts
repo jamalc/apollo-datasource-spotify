@@ -289,4 +289,77 @@ export const resolvers = {
       );
     },
   },
+  PagingObjectItem: {
+    __resolveType(object: any) {
+      const {
+        type,
+        album,
+        track,
+        episode,
+        show,
+        added_at,
+        added_by,
+        followers,
+        genres,
+        images,
+        popularity,
+        available_markets,
+        copyrights,
+        external_ids,
+        episodes,
+        played_at,
+        icons,
+        name,
+      } = object;
+
+      switch (type) {
+        case 'album':
+          return available_markets ||
+            copyrights ||
+            external_ids ||
+            genres ||
+            popularity
+            ? 'AlbumObject'
+            : 'SimplifiedAlbumObject';
+        case 'artist':
+          return followers || genres || images || popularity
+            ? 'ArtistObject'
+            : 'SimplifiedArtistObject';
+        case 'playlist':
+          return followers ? 'PlaylistObject' : 'SimplifiedPlaylistObject';
+        case 'track':
+          return album || external_ids || popularity
+            ? 'TrackObject'
+            : 'SimplifiedTrackObject';
+        case 'show':
+          return episodes ? 'ShowObject' : 'SimplifiedShowObject';
+        case 'episode':
+          return show ? 'EpisodeObject' : 'SimplifiedEpisodeObject';
+
+        default:
+          if (track && added_by) {
+            return 'PlaylistTrackObject';
+          }
+          if (album && added_at) {
+            return 'SavedAlbumObject';
+          }
+          if (track && added_at) {
+            return 'SavedTrackObject';
+          }
+          if (episode && added_at) {
+            return 'SavedEpisodeObject';
+          }
+          if (show && added_at) {
+            return 'SavedShowObject';
+          }
+          if (track && played_at) {
+            return 'PlayHistoryObject';
+          }
+          if (icons && name) {
+            return 'CategoryObject';
+          }
+          return 'JSON';
+      }
+    },
+  },
 };
