@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export interface AlbumObject {
   /** The type of the album: album, single, or compilation. */
   album_type: string;

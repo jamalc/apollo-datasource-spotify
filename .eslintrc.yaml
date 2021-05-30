@@ -6,3 +6,9 @@ extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
   - plugin:prettier/recommended
+overrides:
+  - files:
+    - "test/**/*"
+    extends: plugin:jest/recommended
+    rules:
+      '@typescript-eslint/no-explicit-any': off

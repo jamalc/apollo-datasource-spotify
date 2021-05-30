@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import * as o from './objects';
 
 export interface GetMultipleAlbumsResponse {

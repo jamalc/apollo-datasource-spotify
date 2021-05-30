@@ -1,0 +1,306 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GetAlbum - Lift Your Skinny Fists Like Antennas to Heaven 1`] = `
+Object {
+  "album_type": "album",
+  "artists": Array [
+    Object {
+      "external_urls": Object {
+        "spotify": "https://open.spotify.com/artist/4svpOyfmQKuWpHLjgy4cdK",
+      },
+      "href": "https://api.spotify.com/v1/artists/4svpOyfmQKuWpHLjgy4cdK",
+      "id": "4svpOyfmQKuWpHLjgy4cdK",
+      "name": "Godspeed You! Black Emperor",
+      "type": "artist",
+      "uri": "spotify:artist:4svpOyfmQKuWpHLjgy4cdK",
+    },
+  ],
+  "copyrights": Array [
+    Object {
+      "text": "(C) 2000 kranky",
+      "type": "C",
+    },
+  ],
+  "external_ids": Object {
+    "upc": "887396825833",
+  },
+  "external_urls": Object {
+    "spotify": "https://open.spotify.com/album/2rT82YYlV9UoxBYLIezkRq",
+  },
+  "genres": Array [],
+  "href": "https://api.spotify.com/v1/albums/2rT82YYlV9UoxBYLIezkRq",
+  "id": "2rT82YYlV9UoxBYLIezkRq",
+  "images": Array [
+    Object {
+      "height": 640,
+      "url": "https://i.scdn.co/image/ab67616d0000b2730791c8a2dc44008c52b4883a",
+      "width": 640,
+    },
+    Object {
+      "height": 300,
+      "url": "https://i.scdn.co/image/ab67616d00001e020791c8a2dc44008c52b4883a",
+      "width": 300,
+    },
+    Object {
+      "height": 64,
+      "url": "https://i.scdn.co/image/ab67616d000048510791c8a2dc44008c52b4883a",
+      "width": 64,
+    },
+  ],
+  "label": "kranky",
+  "name": "Lift Your Skinny Fists Like Antennas to Heaven",
+  "popularity": 45,
+  "release_date": "2000-01-01",
+  "release_date_precision": "day",
+  "total_tracks": 4,
+  "tracks": Object {
+    "href": "https://api.spotify.com/v1/albums/2rT82YYlV9UoxBYLIezkRq/tracks?offset=0&limit=50&market=US",
+    "items": Array [
+      Object {
+        "artists": Array [
+          Object {
+            "external_urls": Object {
+              "spotify": "https://open.spotify.com/artist/4svpOyfmQKuWpHLjgy4cdK",
+            },
+            "href": "https://api.spotify.com/v1/artists/4svpOyfmQKuWpHLjgy4cdK",
+            "id": "4svpOyfmQKuWpHLjgy4cdK",
+            "name": "Godspeed You! Black Emperor",
+            "type": "artist",
+            "uri": "spotify:artist:4svpOyfmQKuWpHLjgy4cdK",
+          },
+        ],
+        "disc_number": 1,
+        "duration_ms": 1352413,
+        "explicit": false,
+        "external_urls": Object {
+          "spotify": "https://open.spotify.com/track/1HfJV18PHF2UQqh4TuySBJ",
+        },
+        "href": "https://api.spotify.com/v1/tracks/1HfJV18PHF2UQqh4TuySBJ",
+        "id": "1HfJV18PHF2UQqh4TuySBJ",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Storm",
+        "preview_url": "https://p.scdn.co/mp3-preview/a71a88ded16564d37e985c28e89584d880b6830a?cid=00a39221303745a383e9087973d97693",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:1HfJV18PHF2UQqh4TuySBJ",
+      },
+      Object {
+        "artists": Array [
+          Object {
+            "external_urls": Object {
+              "spotify": "https://open.spotify.com/artist/4svpOyfmQKuWpHLjgy4cdK",
+            },
+            "href": "https://api.spotify.com/v1/artists/4svpOyfmQKuWpHLjgy4cdK",
+            "id": "4svpOyfmQKuWpHLjgy4cdK",
+            "name": "Godspeed You! Black Emperor",
+            "type": "artist",
+            "uri": "spotify:artist:4svpOyfmQKuWpHLjgy4cdK",
+          },
+        ],
+        "disc_number": 1,
+        "duration_ms": 1355946,
+        "explicit": false,
+        "external_urls": Object {
+          "spotify": "https://open.spotify.com/track/1mVrFcCEpYcF6ISXGsyRk5",
+        },
+        "href": "https://api.spotify.com/v1/tracks/1mVrFcCEpYcF6ISXGsyRk5",
+        "id": "1mVrFcCEpYcF6ISXGsyRk5",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Static",
+        "preview_url": "https://p.scdn.co/mp3-preview/6d1257efe118ed1dfa173d1cd37a5123024146ef?cid=00a39221303745a383e9087973d97693",
+        "track_number": 2,
+        "type": "track",
+        "uri": "spotify:track:1mVrFcCEpYcF6ISXGsyRk5",
+      },
+      Object {
+        "artists": Array [
+          Object {
+            "external_urls": Object {
+              "spotify": "https://open.spotify.com/artist/4svpOyfmQKuWpHLjgy4cdK",
+            },
+            "href": "https://api.spotify.com/v1/artists/4svpOyfmQKuWpHLjgy4cdK",
+            "id": "4svpOyfmQKuWpHLjgy4cdK",
+            "name": "Godspeed You! Black Emperor",
+            "type": "artist",
+            "uri": "spotify:artist:4svpOyfmQKuWpHLjgy4cdK",
+          },
+        ],
+        "disc_number": 2,
+        "duration_ms": 1397746,
+        "explicit": false,
+        "external_urls": Object {
+          "spotify": "https://open.spotify.com/track/05JqOBN6XW4eFUVQlgR0I3",
+        },
+        "href": "https://api.spotify.com/v1/tracks/05JqOBN6XW4eFUVQlgR0I3",
+        "id": "05JqOBN6XW4eFUVQlgR0I3",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Sleep",
+        "preview_url": "https://p.scdn.co/mp3-preview/9be5a84b2797bb064223a8336b0103a85d48cecc?cid=00a39221303745a383e9087973d97693",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:05JqOBN6XW4eFUVQlgR0I3",
+      },
+      Object {
+        "artists": Array [
+          Object {
+            "external_urls": Object {
+              "spotify": "https://open.spotify.com/artist/4svpOyfmQKuWpHLjgy4cdK",
+            },
+            "href": "https://api.spotify.com/v1/artists/4svpOyfmQKuWpHLjgy4cdK",
+            "id": "4svpOyfmQKuWpHLjgy4cdK",
+            "name": "Godspeed You! Black Emperor",
+            "type": "artist",
+            "uri": "spotify:artist:4svpOyfmQKuWpHLjgy4cdK",
+          },
+        ],
+        "disc_number": 2,
+        "duration_ms": 1137586,
+        "explicit": false,
+        "external_urls": Object {
+          "spotify": "https://open.spotify.com/track/31pLszBSGG3ToeXcPIgyXF",
+        },
+        "href": "https://api.spotify.com/v1/tracks/31pLszBSGG3ToeXcPIgyXF",
+        "id": "31pLszBSGG3ToeXcPIgyXF",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Like Antennas To Heaven…",
+        "preview_url": "https://p.scdn.co/mp3-preview/d22a60819d0ae428e9bc9bb51ca5668f2f8e3fe2?cid=00a39221303745a383e9087973d97693",
+        "track_number": 2,
+        "type": "track",
+        "uri": "spotify:track:31pLszBSGG3ToeXcPIgyXF",
+      },
+    ],
+    "limit": 50,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total": 4,
+  },
+  "type": "album",
+  "uri": "spotify:album:2rT82YYlV9UoxBYLIezkRq",
+}
+`;
+
+exports[`GetArtist - Frank Ocean 1`] = `
+Object {
+  "external_urls": Object {
+    "spotify": "https://open.spotify.com/artist/2h93pZq0e7k5yf4dywlkpM",
+  },
+  "followers": Object {
+    "href": null,
+    "total": 7728869,
+  },
+  "genres": Array [
+    "alternative r&b",
+    "hip hop",
+    "lgbtq+ hip hop",
+    "neo soul",
+    "pop",
+  ],
+  "href": "https://api.spotify.com/v1/artists/2h93pZq0e7k5yf4dywlkpM",
+  "id": "2h93pZq0e7k5yf4dywlkpM",
+  "images": Array [
+    Object {
+      "height": 640,
+      "url": "https://i.scdn.co/image/7db34c8aace6feb91f38601bb75e6b3301b4657a",
+      "width": 640,
+    },
+    Object {
+      "height": 320,
+      "url": "https://i.scdn.co/image/0cc22250c0b18183e5c62f240a5756ec5226dee1",
+      "width": 320,
+    },
+    Object {
+      "height": 160,
+      "url": "https://i.scdn.co/image/e42028e7fe5a7ba790b5b4e7b096b06bf3319443",
+      "width": 160,
+    },
+  ],
+  "name": "Frank Ocean",
+  "popularity": 87,
+  "type": "artist",
+  "uri": "spotify:artist:2h93pZq0e7k5yf4dywlkpM",
+}
+`;
+
+exports[`GetTrack - Sketch for Summer 1`] = `
+Object {
+  "album": Object {
+    "album_type": "album",
+    "artists": Array [
+      Object {
+        "external_urls": Object {
+          "spotify": "https://open.spotify.com/artist/7fh7bwX9qV60tLxxsp9bTe",
+        },
+        "href": "https://api.spotify.com/v1/artists/7fh7bwX9qV60tLxxsp9bTe",
+        "id": "7fh7bwX9qV60tLxxsp9bTe",
+        "name": "The Durutti Column",
+        "type": "artist",
+        "uri": "spotify:artist:7fh7bwX9qV60tLxxsp9bTe",
+      },
+    ],
+    "external_urls": Object {
+      "spotify": "https://open.spotify.com/album/6ANCHHVpcvjCqQFUDUvDOW",
+    },
+    "href": "https://api.spotify.com/v1/albums/6ANCHHVpcvjCqQFUDUvDOW",
+    "id": "6ANCHHVpcvjCqQFUDUvDOW",
+    "images": Array [
+      Object {
+        "height": 640,
+        "url": "https://i.scdn.co/image/ab67616d0000b2734be74b9209d99dc3a8c682e8",
+        "width": 640,
+      },
+      Object {
+        "height": 300,
+        "url": "https://i.scdn.co/image/ab67616d00001e024be74b9209d99dc3a8c682e8",
+        "width": 300,
+      },
+      Object {
+        "height": 64,
+        "url": "https://i.scdn.co/image/ab67616d000048514be74b9209d99dc3a8c682e8",
+        "width": 64,
+      },
+    ],
+    "name": "The Return of The Durutti Column",
+    "release_date": "1979-01-01",
+    "release_date_precision": "day",
+    "total_tracks": 15,
+    "type": "album",
+    "uri": "spotify:album:6ANCHHVpcvjCqQFUDUvDOW",
+  },
+  "artists": Array [
+    Object {
+      "external_urls": Object {
+        "spotify": "https://open.spotify.com/artist/7fh7bwX9qV60tLxxsp9bTe",
+      },
+      "href": "https://api.spotify.com/v1/artists/7fh7bwX9qV60tLxxsp9bTe",
+      "id": "7fh7bwX9qV60tLxxsp9bTe",
+      "name": "The Durutti Column",
+      "type": "artist",
+      "uri": "spotify:artist:7fh7bwX9qV60tLxxsp9bTe",
+    },
+  ],
+  "disc_number": 1,
+  "duration_ms": 178280,
+  "explicit": false,
+  "external_ids": Object {
+    "isrc": "GBAAP0200153",
+  },
+  "external_urls": Object {
+    "spotify": "https://open.spotify.com/track/2oeLt7N1amHZiev27FvKE2",
+  },
+  "href": "https://api.spotify.com/v1/tracks/2oeLt7N1amHZiev27FvKE2",
+  "id": "2oeLt7N1amHZiev27FvKE2",
+  "is_local": false,
+  "is_playable": true,
+  "name": "Sketch for Summer",
+  "popularity": 54,
+  "preview_url": "https://p.scdn.co/mp3-preview/dd1c62b4a56524bff11306f5f40db156230bdc2c?cid=00a39221303745a383e9087973d97693",
+  "track_number": 1,
+  "type": "track",
+  "uri": "spotify:track:2oeLt7N1amHZiev27FvKE2",
+}
+`;
