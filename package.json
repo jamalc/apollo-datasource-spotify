@@ -33,6 +33,16 @@
       "prettier --write"
     ]
   },
+  "jest": {
+    "preset": "ts-jest/presets/default-esm",
+    "globals": {
+      "ts-jest": {
+        "useESM": true
+      }
+    },
+    "testEnvironment": "node",
+    "transform": {}
+  },
   "bugs": {
     "url": "https://github.com/jamalc/apollo-datasource-spotify/issues"
   },
