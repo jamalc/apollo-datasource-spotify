@@ -12,17 +12,27 @@ export interface Context {
 
 export class SpotifyAPI extends RESTDataSource<Context> {
   public baseURL = 'https://api.spotify.com/v1/';
+  public market = 'US';
 
   private albumLoader = new DataLoader<string, obj.AlbumObject>(
-    (ids) => this.get('albums', { ids }).then((data) => data.albums),
+    (ids) =>
+      this.getMultipleAlbums({ ids: ids.join(','), market: this.market }).then(
+        (data) => data.albums
+      ),
     { maxBatchSize: 20 }
   );
   private artistLoader = new DataLoader<string, obj.ArtistObject>(
-    (ids) => this.get('artists', { ids }).then((data) => data.artists),
+    (ids) =>
+      this.getMultipleArtists({ ids: ids.join(',') }).then(
+        (data) => data.artists
+      ),
     { maxBatchSize: 50 }
   );
   private trackLoader = new DataLoader<string, obj.TrackObject>(
-    (ids) => this.get('tracks', { ids }).then((data) => data.tracks),
+    (ids) =>
+      this.getSeveralTracks({ ids: ids.join(','), market: this.market }).then(
+        (data) => data.tracks
+      ),
     { maxBatchSize: 50 }
   );
 

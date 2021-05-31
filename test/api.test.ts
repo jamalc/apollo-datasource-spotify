@@ -4,177 +4,234 @@ import { token } from './token';
 const api = new SpotifyAPI();
 api.initialize({ context: { token } } as any);
 
-test.todo('batchAlbum');
+const album = {
+  ['Con Todo El Mundo']: '42j41uUwuHZT3bnedq2XtM',
+  ['Shrines']: '17iDD2IRlWyP5G4KMvd9uj',
+  ['"Awaken, My Love!"']: '4xnq1L6P551Qcb9gBXNMK7',
+  ['Lift Your Skinny Fists Like Antennas to Heaven']: '2rT82YYlV9UoxBYLIezkRq',
+};
 
-test.todo('batchAlbums');
+const artist = {
+  ['Tyler, the Creator']: '4V8LLVI7PbaPR0K2TGSxFF',
+  ['Frank Ocean']: '2h93pZq0e7k5yf4dywlkpM',
+  ['Metronomy']: '54QMjE4toDfiCryzYWCpXX',
+  ['Black Star']: '67ei8ib6PLT1w3OkhIb4fB',
+};
 
-test.todo('batchArtist');
+const track = {
+  ['Sketch for Summer']: '2oeLt7N1amHZiev27FvKE2',
+  ['Cómo Me Quieres']: '2pCnrWHxYVDWN3S4PgNMa0',
+  ['Hesitant Oath']: '2wovtPNlKWh6U4tywT4pKm',
+  ['Smells Like Teen Spirit']: '5SmYRW8JySpZnsg0yzEFR5',
+};
 
-test.todo('batchArtists');
+test('batchAlbum', async () => {
+  const id = album['Con Todo El Mundo'];
+  expect(await api.batchAlbum(id)).toMatchSnapshot();
+});
 
-test.todo('batchTrack');
+test('batchAlbums', async () => {
+  const ids = [album['Shrines'], album['"Awaken, My Love!"']];
+  expect(await api.batchAlbums(ids)).toMatchSnapshot();
+});
 
-test.todo('batchTracks');
+test('batchArtist', async () => {
+  const id = artist['Tyler, the Creator'];
+  expect(await api.batchArtist(id)).toMatchSnapshot();
+});
 
-test.todo('GetMultipleAlbums');
+test('batchArtists', async () => {
+  const ids = [artist['Metronomy'], artist['Black Star']];
+  expect(await api.batchArtists(ids)).toMatchSnapshot();
+});
 
-test('GetAlbum - Lift Your Skinny Fists Like Antennas to Heaven', async () => {
-  const id = '2rT82YYlV9UoxBYLIezkRq';
+test('batchTrack', async () => {
+  const id = track['Cómo Me Quieres'];
+  expect(await api.batchTrack(id)).toMatchSnapshot();
+});
+
+test('batchTracks', async () => {
+  const ids = [track['Smells Like Teen Spirit'], track['Hesitant Oath']];
+  expect(await api.batchTracks(ids)).toMatchSnapshot();
+});
+
+test('getMultipleAlbums', async () => {
+  const ids = [album['Shrines'], album['"Awaken, My Love!"']];
+  expect(
+    await api.getMultipleAlbums({ ids: ids.join(','), market: 'US' })
+  ).toMatchSnapshot();
+});
+
+test('getAlbum', async () => {
+  const id = album['Lift Your Skinny Fists Like Antennas to Heaven'];
   expect(await api.getAlbum(id, { market: 'US' })).toMatchSnapshot();
 });
 
-test.todo('GetAlbumsTracks');
+test('getAlbumsTracks', async () => {
+  const id = album['Lift Your Skinny Fists Like Antennas to Heaven'];
+  expect(await api.getAlbumsTracks(id, { market: 'US' })).toMatchSnapshot();
+});
 
-test.todo('GetMultipleArtists');
-test('GetArtist - Frank Ocean', async () => {
-  const id = '2h93pZq0e7k5yf4dywlkpM';
+test('getMultipleArtists', async () => {
+  const ids = [artist['Metronomy'], artist['Black Star']];
+  expect(
+    await api.getMultipleArtists({ ids: ids.join(',') })
+  ).toMatchSnapshot();
+});
+
+test('getArtist', async () => {
+  const id = artist['Frank Ocean'];
   expect(await api.getArtist(id)).toMatchSnapshot();
 });
 
-test.todo('GetArtistsTopTracks');
+test.todo('getArtistsTopTracks');
 
-test.todo('GetArtistsRelatedArtists');
+test.todo('getArtistsRelatedArtists');
 
-test.todo('GetArtistsAlbums');
+test.todo('getArtistsAlbums');
 
-test.todo('GetNewReleases');
+test.todo('getNewReleases');
 
-test.todo('GetFeaturedPlaylists');
+test.todo('getFeaturedPlaylists');
 
-test.todo('GetCategories');
+test.todo('getCategories');
 
-test.todo('GetCategory');
+test.todo('getCategory');
 
-test.todo('GetCategoriesPlaylists');
+test.todo('getCategoriesPlaylists');
 
-test.todo('GetRecommendations');
+test.todo('getRecommendations');
 
-test.todo('GetRecommendationGenres');
+test.todo('getRecommendationGenres');
 
-test.todo('GetMultipleEpisodes');
+test.todo('getMultipleEpisodes');
 
-test.todo('GetEpisode');
+test.todo('getEpisode');
 
-test.todo('FollowPlaylist');
+test.todo('followPlaylist');
 
-test.todo('UnfollowPlaylist');
+test.todo('unfollowPlaylist');
 
-test.todo('CheckIfUserFollowsPlaylist');
+test.todo('checkIfUserFollowsPlaylist');
 
-test.todo('GetFollowed');
+test.todo('getFollowed');
 
-test.todo('FollowArtistsUsers');
+test.todo('followArtistsUsers');
 
-test.todo('UnfollowArtistsUsers');
+test.todo('unfollowArtistsUsers');
 
-test.todo('CheckCurrentUserFollows');
+test.todo('checkCurrentUserFollows');
 
-test.todo('GetUsersSavedAlbums');
+test.todo('getUsersSavedAlbums');
 
-test.todo('SaveAlbumsUser');
+test.todo('saveAlbumsUser');
 
-test.todo('RemoveAlbumsUser');
+test.todo('removeAlbumsUser');
 
-test.todo('CheckUsersSavedAlbums');
+test.todo('checkUsersSavedAlbums');
 
-test.todo('GetUsersSavedTracks');
+test.todo('getUsersSavedTracks');
 
-test.todo('SaveTracksUser');
+test.todo('saveTracksUser');
 
-test.todo('RemoveTracksUser');
+test.todo('removeTracksUser');
 
-test.todo('CheckUsersSavedTracks');
+test.todo('checkUsersSavedTracks');
 
-test.todo('GetUsersSavedEpisodes');
+test.todo('getUsersSavedEpisodes');
 
-test.todo('SaveEpisodesUser');
+test.todo('saveEpisodesUser');
 
-test.todo('RemoveEpisodesUser');
+test.todo('removeEpisodesUser');
 
-test.todo('CheckUsersSavedEpisodes');
+test.todo('checkUsersSavedEpisodes');
 
-test.todo('GetUsersSavedShows');
+test.todo('getUsersSavedShows');
 
-test.todo('SaveShowsUser');
+test.todo('saveShowsUser');
 
-test.todo('RemoveShowsUser');
+test.todo('removeShowsUser');
 
-test.todo('CheckUsersSavedShows');
+test.todo('checkUsersSavedShows');
 
-test.todo('GetAvailableMarkets');
+test.todo('getAvailableMarkets');
 
-test.todo('GetUsersTopArtistsAndTracks');
+test.todo('getUsersTopArtistsAndTracks');
 
-test.todo('GetInformationAboutTheUsersCurrentPlayback');
+test.todo('getInformationAboutTheUsersCurrentPlayback');
 
-test.todo('TransferUsersPlayback');
+test.todo('transferUsersPlayback');
 
-test.todo('GetUsersAvailableDevices');
+test.todo('getUsersAvailableDevices');
 
-test.todo('GetTheUsersCurrentlyPlayingTrack');
+test.todo('getTheUsersCurrentlyPlayingTrack');
 
-test.todo('StartUsersPlayback');
+test.todo('startUsersPlayback');
 
-test.todo('PauseUsersPlayback');
+test.todo('pauseUsersPlayback');
 
-test.todo('SkipUsersPlaybackToNextTrack');
+test.todo('skipUsersPlaybackToNextTrack');
 
-test.todo('SkipUsersPlaybackToPreviousTrack');
+test.todo('skipUsersPlaybackToPreviousTrack');
 
-test.todo('SeekToPositionInCurrentlyPlayingTrack');
+test.todo('seekToPositionInCurrentlyPlayingTrack');
 
-test.todo('SetRepeatModeOnUsersPlayback');
+test.todo('setRepeatModeOnUsersPlayback');
 
-test.todo('SetVolumeForUsersPlayback');
+test.todo('setVolumeForUsersPlayback');
 
-test.todo('ToggleShuffleForUsersPlayback');
+test.todo('toggleShuffleForUsersPlayback');
 
-test.todo('GetRecentlyPlayed');
+test.todo('getRecentlyPlayed');
 
-test.todo('AddToQueue');
+test.todo('addToQueue');
 
-test.todo('GetListOfCurrentUsersPlaylists');
+test.todo('getListOfCurrentUsersPlaylists');
 
-test.todo('GetListUsersPlaylists');
+test.todo('getListUsersPlaylists');
 
-test.todo('CreatePlaylist');
+test.todo('createPlaylist');
 
-test.todo('GetPlaylist');
+test.todo('getPlaylist');
 
-test.todo('ChangePlaylistDetails');
+test.todo('changePlaylistDetails');
 
-test.todo('GetPlaylistsTracks');
+test.todo('getPlaylistsTracks');
 
-test.todo('AddTracksToPlaylist');
+test.todo('addTracksToPlaylist');
 
-test.todo('ReorderOrReplacePlaylistsTracks');
+test.todo('reorderOrReplacePlaylistsTracks');
 
-test.todo('RemoveTracksPlaylist');
+test.todo('removeTracksPlaylist');
 
-test.todo('GetPlaylistCover');
+test.todo('getPlaylistCover');
 
 test.todo('UploadCustomPlaylistCover');
 
-test.todo('Search');
+test.todo('search');
 
-test.todo('GetMultipleShows');
+test.todo('getMultipleShows');
 
-test.todo('GetShow');
+test.todo('getShow');
 
-test.todo('GetShowsEpisodes');
+test.todo('getShowsEpisodes');
 
-test.todo('GetSeveralTracks');
-test('GetTrack - Sketch for Summer', async () => {
-  const id = '2oeLt7N1amHZiev27FvKE2?si=a03757f17a05462b';
+test('getSeveralTracks', async () => {
+  const ids = [track['Smells Like Teen Spirit'], track['Hesitant Oath']];
+  expect(await api.getSeveralTracks({ ids: ids.join(',') })).toMatchSnapshot();
+});
+
+test('getTrack', async () => {
+  const id = track['Sketch for Summer'];
   expect(await api.getTrack(id, { market: 'US' })).toMatchSnapshot();
 });
 
-test.todo('GetSeveralAudioFeatures');
+test.todo('getSeveralAudioFeatures');
 
-test.todo('GetAudioFeatures');
+test.todo('getAudioFeatures');
 
-test.todo('GetAudioAnalysis');
+test.todo('getAudioAnalysis');
 
-test.todo('GetCurrentUsersProfile');
+test.todo('getCurrentUsersProfile');
 
-test.todo('GetUsersProfile');
+test.todo('getUsersProfile');
