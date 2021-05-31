@@ -2640,6 +2640,7 @@ export const typeDefs = `
   | PlaylistTrackObject
   | ArtistObject
   | TrackObject
+  | SimplifiedTrackObject
   | SimplifiedShowObject
   | SimplifiedEpisodeObject
 
