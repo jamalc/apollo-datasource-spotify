@@ -53,7 +53,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get Spotify catalog information for multiple albums identified by their Spotify IDs.
    */
-  public GetMultipleAlbums(
+  public getMultipleAlbums(
     params: req.GetMultipleAlbumsRequest
   ): Promise<res.GetMultipleAlbumsResponse> {
     return this.get(`albums`, params);
@@ -63,7 +63,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get Spotify catalog information for a single album.
    * @param id {string} The Spotify ID of the album.
    */
-  public GetAlbum(
+  public getAlbum(
     id: string,
     params: req.GetAlbumRequest
   ): Promise<res.GetAlbumResponse> {
@@ -75,7 +75,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Optional parameters can be used to limit the number of tracks returned.
    * @param id {string} The Spotify ID of the album.
    */
-  public GetAlbumsTracks(
+  public getAlbumsTracks(
     id: string,
     params: req.GetAlbumsTracksRequest
   ): Promise<res.GetAlbumsTracksResponse> {
@@ -85,7 +85,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get Spotify catalog information for several artists based on their Spotify IDs.
    */
-  public GetMultipleArtists(
+  public getMultipleArtists(
     params: req.GetMultipleArtistsRequest
   ): Promise<res.GetMultipleArtistsResponse> {
     return this.get(`artists`, params);
@@ -95,7 +95,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get Spotify catalog information for a single artist identified by their unique Spotify ID.
    * @param id {string} The Spotify ID of the artist.
    */
-  public GetArtist(id: string): Promise<res.GetArtistResponse> {
+  public getArtist(id: string): Promise<res.GetArtistResponse> {
     return this.get(`artists/${id}`);
   }
 
@@ -103,7 +103,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get Spotify catalog information about an artist’s top tracks by country.
    * @param id {string} The Spotify ID for the artist
    */
-  public GetArtistsTopTracks(
+  public getArtistsTopTracks(
     id: string,
     params: req.GetArtistsTopTracksRequest
   ): Promise<res.GetArtistsTopTracksResponse> {
@@ -114,7 +114,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get Spotify catalog information about artists similar to a given artist. Similarity is based on analysis of the Spotify community’s listening history.
    * @param id {string} The Spotify ID for the artist
    */
-  public GetArtistsRelatedArtists(
+  public getArtistsRelatedArtists(
     id: string
   ): Promise<res.GetArtistsRelatedArtistsResponse> {
     return this.get(`artists/${id}/related-artists`);
@@ -124,7 +124,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get Spotify catalog information about an artist’s albums.
    * @param id {string} The Spotify ID for the artist.
    */
-  public GetArtistsAlbums(
+  public getArtistsAlbums(
     id: string,
     params: req.GetArtistsAlbumsRequest
   ): Promise<res.GetArtistsAlbumsResponse> {
@@ -134,7 +134,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player’s “Browse” tab).
    */
-  public GetNewReleases(
+  public getNewReleases(
     params: req.GetNewReleasesRequest
   ): Promise<res.GetNewReleasesResponse> {
     return this.get(`browse/new-releases`, params);
@@ -143,7 +143,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get a list of Spotify featured playlists (shown, for example, on a Spotify player’s ‘Browse’ tab).
    */
-  public GetFeaturedPlaylists(
+  public getFeaturedPlaylists(
     params: req.GetFeaturedPlaylistsRequest
   ): Promise<res.GetFeaturedPlaylistsResponse> {
     return this.get(`browse/featured-playlists`, params);
@@ -152,7 +152,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get a list of categories used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab).
    */
-  public GetCategories(
+  public getCategories(
     params: req.GetCategoriesRequest
   ): Promise<res.GetCategoriesResponse> {
     return this.get(`browse/categories`, params);
@@ -162,7 +162,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get a single category used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab).
    * @param category_id {string} The Spotify category ID for the category.
    */
-  public GetCategory(
+  public getCategory(
     category_id: string,
     params: req.GetCategoryRequest
   ): Promise<res.GetCategoryResponse> {
@@ -173,7 +173,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get a list of Spotify playlists tagged with a particular category.
    * @param category_id {string} The Spotify category ID for the category.
    */
-  public GetCategoriesPlaylists(
+  public getCategoriesPlaylists(
     category_id: string,
     params: req.GetCategoriesPlaylistsRequest
   ): Promise<res.GetCategoriesPlaylistsResponse> {
@@ -183,7 +183,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Recommendations are generated based on the available information for a given seed entity and matched against similar artists and tracks. If there is sufficient information about the provided seeds, a list of tracks will be returned together with pool size details.
    */
-  public GetRecommendations(
+  public getRecommendations(
     params: req.GetRecommendationsRequest
   ): Promise<res.GetRecommendationsResponse> {
     return this.get(`recommendations`, params);
@@ -192,14 +192,14 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Retrieve a list of available genres seed parameter values for recommendations.
    */
-  public GetRecommendationGenres(): Promise<res.GetRecommendationGenresResponse> {
+  public getRecommendationGenres(): Promise<res.GetRecommendationGenresResponse> {
     return this.get(`recommendations/available-genre-seeds`);
   }
 
   /**
    * Get Spotify catalog information for several episodes based on their Spotify IDs.
    */
-  public GetMultipleEpisodes(
+  public getMultipleEpisodes(
     params: req.GetMultipleEpisodesRequest
   ): Promise<res.GetMultipleEpisodesResponse> {
     return this.get(`episodes`, params);
@@ -210,7 +210,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * unique Spotify ID.
    * @param id {string} The Spotify ID for the episode.
    */
-  public GetEpisode(
+  public getEpisode(
     id: string,
     params: req.GetEpisodeRequest
   ): Promise<res.GetEpisodeResponse> {
@@ -221,7 +221,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Add the current user as a follower of a playlist.
    * @param playlist_id {string} The Spotify ID of the playlist. Any playlist can be followed, regardless of its public/private status, as long as you know its playlist ID.
    */
-  public FollowPlaylist(
+  public followPlaylist(
     playlist_id: string,
     params: req.FollowPlaylistRequest
   ): Promise<res.FollowPlaylistResponse> {
@@ -232,7 +232,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Remove the current user as a follower of a playlist.
    * @param playlist_id {string} The Spotify ID of the playlist that is to be no longer followed.
    */
-  public UnfollowPlaylist(
+  public unfollowPlaylist(
     playlist_id: string
   ): Promise<res.UnfollowPlaylistResponse> {
     return this.delete(`playlists/${playlist_id}/followers`);
@@ -242,7 +242,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Check to see if one or more Spotify users are following a specified playlist.
    * @param playlist_id {string} The Spotify ID of the playlist.
    */
-  public CheckIfUserFollowsPlaylist(
+  public checkIfUserFollowsPlaylist(
     playlist_id: string,
     params: req.CheckIfUserFollowsPlaylistRequest
   ): Promise<res.CheckIfUserFollowsPlaylistResponse> {
@@ -252,7 +252,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get the current user’s followed artists.
    */
-  public GetFollowed(
+  public getFollowed(
     params: req.GetFollowedRequest
   ): Promise<res.GetFollowedResponse> {
     return this.get(`me/following`, params);
@@ -261,7 +261,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Add the current user as a follower of one or more artists or other Spotify users.
    */
-  public FollowArtistsUsers(
+  public followArtistsUsers(
     params: req.FollowArtistsUsersRequest
   ): Promise<res.FollowArtistsUsersResponse> {
     return this.put(`me/following`, params);
@@ -270,7 +270,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Remove the current user as a follower of one or more artists or other Spotify users.
    */
-  public UnfollowArtistsUsers(
+  public unfollowArtistsUsers(
     params: req.UnfollowArtistsUsersRequest
   ): Promise<res.UnfollowArtistsUsersResponse> {
     return this.delete(`me/following`, params);
@@ -279,7 +279,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Check to see if the current user is following one or more artists or other Spotify users.
    */
-  public CheckCurrentUserFollows(
+  public checkCurrentUserFollows(
     params: req.CheckCurrentUserFollowsRequest
   ): Promise<res.CheckCurrentUserFollowsResponse> {
     return this.get(`me/following/contains`, params);
@@ -288,7 +288,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get a list of the albums saved in the current Spotify user’s ‘Your Music’ library.
    */
-  public GetUsersSavedAlbums(
+  public getUsersSavedAlbums(
     params: req.GetUsersSavedAlbumsRequest
   ): Promise<res.GetUsersSavedAlbumsResponse> {
     return this.get(`me/albums`, params);
@@ -297,7 +297,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Save one or more albums to the current user’s ‘Your Music’ library.
    */
-  public SaveAlbumsUser(
+  public saveAlbumsUser(
     params: req.SaveAlbumsUserRequest
   ): Promise<res.SaveAlbumsUserResponse> {
     return this.put(`me/albums`, params);
@@ -306,7 +306,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Remove one or more albums from the current user’s ‘Your Music’ library.
    */
-  public RemoveAlbumsUser(
+  public removeAlbumsUser(
     params: req.RemoveAlbumsUserRequest
   ): Promise<res.RemoveAlbumsUserResponse> {
     return this.delete(`me/albums`, params);
@@ -315,7 +315,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Check if one or more albums is already saved in the current Spotify user’s ‘Your Music’ library.
    */
-  public CheckUsersSavedAlbums(
+  public checkUsersSavedAlbums(
     params: req.CheckUsersSavedAlbumsRequest
   ): Promise<res.CheckUsersSavedAlbumsResponse> {
     return this.get(`me/albums/contains`, params);
@@ -324,7 +324,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get a list of the songs saved in the current Spotify user’s ‘Your Music’ library.
    */
-  public GetUsersSavedTracks(
+  public getUsersSavedTracks(
     params: req.GetUsersSavedTracksRequest
   ): Promise<res.GetUsersSavedTracksResponse> {
     return this.get(`me/tracks`, params);
@@ -333,7 +333,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Save one or more tracks to the current user’s ‘Your Music’ library.
    */
-  public SaveTracksUser(
+  public saveTracksUser(
     params: req.SaveTracksUserRequest
   ): Promise<res.SaveTracksUserResponse> {
     return this.put(`me/tracks`, params);
@@ -342,7 +342,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Remove one or more tracks from the current user’s ‘Your Music’ library.
    */
-  public RemoveTracksUser(
+  public removeTracksUser(
     params: req.RemoveTracksUserRequest
   ): Promise<res.RemoveTracksUserResponse> {
     return this.delete(`me/tracks`, params);
@@ -351,7 +351,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Check if one or more tracks is already saved in the current Spotify user’s ‘Your Music’ library.
    */
-  public CheckUsersSavedTracks(
+  public checkUsersSavedTracks(
     params: req.CheckUsersSavedTracksRequest
   ): Promise<res.CheckUsersSavedTracksResponse> {
     return this.get(`me/tracks/contains`, params);
@@ -361,7 +361,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get a list of the episodes saved in the current Spotify user’s library.
    * This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
    */
-  public GetUsersSavedEpisodes(
+  public getUsersSavedEpisodes(
     params: req.GetUsersSavedEpisodesRequest
   ): Promise<res.GetUsersSavedEpisodesResponse> {
     return this.get(`me/episodes`, params);
@@ -371,7 +371,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Save one or more episodes to the current user’s library.
    * This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
    */
-  public SaveEpisodesUser(
+  public saveEpisodesUser(
     params: req.SaveEpisodesUserRequest
   ): Promise<res.SaveEpisodesUserResponse> {
     return this.put(`me/episodes`, params);
@@ -381,7 +381,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Remove one or more episodes from the current user’s library.
    * This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum.
    */
-  public RemoveEpisodesUser(
+  public removeEpisodesUser(
     params: req.RemoveEpisodesUserRequest
   ): Promise<res.RemoveEpisodesUserResponse> {
     return this.delete(`me/episodes`, params);
@@ -391,7 +391,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Check if one or more episodes is already saved in the current Spotify user’s ‘Your Episodes’ library.
    * This API endpoint is in beta and could change without warning. Please share any feedback that you have, or issues that you discover, in our developer community forum..
    */
-  public CheckUsersSavedEpisodes(
+  public checkUsersSavedEpisodes(
     params: req.CheckUsersSavedEpisodesRequest
   ): Promise<res.CheckUsersSavedEpisodesResponse> {
     return this.get(`me/episodes/contains`, params);
@@ -400,7 +400,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get a list of shows saved in the current Spotify user’s library. Optional parameters can be used to limit the number of shows returned.
    */
-  public GetUsersSavedShows(
+  public getUsersSavedShows(
     params: req.GetUsersSavedShowsRequest
   ): Promise<res.GetUsersSavedShowsResponse> {
     return this.get(`me/shows`, params);
@@ -409,7 +409,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Save one or more shows to current Spotify user’s library.
    */
-  public SaveShowsUser(
+  public saveShowsUser(
     params: req.SaveShowsUserRequest
   ): Promise<res.SaveShowsUserResponse> {
     return this.put(`me/shows`, params);
@@ -418,7 +418,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Delete one or more shows from current Spotify user’s library.
    */
-  public RemoveShowsUser(
+  public removeShowsUser(
     params: req.RemoveShowsUserRequest
   ): Promise<res.RemoveShowsUserResponse> {
     return this.delete(`me/shows`, params);
@@ -427,7 +427,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Check if one or more shows is already saved in the current Spotify user’s library.
    */
-  public CheckUsersSavedShows(
+  public checkUsersSavedShows(
     params: req.CheckUsersSavedShowsRequest
   ): Promise<res.CheckUsersSavedShowsResponse> {
     return this.get(`me/shows/contains`, params);
@@ -436,7 +436,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get the list of markets where Spotify is available.
    */
-  public GetAvailableMarkets(): Promise<res.GetAvailableMarketsResponse> {
+  public getAvailableMarkets(): Promise<res.GetAvailableMarketsResponse> {
     return this.get(`markets`);
   }
 
@@ -444,7 +444,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get the current user’s top artists or tracks based on calculated affinity.
    * @param type {string} The type of entity to return. Valid values: artists or tracks
    */
-  public GetUsersTopArtistsAndTracks(
+  public getUsersTopArtistsAndTracks(
     type: string,
     params: req.GetUsersTopArtistsAndTracksRequest
   ): Promise<res.GetUsersTopArtistsAndTracksResponse> {
@@ -454,7 +454,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get information about the user’s current playback state, including track or episode, progress, and active device.
    */
-  public GetInformationAboutTheUsersCurrentPlayback(
+  public getInformationAboutTheUsersCurrentPlayback(
     params: req.GetInformationAboutTheUsersCurrentPlaybackRequest
   ): Promise<res.GetInformationAboutTheUsersCurrentPlaybackResponse> {
     return this.get(`me/player`, params);
@@ -463,7 +463,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Transfer playback to a new device and determine if it should start playing.
    */
-  public TransferUsersPlayback(
+  public transferUsersPlayback(
     params: req.TransferUsersPlaybackRequest
   ): Promise<res.TransferUsersPlaybackResponse> {
     return this.put(`me/player`, params);
@@ -472,14 +472,14 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get information about a user’s available devices.
    */
-  public GetUsersAvailableDevices(): Promise<res.GetUsersAvailableDevicesResponse> {
+  public getUsersAvailableDevices(): Promise<res.GetUsersAvailableDevicesResponse> {
     return this.get(`me/player/devices`);
   }
 
   /**
    * Get the object currently being played on the user’s Spotify account.
    */
-  public GetTheUsersCurrentlyPlayingTrack(
+  public getTheUsersCurrentlyPlayingTrack(
     params: req.GetTheUsersCurrentlyPlayingTrackRequest
   ): Promise<res.GetTheUsersCurrentlyPlayingTrackResponse> {
     return this.get(`me/player/currently-playing`, params);
@@ -488,7 +488,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Start a new context or resume current playback on the user’s active device.
    */
-  public StartUsersPlayback(
+  public startUsersPlayback(
     params: req.StartUsersPlaybackRequest
   ): Promise<res.StartUsersPlaybackResponse> {
     return this.put(`me/player/play`, params);
@@ -497,7 +497,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Pause playback on the user’s account.
    */
-  public PauseUsersPlayback(
+  public pauseUsersPlayback(
     params: req.PauseUsersPlaybackRequest
   ): Promise<res.PauseUsersPlaybackResponse> {
     return this.put(`me/player/pause`, params);
@@ -506,7 +506,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Skips to next track in the user’s queue.
    */
-  public SkipUsersPlaybackToNextTrack(
+  public skipUsersPlaybackToNextTrack(
     params: req.SkipUsersPlaybackToNextTrackRequest
   ): Promise<res.SkipUsersPlaybackToNextTrackResponse> {
     return this.post(`me/player/next`, params);
@@ -515,7 +515,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Skips to previous track in the user’s queue.
    */
-  public SkipUsersPlaybackToPreviousTrack(
+  public skipUsersPlaybackToPreviousTrack(
     params: req.SkipUsersPlaybackToPreviousTrackRequest
   ): Promise<res.SkipUsersPlaybackToPreviousTrackResponse> {
     return this.post(`me/player/previous`, params);
@@ -524,7 +524,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Seeks to the given position in the user’s currently playing track.
    */
-  public SeekToPositionInCurrentlyPlayingTrack(
+  public seekToPositionInCurrentlyPlayingTrack(
     params: req.SeekToPositionInCurrentlyPlayingTrackRequest
   ): Promise<res.SeekToPositionInCurrentlyPlayingTrackResponse> {
     return this.put(`me/player/seek`, params);
@@ -534,7 +534,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Set the repeat mode for the user’s playback. Options are repeat-track,
    * repeat-context, and off.
    */
-  public SetRepeatModeOnUsersPlayback(
+  public setRepeatModeOnUsersPlayback(
     params: req.SetRepeatModeOnUsersPlaybackRequest
   ): Promise<res.SetRepeatModeOnUsersPlaybackResponse> {
     return this.put(`me/player/repeat`, params);
@@ -543,7 +543,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Set the volume for the user’s current playback device.
    */
-  public SetVolumeForUsersPlayback(
+  public setVolumeForUsersPlayback(
     params: req.SetVolumeForUsersPlaybackRequest
   ): Promise<res.SetVolumeForUsersPlaybackResponse> {
     return this.put(`me/player/volume`, params);
@@ -552,7 +552,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Toggle shuffle on or off for user’s playback.
    */
-  public ToggleShuffleForUsersPlayback(
+  public toggleShuffleForUsersPlayback(
     params: req.ToggleShuffleForUsersPlaybackRequest
   ): Promise<res.ToggleShuffleForUsersPlaybackResponse> {
     return this.put(`me/player/shuffle`, params);
@@ -562,7 +562,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get tracks from the current user’s recently played tracks.
    * Note: Currently doesn’t support podcast episodes.
    */
-  public GetRecentlyPlayed(
+  public getRecentlyPlayed(
     params: req.GetRecentlyPlayedRequest
   ): Promise<res.GetRecentlyPlayedResponse> {
     return this.get(`me/player/recently-played`, params);
@@ -571,7 +571,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Add an item to the end of the user’s current playback queue.
    */
-  public AddToQueue(
+  public addToQueue(
     params: req.AddToQueueRequest
   ): Promise<res.AddToQueueResponse> {
     return this.post(`me/player/queue`, params);
@@ -581,7 +581,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get a list of the playlists owned or followed by the current Spotify
    * user.
    */
-  public GetListOfCurrentUsersPlaylists(
+  public getListOfCurrentUsersPlaylists(
     params: req.GetListOfCurrentUsersPlaylistsRequest
   ): Promise<res.GetListOfCurrentUsersPlaylistsResponse> {
     return this.get(`me/playlists`, params);
@@ -591,7 +591,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get a list of the playlists owned or followed by a Spotify user.
    * @param user_id {string} The user’s Spotify user ID.
    */
-  public GetListUsersPlaylists(
+  public getListUsersPlaylists(
     user_id: string,
     params: req.GetListUsersPlaylistsRequest
   ): Promise<res.GetListUsersPlaylistsResponse> {
@@ -603,7 +603,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * you add tracks.)
    * @param user_id {string} The user’s Spotify user ID.
    */
-  public CreatePlaylist(
+  public createPlaylist(
     user_id: string,
     params: req.CreatePlaylistRequest
   ): Promise<res.CreatePlaylistResponse> {
@@ -615,7 +615,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
-  public GetPlaylist(
+  public getPlaylist(
     playlist_id: string,
     params: req.GetPlaylistRequest
   ): Promise<res.GetPlaylistResponse> {
@@ -628,7 +628,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
-  public ChangePlaylistDetails(
+  public changePlaylistDetails(
     playlist_id: string,
     params: req.ChangePlaylistDetailsRequest
   ): Promise<res.ChangePlaylistDetailsResponse> {
@@ -640,7 +640,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
-  public GetPlaylistsTracks(
+  public getPlaylistsTracks(
     playlist_id: string,
     params: req.GetPlaylistsTracksRequest
   ): Promise<res.GetPlaylistsTracksResponse> {
@@ -652,7 +652,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
-  public AddTracksToPlaylist(
+  public addTracksToPlaylist(
     playlist_id: string,
     params: req.AddTracksToPlaylistRequest
   ): Promise<res.AddTracksToPlaylistResponse> {
@@ -670,7 +670,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
-  public ReorderOrReplacePlaylistsTracks(
+  public reorderOrReplacePlaylistsTracks(
     playlist_id: string,
     params: req.ReorderOrReplacePlaylistsTracksRequest
   ): Promise<res.ReorderOrReplacePlaylistsTracksResponse> {
@@ -681,7 +681,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Remove one or more items from a user’s playlist.
    * @param playlist_id {string} The Spotify ID
    */
-  public RemoveTracksPlaylist(
+  public removeTracksPlaylist(
     playlist_id: string,
     params: req.RemoveTracksPlaylistRequest
   ): Promise<res.RemoveTracksPlaylistResponse> {
@@ -693,7 +693,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
-  public GetPlaylistCover(
+  public getPlaylistCover(
     playlist_id: string
   ): Promise<res.GetPlaylistCoverResponse> {
     return this.get(`playlists/${playlist_id}/images`);
@@ -704,7 +704,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param playlist_id {string} The Spotify ID
    * for the playlist.
    */
-  public UploadCustomPlaylistCover(
+  public uploadCustomPlaylistCover(
     playlist_id: string
   ): Promise<res.UploadCustomPlaylistCoverResponse> {
     return this.put(`playlists/${playlist_id}/images`);
@@ -714,14 +714,14 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get Spotify Catalog information about albums, artists, playlists, tracks, shows or episodes
    * that match a keyword string.
    */
-  public Search(params: req.SearchRequest): Promise<res.SearchResponse> {
+  public search(params: req.SearchRequest): Promise<res.SearchResponse> {
     return this.get(`search`, params);
   }
 
   /**
    * Get Spotify catalog information for several shows based on their Spotify IDs.
    */
-  public GetMultipleShows(
+  public getMultipleShows(
     params: req.GetMultipleShowsRequest
   ): Promise<res.GetMultipleShowsResponse> {
     return this.get(`shows`, params);
@@ -733,7 +733,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param id {string} The Spotify ID
    * for the show.
    */
-  public GetShow(
+  public getShow(
     id: string,
     params: req.GetShowRequest
   ): Promise<res.GetShowResponse> {
@@ -744,7 +744,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get Spotify catalog information about an show’s episodes. Optional parameters can be used to limit the number of episodes returned.
    * @param id {string} The Spotify ID for the show.
    */
-  public GetShowsEpisodes(
+  public getShowsEpisodes(
     id: string,
     params: req.GetShowsEpisodesRequest
   ): Promise<res.GetShowsEpisodesResponse> {
@@ -754,7 +754,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get Spotify catalog information for multiple tracks based on their Spotify IDs.
    */
-  public GetSeveralTracks(
+  public getSeveralTracks(
     params: req.GetSeveralTracksRequest
   ): Promise<res.GetSeveralTracksResponse> {
     return this.get(`tracks`, params);
@@ -766,7 +766,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param id {string} The Spotify ID
    * for the track.
    */
-  public GetTrack(
+  public getTrack(
     id: string,
     params: req.GetTrackRequest
   ): Promise<res.GetTrackResponse> {
@@ -776,7 +776,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
   /**
    * Get audio features for multiple tracks based on their Spotify IDs.
    */
-  public GetSeveralAudioFeatures(
+  public getSeveralAudioFeatures(
     params: req.GetSeveralAudioFeaturesRequest
   ): Promise<res.GetSeveralAudioFeaturesResponse> {
     return this.get(`audio-features`, params);
@@ -787,7 +787,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Spotify ID.
    * @param id {string} The Spotify ID for the track.
    */
-  public GetAudioFeatures(id: string): Promise<res.GetAudioFeaturesResponse> {
+  public getAudioFeatures(id: string): Promise<res.GetAudioFeaturesResponse> {
     return this.get(`audio-features/${id}`);
   }
 
@@ -797,7 +797,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * @param id {string} The Spotify ID
    * for the track.
    */
-  public GetAudioAnalysis(id: string): Promise<res.GetAudioAnalysisResponse> {
+  public getAudioAnalysis(id: string): Promise<res.GetAudioAnalysisResponse> {
     return this.get(`audio-analysis/${id}`);
   }
 
@@ -805,7 +805,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get detailed profile information about the current user (including the
    * current user’s username).
    */
-  public GetCurrentUsersProfile(): Promise<res.GetCurrentUsersProfileResponse> {
+  public getCurrentUsersProfile(): Promise<res.GetCurrentUsersProfileResponse> {
     return this.get(`me`);
   }
 
@@ -813,7 +813,7 @@ export class SpotifyAPI extends RESTDataSource<Context> {
    * Get public profile information about a Spotify user.
    * @param user_id {string} The user’s Spotify user ID.
    */
-  public GetUsersProfile(
+  public getUsersProfile(
     user_id: string
   ): Promise<res.GetUsersProfileResponse> {
     return this.get(`users/${user_id}`);

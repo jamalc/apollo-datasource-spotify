@@ -20,7 +20,7 @@ test.todo('GetMultipleAlbums');
 
 test('GetAlbum - Lift Your Skinny Fists Like Antennas to Heaven', async () => {
   const id = '2rT82YYlV9UoxBYLIezkRq';
-  expect(await api.GetAlbum(id, { market: 'US' })).toMatchSnapshot();
+  expect(await api.getAlbum(id, { market: 'US' })).toMatchSnapshot();
 });
 
 test.todo('GetAlbumsTracks');
@@ -28,7 +28,7 @@ test.todo('GetAlbumsTracks');
 test.todo('GetMultipleArtists');
 test('GetArtist - Frank Ocean', async () => {
   const id = '2h93pZq0e7k5yf4dywlkpM';
-  expect(await api.GetArtist(id)).toMatchSnapshot();
+  expect(await api.getArtist(id)).toMatchSnapshot();
 });
 
 test.todo('GetArtistsTopTracks');
@@ -166,7 +166,7 @@ test.todo('GetShowsEpisodes');
 test.todo('GetSeveralTracks');
 test('GetTrack - Sketch for Summer', async () => {
   const id = '2oeLt7N1amHZiev27FvKE2?si=a03757f17a05462b';
-  expect(await api.GetTrack(id, { market: 'US' })).toMatchSnapshot();
+  expect(await api.getTrack(id, { market: 'US' })).toMatchSnapshot();
 });
 
 test.todo('GetSeveralAudioFeatures');
