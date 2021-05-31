@@ -7,100 +7,100 @@ export const resolvers = {
   },
   SpotifyQuery: {
     getMultipleAlbums(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetMultipleAlbums(args.params);
+      return ctx.dataSources.spotify.getMultipleAlbums(args.params);
     },
     getAlbum(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetAlbum(args.id, args.params);
+      return ctx.dataSources.spotify.getAlbum(args.id, args.params);
     },
     getAlbumsTracks(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetAlbumsTracks(args.id, args.params);
+      return ctx.dataSources.spotify.getAlbumsTracks(args.id, args.params);
     },
     getMultipleArtists(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetMultipleArtists(args.params);
+      return ctx.dataSources.spotify.getMultipleArtists(args.params);
     },
     getArtist(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetArtist(args.id);
+      return ctx.dataSources.spotify.getArtist(args.id);
     },
     getArtistsTopTracks(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetArtistsTopTracks(args.id, args.params);
+      return ctx.dataSources.spotify.getArtistsTopTracks(args.id, args.params);
     },
     getArtistsRelatedArtists(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetArtistsRelatedArtists(args.id);
+      return ctx.dataSources.spotify.getArtistsRelatedArtists(args.id);
     },
     getArtistsAlbums(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetArtistsAlbums(args.id, args.params);
+      return ctx.dataSources.spotify.getArtistsAlbums(args.id, args.params);
     },
     getNewReleases(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetNewReleases(args.params);
+      return ctx.dataSources.spotify.getNewReleases(args.params);
     },
     getFeaturedPlaylists(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetFeaturedPlaylists(args.params);
+      return ctx.dataSources.spotify.getFeaturedPlaylists(args.params);
     },
     getCategories(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetCategories(args.params);
+      return ctx.dataSources.spotify.getCategories(args.params);
     },
     getCategory(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetCategory(args.category_id, args.params);
+      return ctx.dataSources.spotify.getCategory(args.category_id, args.params);
     },
     getCategoriesPlaylists(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetCategoriesPlaylists(
+      return ctx.dataSources.spotify.getCategoriesPlaylists(
         args.category_id,
         args.params
       );
     },
     getRecommendations(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetRecommendations(args.params);
+      return ctx.dataSources.spotify.getRecommendations(args.params);
     },
     getRecommendationGenres(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetRecommendationGenres();
+      return ctx.dataSources.spotify.getRecommendationGenres();
     },
     getMultipleEpisodes(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetMultipleEpisodes(args.params);
+      return ctx.dataSources.spotify.getMultipleEpisodes(args.params);
     },
     getEpisode(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetEpisode(args.id, args.params);
+      return ctx.dataSources.spotify.getEpisode(args.id, args.params);
     },
     checkIfUserFollowsPlaylist(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.CheckIfUserFollowsPlaylist(
+      return ctx.dataSources.spotify.checkIfUserFollowsPlaylist(
         args.playlist_id,
         args.params
       );
     },
     getFollowed(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetFollowed(args.params);
+      return ctx.dataSources.spotify.getFollowed(args.params);
     },
     checkCurrentUserFollows(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.CheckCurrentUserFollows(args.params);
+      return ctx.dataSources.spotify.checkCurrentUserFollows(args.params);
     },
     getUsersSavedAlbums(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetUsersSavedAlbums(args.params);
+      return ctx.dataSources.spotify.getUsersSavedAlbums(args.params);
     },
     checkUsersSavedAlbums(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.CheckUsersSavedAlbums(args.params);
+      return ctx.dataSources.spotify.checkUsersSavedAlbums(args.params);
     },
     getUsersSavedTracks(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetUsersSavedTracks(args.params);
+      return ctx.dataSources.spotify.getUsersSavedTracks(args.params);
     },
     checkUsersSavedTracks(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.CheckUsersSavedTracks(args.params);
+      return ctx.dataSources.spotify.checkUsersSavedTracks(args.params);
     },
     getUsersSavedEpisodes(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetUsersSavedEpisodes(args.params);
+      return ctx.dataSources.spotify.getUsersSavedEpisodes(args.params);
     },
     checkUsersSavedEpisodes(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.CheckUsersSavedEpisodes(args.params);
+      return ctx.dataSources.spotify.checkUsersSavedEpisodes(args.params);
     },
     getUsersSavedShows(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetUsersSavedShows(args.params);
+      return ctx.dataSources.spotify.getUsersSavedShows(args.params);
     },
     checkUsersSavedShows(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.CheckUsersSavedShows(args.params);
+      return ctx.dataSources.spotify.checkUsersSavedShows(args.params);
     },
     getAvailableMarkets(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetAvailableMarkets();
+      return ctx.dataSources.spotify.getAvailableMarkets();
     },
     getUsersTopArtistsAndTracks(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetUsersTopArtistsAndTracks(
+      return ctx.dataSources.spotify.getUsersTopArtistsAndTracks(
         args.type,
         args.params
       );
@@ -110,181 +110,181 @@ export const resolvers = {
       args: any,
       ctx: any
     ) {
-      return ctx.dataSources.spotify.GetInformationAboutTheUsersCurrentPlayback(
+      return ctx.dataSources.spotify.getInformationAboutTheUsersCurrentPlayback(
         args.params
       );
     },
     getUsersAvailableDevices(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetUsersAvailableDevices();
+      return ctx.dataSources.spotify.getUsersAvailableDevices();
     },
     getTheUsersCurrentlyPlayingTrack(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetTheUsersCurrentlyPlayingTrack(
+      return ctx.dataSources.spotify.getTheUsersCurrentlyPlayingTrack(
         args.params
       );
     },
     getRecentlyPlayed(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetRecentlyPlayed(args.params);
+      return ctx.dataSources.spotify.getRecentlyPlayed(args.params);
     },
     getListOfCurrentUsersPlaylists(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetListOfCurrentUsersPlaylists(
+      return ctx.dataSources.spotify.getListOfCurrentUsersPlaylists(
         args.params
       );
     },
     getListUsersPlaylists(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetListUsersPlaylists(
+      return ctx.dataSources.spotify.getListUsersPlaylists(
         args.user_id,
         args.params
       );
     },
     getPlaylist(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetPlaylist(args.playlist_id, args.params);
+      return ctx.dataSources.spotify.getPlaylist(args.playlist_id, args.params);
     },
     getPlaylistsTracks(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetPlaylistsTracks(
+      return ctx.dataSources.spotify.getPlaylistsTracks(
         args.playlist_id,
         args.params
       );
     },
     getPlaylistCover(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetPlaylistCover(args.playlist_id);
+      return ctx.dataSources.spotify.getPlaylistCover(args.playlist_id);
     },
     search(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.Search(args.params);
+      return ctx.dataSources.spotify.search(args.params);
     },
     getMultipleShows(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetMultipleShows(args.params);
+      return ctx.dataSources.spotify.getMultipleShows(args.params);
     },
     getShow(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetShow(args.id, args.params);
+      return ctx.dataSources.spotify.getShow(args.id, args.params);
     },
     getShowsEpisodes(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetShowsEpisodes(args.id, args.params);
+      return ctx.dataSources.spotify.getShowsEpisodes(args.id, args.params);
     },
     getSeveralTracks(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetSeveralTracks(args.params);
+      return ctx.dataSources.spotify.getSeveralTracks(args.params);
     },
     getTrack(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetTrack(args.id, args.params);
+      return ctx.dataSources.spotify.getTrack(args.id, args.params);
     },
     getSeveralAudioFeatures(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetSeveralAudioFeatures(args.params);
+      return ctx.dataSources.spotify.getSeveralAudioFeatures(args.params);
     },
     getAudioFeatures(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetAudioFeatures(args.id);
+      return ctx.dataSources.spotify.getAudioFeatures(args.id);
     },
     getAudioAnalysis(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetAudioAnalysis(args.id);
+      return ctx.dataSources.spotify.getAudioAnalysis(args.id);
     },
     getCurrentUsersProfile(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetCurrentUsersProfile();
+      return ctx.dataSources.spotify.getCurrentUsersProfile();
     },
     getUsersProfile(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.GetUsersProfile(args.user_id);
+      return ctx.dataSources.spotify.getUsersProfile(args.user_id);
     },
   },
   SpotifyMutation: {
     followPlaylist(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.FollowPlaylist(
+      return ctx.dataSources.spotify.followPlaylist(
         args.playlist_id,
         args.params
       );
     },
     unfollowPlaylist(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.UnfollowPlaylist(args.playlist_id);
+      return ctx.dataSources.spotify.unfollowPlaylist(args.playlist_id);
     },
     followArtistsUsers(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.FollowArtistsUsers(args.params);
+      return ctx.dataSources.spotify.followArtistsUsers(args.params);
     },
     unfollowArtistsUsers(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.UnfollowArtistsUsers(args.params);
+      return ctx.dataSources.spotify.unfollowArtistsUsers(args.params);
     },
     saveAlbumsUser(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.SaveAlbumsUser(args.params);
+      return ctx.dataSources.spotify.saveAlbumsUser(args.params);
     },
     removeAlbumsUser(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.RemoveAlbumsUser(args.params);
+      return ctx.dataSources.spotify.removeAlbumsUser(args.params);
     },
     saveTracksUser(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.SaveTracksUser(args.params);
+      return ctx.dataSources.spotify.saveTracksUser(args.params);
     },
     removeTracksUser(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.RemoveTracksUser(args.params);
+      return ctx.dataSources.spotify.removeTracksUser(args.params);
     },
     saveEpisodesUser(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.SaveEpisodesUser(args.params);
+      return ctx.dataSources.spotify.saveEpisodesUser(args.params);
     },
     removeEpisodesUser(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.RemoveEpisodesUser(args.params);
+      return ctx.dataSources.spotify.removeEpisodesUser(args.params);
     },
     saveShowsUser(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.SaveShowsUser(args.params);
+      return ctx.dataSources.spotify.saveShowsUser(args.params);
     },
     removeShowsUser(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.RemoveShowsUser(args.params);
+      return ctx.dataSources.spotify.removeShowsUser(args.params);
     },
     transferUsersPlayback(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.TransferUsersPlayback(args.params);
+      return ctx.dataSources.spotify.transferUsersPlayback(args.params);
     },
     startUsersPlayback(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.StartUsersPlayback(args.params);
+      return ctx.dataSources.spotify.startUsersPlayback(args.params);
     },
     pauseUsersPlayback(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.PauseUsersPlayback(args.params);
+      return ctx.dataSources.spotify.pauseUsersPlayback(args.params);
     },
     skipUsersPlaybackToNextTrack(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.SkipUsersPlaybackToNextTrack(args.params);
+      return ctx.dataSources.spotify.skipUsersPlaybackToNextTrack(args.params);
     },
     skipUsersPlaybackToPreviousTrack(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.SkipUsersPlaybackToPreviousTrack(
+      return ctx.dataSources.spotify.skipUsersPlaybackToPreviousTrack(
         args.params
       );
     },
     seekToPositionInCurrentlyPlayingTrack(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.SeekToPositionInCurrentlyPlayingTrack(
+      return ctx.dataSources.spotify.seekToPositionInCurrentlyPlayingTrack(
         args.params
       );
     },
     setRepeatModeOnUsersPlayback(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.SetRepeatModeOnUsersPlayback(args.params);
+      return ctx.dataSources.spotify.setRepeatModeOnUsersPlayback(args.params);
     },
     setVolumeForUsersPlayback(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.SetVolumeForUsersPlayback(args.params);
+      return ctx.dataSources.spotify.setVolumeForUsersPlayback(args.params);
     },
     toggleShuffleForUsersPlayback(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.ToggleShuffleForUsersPlayback(args.params);
+      return ctx.dataSources.spotify.toggleShuffleForUsersPlayback(args.params);
     },
     addToQueue(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.AddToQueue(args.params);
+      return ctx.dataSources.spotify.addToQueue(args.params);
     },
     createPlaylist(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.CreatePlaylist(args.user_id, args.params);
+      return ctx.dataSources.spotify.createPlaylist(args.user_id, args.params);
     },
     changePlaylistDetails(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.ChangePlaylistDetails(
+      return ctx.dataSources.spotify.changePlaylistDetails(
         args.playlist_id,
         args.params
       );
     },
     addTracksToPlaylist(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.AddTracksToPlaylist(
+      return ctx.dataSources.spotify.addTracksToPlaylist(
         args.playlist_id,
         args.params
       );
     },
     reorderOrReplacePlaylistsTracks(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.ReorderOrReplacePlaylistsTracks(
+      return ctx.dataSources.spotify.reorderOrReplacePlaylistsTracks(
         args.playlist_id,
         args.params
       );
     },
     removeTracksPlaylist(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.RemoveTracksPlaylist(
+      return ctx.dataSources.spotify.removeTracksPlaylist(
         args.playlist_id,
         args.params
       );
     },
     uploadCustomPlaylistCover(_: unknown, args: any, ctx: any) {
-      return ctx.dataSources.spotify.UploadCustomPlaylistCover(
+      return ctx.dataSources.spotify.uploadCustomPlaylistCover(
         args.playlist_id
       );
     },
