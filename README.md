@@ -1,36 +1,31 @@
 # Apollo Data Source Spotify
 
+Apollo Data Source Spotify encapsulates fetching data from the Spotify API.
+
 ## Getting Started
 
 ### Install
 
-```
-npm install apollo-datasource-rest dataloader graphql
-```
+`npm install apollo-datasource-rest dataloader graphql`
 
 ### Configure
 
-```
+```js
 import { SpotifyAPI } from 'apollo-datasource-spotify';
 
 const apollo = new ApolloServer({
-  context: ({ req }) => {
-    return {
-      authorization: req.headers.authorization,
-      // OR
-      token: req.user.token,
-    };
-  },
+  context: ({ req }) => ({
+    authorization: req.headers.authorization,
+  }),
   dataSources: () => ({
     spotify: new SpotifyAPI(),
   }),
-  ...
 });
 ```
 
 ### Usage
 
-```
+```js
 export const resolvers = {
   Query: {
     me(root, args, context) {
@@ -42,7 +37,7 @@ export const resolvers = {
 
 #### Batch Requests
 
-```
+```js
 import { batch } from 'apollo-datasource-spotify';
 
 const resolver = async (root, args, context) {
@@ -58,14 +53,14 @@ const resolver = async (root, args, context) {
 };
 ```
 
-### Throttling Requests
+### Throttle Requests
 
 If you run into issues with rate-limiting, try throttling requests with something
 like [bottleneck](https://www.npmjs.com/package/bottleneck).
 
 `npm install --save bottleneck`
 
-```
+```js
 import SpotifyAPI from 'apollo-datasource-rest';
 import Bottleneck from 'bottleneck';
 
@@ -89,12 +84,57 @@ class ThrottledSpotifyAPI extends SpotifyAPI {
 }
 ```
 
-## TypeDefs and Resolvers (experimental)
+## Spotify GraphQL Schema
 
-If you use the generated typeDefs and resolvers in a schema you should also implement your own
+To use the Spotify GraphQL schema implement your own
 [custom scalar](https://www.apollographql.com/docs/apollo-server/schema/custom-scalars/)
-JSON type or install `graphql-type-json` and [add it to your resolver map](https://www.apollographql.com/docs/apollo-server/schema/custom-scalars/#importing-a-third-party-custom-scalar).
+JSON type or use `graphql-type-json`.
+
+### Install (optional)
+
+`npm install --save graphql-type-json`
+
+### Configure
+
+```js
+import { ApolloServer, gql } from 'apollo-server';
+import { SpotifyAPI, typeDefs, resolvers } from 'apollo-datasource-spotify';
+import GraphQLJSON from 'graphql-type-json';
+
+const apollo = new ApolloServer({
+  context: ({ req }) => ({
+    authorization: req.headers.authorization,
+  }),
+  dataSources: () => ({
+    spotify: new SpotifyAPI(),
+  }),
+  typeDefs: gql(typeDefs()),
+  resolvers: resolvers({ JSON: GraphQLJSON }),
+});
+```
+
+### Usage
 
 ```
-npm install --save graphql-type-json
+query {
+  spotify {
+    getAlbum(id: "42j41uUwuHZT3bnedq2XtM") {
+      id
+      name
+    }
+    getAlbumsTracks(id: "42j41uUwuHZT3bnedq2XtM") {
+      items {
+        ... on SimplifiedTrackObject {
+          id
+          name
+          preview_url
+          artists {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}
 ```
