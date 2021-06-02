@@ -1,5 +1,7 @@
 export function typeDefs(): string {
   return `
+    scalar JSON
+
     type AlbumObject {
       """
       The type of the album: album, single, or compilation.
