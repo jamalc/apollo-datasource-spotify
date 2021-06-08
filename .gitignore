@@ -7,3 +7,4 @@ npm-debug.log*
 .npm/
 dist
 .env
+__snapshots__
